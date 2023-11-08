@@ -2,9 +2,9 @@
   *
   * Link: https://adventofcode.com/2015/day/1
   *
-  * Difficulty: *
+  * Difficulty: xs
   *
-  * Tags: -
+  * Tags: sequence
   */
 package year_2015
 
