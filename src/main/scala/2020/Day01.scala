@@ -17,10 +17,10 @@ class Day01(rawInput: List[String]):
 
   def solvePart2(input: InputType): Int =
     input.zipWithIndex
-      .flatMap((vk) =>
-        twoSumMultiplied(input.drop(vk(1) + 1), 2020 - vk(0)) match
+      .flatMap((entry) =>
+        twoSumMultiplied(input.drop(entry(1) + 1), 2020 - entry(0)) match
           case None       => None
-          case Some(mult) => Some(vk(0) * mult)
+          case Some(mult) => Some(entry(0) * mult)
       )
       .head
 
