@@ -14,25 +14,28 @@ import scala.annotation.tailrec
 type InputType = Seq[Int]
 
 class Day01(rawInput: List[String]):
-  def solvePart1(input: InputType): Int =
-    input.map(_ / 3 - 2).reduce(_ + _)
+    def solvePart1(input: InputType): Int =
+        input.map(_ / 3 - 2).reduce(_ + _)
 
-  def solvePart2(input: InputType): Int =
-    @tailrec
-    def getFuel(mass: Int, fuel: Int = 0): Int =
-      (mass / 3 - 2) match
-        case notFuel if notFuel <= 0 => fuel
-        case fuelPart                => getFuel(fuelPart, fuelPart + fuel)
+    def solvePart2(input: InputType): Int =
+        @tailrec
+        def getFuel(mass: Int, fuel: Int = 0): Int =
+            (mass / 3 - 2) match
+                case notFuel if notFuel <= 0 => fuel
+                case fuelPart                => getFuel(fuelPart, fuelPart + fuel)
 
-    input.map(getFuel(_)).reduce(_ + _)
+        input.map(getFuel(_)).reduce(_ + _)
+    end solvePart2
 
-  def solve(): Solution =
-    val input = parseInput
-    val part1 = solvePart1(input)
-    val part2 = solvePart2(input)
-    (part1, part2)
+    def solve(): Solution =
+        val input = parseInput
+        val part1 = solvePart1(input)
+        val part2 = solvePart2(input)
+        (part1, part2)
+    end solve
 
-  def parseInput: InputType = rawInput.map(_.toInt)
+    def parseInput: InputType = rawInput.map(_.toInt)
+end Day01
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2019_01 =

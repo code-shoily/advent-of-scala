@@ -15,25 +15,28 @@ import advent_of_scala.base.Solution
 type InputType = PriorityQueue[Int]
 
 class Day01(rawInput: List[String]):
-  def solvePart1(input: InputType): Int = input.head
-  def solvePart2(input: InputType): Int = input.take(3).reduce(_ + _)
+    def solvePart1(input: InputType): Int = input.head
+    def solvePart2(input: InputType): Int = input.take(3).reduce(_ + _)
 
-  def solve(): Solution =
-    val input = parseInput
-    val part1 = solvePart1(input)
-    val part2 = solvePart2(input)
-    (part1, part2)
+    def solve(): Solution =
+        val input = parseInput
+        val part1 = solvePart1(input)
+        val part2 = solvePart2(input)
+        (part1, part2)
+    end solve
 
-  private def parseInput: InputType =
-    val pq = PriorityQueue[Int]()
-    val calories =
-      rawInput.foldLeft(List[Int](0))((acc, x) =>
-        if x == "" then 0 :: acc
-        else (x.toInt + acc.head) :: acc.tail
-      )
+    private def parseInput: InputType =
+        val pq = PriorityQueue[Int]()
+        val calories =
+            rawInput.foldLeft(List[Int](0))((acc, x) =>
+                if x == "" then 0 :: acc
+                else (x.toInt + acc.head) :: acc.tail
+            )
 
-    pq.enqueue(calories*)
-    pq
+        pq.enqueue(calories*)
+        pq
+    end parseInput
+end Day01
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2022_01 =

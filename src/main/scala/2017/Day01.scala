@@ -14,40 +14,44 @@ import scala.annotation.tailrec
 type InputType = Seq[Int]
 
 class Day01(rawInput: List[String]):
-  def solvePart1(input: InputType): Int =
-    val head = input.head
+    def solvePart1(input: InputType): Int =
+        val head = input.head
 
-    @tailrec
-    def recurse(lst: InputType, total: Int = 0): Int =
-      lst match
-        case x :: (y :: rest) if x == y =>
-          recurse(y :: rest, total + x)
-        case x :: Nil if x == head => total + x
-        case x :: rest             => recurse(rest, total)
+        @tailrec
+        def recurse(lst: InputType, total: Int = 0): Int =
+            lst match
+                case x :: (y :: rest) if x == y =>
+                    recurse(y :: rest, total + x)
+                case x :: Nil if x == head => total + x
+                case x :: rest             => recurse(rest, total)
 
-    recurse(input)
+        recurse(input)
+    end solvePart1
 
-  def solvePart2(input: InputType): Int =
-    @tailrec
-    def recurse(list1: Seq[Int], list2: Seq[Int], total: Int = 0): Int =
-      (list1, list2) match
-        case (x :: rest1, y :: rest2) if x == y =>
-          recurse(rest1, rest2, total + x + y)
-        case (x :: rest1, y :: rest2) => recurse(rest1, rest2, total)
-        case (Nil, Nil)               => total
+    def solvePart2(input: InputType): Int =
+        @tailrec
+        def recurse(list1: Seq[Int], list2: Seq[Int], total: Int = 0): Int =
+            (list1, list2) match
+                case (x :: rest1, y :: rest2) if x == y =>
+                    recurse(rest1, rest2, total + x + y)
+                case (x :: rest1, y :: rest2) => recurse(rest1, rest2, total)
+                case (Nil, Nil)               => total
 
-    val (firstHalf, secondHalf) = input.splitAt(input.length / 2)
+        val (firstHalf, secondHalf) = input.splitAt(input.length / 2)
 
-    recurse(firstHalf, secondHalf)
+        recurse(firstHalf, secondHalf)
+    end solvePart2
 
-  def solve(): Solution =
-    val input = parseInput
-    val part1 = solvePart1(input)
-    val part2 = solvePart2(input)
-    (part1, part2)
+    def solve(): Solution =
+        val input = parseInput
+        val part1 = solvePart1(input)
+        val part2 = solvePart2(input)
+        (part1, part2)
+    end solve
 
-  def parseInput: InputType =
-    rawInput.head.toVector.map(_.toInt - '0'.toInt).toList
+    def parseInput: InputType =
+        rawInput.head.toVector.map(_.toInt - '0'.toInt).toList
+end Day01
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2017_01 =

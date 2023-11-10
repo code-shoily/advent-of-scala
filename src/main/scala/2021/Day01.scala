@@ -13,21 +13,23 @@ import advent_of_scala.base.Solution
 type InputType = Seq[Int]
 
 class Day01(rawInput: List[String]):
-  def solvePart1(input: InputType): Int = countIncrements(input, 1)
-  def solvePart2(input: InputType): Int = countIncrements(input, 3)
+    def solvePart1(input: InputType): Int = countIncrements(input, 1)
+    def solvePart2(input: InputType): Int = countIncrements(input, 3)
 
-  def solve(): Solution =
-    val input = parseInput
-    val part1 = solvePart1(input)
-    val part2 = solvePart2(input)
-    (part1, part2)
+    def solve(): Solution =
+        val input = parseInput
+        val part1 = solvePart1(input)
+        val part2 = solvePart2(input)
+        (part1, part2)
+    end solve
 
-  def parseInput: InputType = rawInput.map(_.toInt)
+    def parseInput: InputType = rawInput.map(_.toInt)
 
-  private def countIncrements(sigs: InputType, by: Int): Int =
-    (0 until (sigs.length - by)).foldLeft(0)((incr, idx) =>
-      incr + (if sigs(idx) < sigs(idx + by) then 1 else 0)
-    )
+    private def countIncrements(sigs: InputType, by: Int): Int =
+        (0 until (sigs.length - by)).foldLeft(0)((incr, idx) =>
+            incr + (if sigs(idx) < sigs(idx + by) then 1 else 0)
+        )
+end Day01
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2021_01 =
