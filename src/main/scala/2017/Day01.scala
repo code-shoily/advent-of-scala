@@ -4,7 +4,7 @@
   *
   * Difficulty: xs
   *
-  * Tags: sequence
+  * Tags: linked-list
   */
 package year_2017
 
