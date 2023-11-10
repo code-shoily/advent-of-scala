@@ -4,7 +4,7 @@
   *
   * Difficulty: xs
   *
-  * Tags: recursion reduction
+  * Tags: recursion reduce
   */
 package advent_of_scala.year_2019
 
@@ -17,7 +17,7 @@ class Day01(rawInput: List[String]):
   def solvePart1(input: InputType): Int =
     input.map(_ / 3 - 2).reduce(_ + _)
 
-  def solvePart2(input: InputType) =
+  def solvePart2(input: InputType): Int =
     @tailrec
     def getFuel(mass: Int, fuel: Int = 0): Int =
       (mass / 3 - 2) match
@@ -32,7 +32,7 @@ class Day01(rawInput: List[String]):
     val part2 = solvePart2(input)
     (part1, part2)
 
-  def parseInput: Seq[Int] = rawInput.map(_.toInt)
+  def parseInput: InputType = rawInput.map(_.toInt)
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2019_01 =

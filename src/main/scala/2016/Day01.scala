@@ -59,7 +59,7 @@ class Day01(rawInput: List[String]):
       .currentLocation
       .distanceFromOrigin
 
-  def solvePart2(input: InputType) =
+  def solvePart2(input: InputType): Int =
     input
       .scanLeft(
         State(false, Grid(Direction.North, Point(0, 0)), Set[Point](), None)

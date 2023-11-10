@@ -14,7 +14,7 @@ type InputType = Seq[Int]
 
 class Day01(rawInput: List[String]):
   def solvePart1(input: InputType): Int = countIncrements(input, 1)
-  def solvePart2(input: InputType) = countIncrements(input, 3)
+  def solvePart2(input: InputType): Int = countIncrements(input, 3)
 
   def solve(): Solution =
     val input = parseInput
@@ -22,7 +22,7 @@ class Day01(rawInput: List[String]):
     val part2 = solvePart2(input)
     (part1, part2)
 
-  def parseInput: Seq[Int] = rawInput.map(_.toInt)
+  def parseInput: InputType = rawInput.map(_.toInt)
 
   private def countIncrements(sigs: InputType, by: Int): Int =
     (0 until (sigs.length - by)).foldLeft(0)((incr, idx) =>

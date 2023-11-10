@@ -27,7 +27,7 @@ class Day01(rawInput: List[String]):
 
     recurse(input)
 
-  def solvePart2(input: InputType) =
+  def solvePart2(input: InputType): Int =
     @tailrec
     def recurse(list1: Seq[Int], list2: Seq[Int], total: Int = 0): Int =
       (list1, list2) match
@@ -46,7 +46,7 @@ class Day01(rawInput: List[String]):
     val part2 = solvePart2(input)
     (part1, part2)
 
-  def parseInput: Seq[Int] =
+  def parseInput: InputType =
     rawInput.head.toVector.map(_.toInt - '0'.toInt).toList
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.

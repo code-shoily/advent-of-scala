@@ -4,7 +4,7 @@
   *
   * Difficulty: xs
   *
-  * Tags: sequence
+  * Tags: sequence reduce
   */
 package advent_of_scala.year_2015
 
@@ -14,7 +14,7 @@ type InputType = Seq[Int]
 
 class Day01(rawInput: List[String]):
   def solvePart1(input: InputType): Int = input.reduce(_ + _)
-  def solvePart2(input: InputType) = input.scan(0)(_ + _).indexOf(-1)
+  def solvePart2(input: InputType): Int = input.scan(0)(_ + _).indexOf(-1)
 
   def solve(): Solution =
     val input = parseInput
@@ -22,7 +22,7 @@ class Day01(rawInput: List[String]):
     val part2 = solvePart2(input)
     (part1, part2)
 
-  private def parseInput: Seq[Int] =
+  private def parseInput: InputType =
     rawInput.head.map((step: Char) => if step == '(' then 1 else -1)
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
