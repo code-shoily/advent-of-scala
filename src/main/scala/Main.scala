@@ -9,7 +9,12 @@ import advent_of_scala.{
   year_2022
 }
 import advent_of_scala.base.Solver
-import advent_of_scala.utils.io.{consolePrompt, printSolution, readLines, validateInput}
+import advent_of_scala.utils.io.{
+  consolePrompt,
+  printSolution,
+  readLines,
+  validateInput
+}
 
 def getSolverForYear(year: Int, input: List[String]): Solver =
   year match
