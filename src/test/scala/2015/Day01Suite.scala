@@ -13,6 +13,6 @@ class Day01Suite extends munit.FunSuite {
     val rawInput = readLines(year, day).get
     val solution = Day01(rawInput).solve()
 
-    assert(solution == result)
+    assertEquals(solution, result)
   }
 }
