@@ -6,9 +6,9 @@
   *
   * Tags: grid
   */
-package year_2016
+package advent_of_scala.year_2016
 
-import base.Solution
+import advent_of_scala.base.Solution
 
 type InputType = Seq[Instruction]
 

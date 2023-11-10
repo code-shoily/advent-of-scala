@@ -6,9 +6,9 @@
   *
   * Tags: recursion reduction
   */
-package year_2019
+package advent_of_scala.year_2019
 
-import base.Solution
+import advent_of_scala.base.Solution
 import scala.annotation.tailrec
 
 type InputType = Seq[Int]

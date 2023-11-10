@@ -1,4 +1,4 @@
-package base
+package advent_of_scala.base
 
 type Solution = (Int, Int)
 

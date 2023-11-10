@@ -1,6 +1,6 @@
-package year_2017
+package advent_of_scala.year_2017
 
-import base.*
+import advent_of_scala.base.*
 
 class Solver2017(input: List[String]) extends Solver:
   override def solveFor(day: Int): Solution =

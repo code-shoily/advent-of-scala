@@ -6,9 +6,9 @@
   *
   * Tags: 2sum 3sum two-pointer
   */
-package year_2020
+package advent_of_scala.year_2020
 
-import base.Solution
+import advent_of_scala.base.Solution
 
 type InputType = Seq[Int]
 

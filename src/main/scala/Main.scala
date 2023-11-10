@@ -1,5 +1,15 @@
-import utils.io.{consolePrompt, printSolution, readLines, validateInput}
-import base.Solver
+import advent_of_scala.{
+  year_2015,
+  year_2016,
+  year_2017,
+  year_2018,
+  year_2019,
+  year_2020,
+  year_2021,
+  year_2022
+}
+import advent_of_scala.base.Solver
+import advent_of_scala.utils.io.{consolePrompt, printSolution, readLines, validateInput}
 
 def getSolverForYear(year: Int, input: List[String]): Solver =
   year match

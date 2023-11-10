@@ -6,11 +6,11 @@
   *
   * Tags: heap sort
   */
-package year_2022
+package advent_of_scala.year_2022
 
 import scala.collection.mutable.PriorityQueue
 
-import base.Solution
+import advent_of_scala.base.Solution
 
 type InputType = PriorityQueue[Int]
 

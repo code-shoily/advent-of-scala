@@ -6,9 +6,9 @@
   *
   * Tags: sequence
   */
-package year_2021
+package advent_of_scala.year_2021
 
-import base.Solution
+import advent_of_scala.base.Solution
 
 type InputType = Seq[Int]
 

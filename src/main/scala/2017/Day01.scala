@@ -6,9 +6,9 @@
   *
   * Tags: linked-list
   */
-package year_2017
+package advent_of_scala.year_2017
 
-import base.Solution
+import advent_of_scala.base.Solution
 import scala.annotation.tailrec
 
 type InputType = Seq[Int]
