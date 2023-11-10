@@ -33,11 +33,13 @@ end Day01
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2021_01 =
-  import utils.io.{readLines, printSolution}
+    import advent_of_scala.utils.io.{readLines, printSolution}
 
-  readLines(2021, 1) match
-    case Some(rawInput) =>
-      val solver = Day01(rawInput)
-      printSolution(solver.solve())
-    case _ => sys.error("Could not read file")
+    readLines(2021, 1) match
+        case Some(rawInput) =>
+            val solver = Day01(rawInput)
+            printSolution(solver.solve())
+        case _ => sys.error("Could not read file")
+    end match
+end run_2021_01
 // */

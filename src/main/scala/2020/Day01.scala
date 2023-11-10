@@ -50,9 +50,10 @@ end Day01
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2020_01 =
-  import utils.io.{readLines, printSolution}
-  readLines(2020, 1) match
-    case Some(raw_input) =>
-      printSolution(Day01(raw_input).solve())
-    case _ => sys.error("Could not read file")
+    import advent_of_scala.utils.io.{readLines, printSolution}
+    readLines(2020, 1) match
+        case Some(raw_input) =>
+            printSolution(Day01(raw_input).solve())
+        case _ => sys.error("Could not read file")
+end run_2020_01
 // */

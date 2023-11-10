@@ -96,7 +96,7 @@ class Day01(rawInput: List[String]):
             case _ =>
                 sys.error("Unreachable State")
 
-        points.find(history.contains(_)) match
+        points.find(history.contains) match
             case Some(point) => Left(point)
             case _           => Right(history ++ points)
     end exploreVisits
@@ -118,9 +118,10 @@ end Day01
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2016_01 =
-  import utils.io.{readLines, printSolution}
-  readLines(2016, 1) match
-    case Some(raw_input) =>
-      printSolution(Day01(raw_input).solve())
-    case _ => sys.error("Could not read file")
+    import advent_of_scala.utils.io.{readLines, printSolution}
+    readLines(2016, 1) match
+        case Some(raw_input) =>
+            printSolution(Day01(raw_input).solve())
+        case _ => sys.error("Could not read file")
+end run_2016_01
 // */
