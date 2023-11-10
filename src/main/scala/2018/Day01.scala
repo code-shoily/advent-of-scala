@@ -9,6 +9,7 @@
 package year_2018
 
 import base.Solution
+import scala.annotation.tailrec
 
 type InputType = List[Int]
 
@@ -17,6 +18,7 @@ class Day01(rawInput: List[String]):
   def solvePart2(input: InputType): Int =
     val frequencyHistory = Set[Int]()
 
+    @tailrec
     def recurse(
         frequencies: InputType,
         history: Set[Int],

@@ -9,6 +9,7 @@
 package year_2017
 
 import base.Solution
+import scala.annotation.tailrec
 
 type InputType = Seq[Int]
 
@@ -16,6 +17,7 @@ class Day01(rawInput: List[String]):
   def solvePart1(input: InputType): Int =
     val head = input.head
 
+    @tailrec
     def recurse(lst: InputType, total: Int = 0): Int =
       lst match
         case x :: (y :: rest) if x == y =>
@@ -26,6 +28,7 @@ class Day01(rawInput: List[String]):
     recurse(input)
 
   def solvePart2(input: InputType) =
+    @tailrec
     def recurse(list1: Seq[Int], list2: Seq[Int], total: Int = 0): Int =
       (list1, list2) match
         case (x :: rest1, y :: rest2) if x == y =>

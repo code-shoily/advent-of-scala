@@ -9,6 +9,7 @@
 package year_2019
 
 import base.Solution
+import scala.annotation.tailrec
 
 type InputType = Seq[Int]
 
@@ -17,6 +18,7 @@ class Day01(rawInput: List[String]):
     input.map(_ / 3 - 2).reduce(_ + _)
 
   def solvePart2(input: InputType) =
+    @tailrec
     def getFuel(mass: Int, fuel: Int = 0): Int =
       (mass / 3 - 2) match
         case notFuel if notFuel <= 0 => fuel
