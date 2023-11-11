@@ -8,12 +8,14 @@
   */
 package advent_of_scala.year_2020
 
-import advent_of_scala.base.Solution
+import advent_of_scala.base.{Solution, impossibleStateError}
 
 type InputType = Seq[Int]
 
 class Day01(rawInput: List[String]):
-    def solvePart1(input: InputType): Int = twoSumMultiplied(input, 2020).get
+    def solvePart1(input: InputType): Int = twoSumMultiplied(input, 2020) match
+        case Some(value) => value
+        case None        => impossibleStateError
 
     def solvePart2(input: InputType): Int =
         input.zipWithIndex

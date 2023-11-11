@@ -8,7 +8,7 @@
   */
 package advent_of_scala.year_2016
 
-import advent_of_scala.base.Solution
+import advent_of_scala.base.{Solution, impossibleStateError}
 
 type InputType = Seq[Instruction]
 
@@ -66,8 +66,9 @@ class Day01(rawInput: List[String]):
               State(false, Grid(Direction.North, Point(0, 0)), Set[Point](), None)
             )(revisitReducer)
             .find(_.twiceReached == true)
-            .flatMap(_.result.map(_.distanceFromOrigin))
-            .get
+            .flatMap(_.result.map(_.distanceFromOrigin)) match
+            case Some(result) => result
+            case None         => impossibleStateError
 
     private def revisitReducer(state: State, instruction: Instruction): State =
         val previousGrid = state.grid
@@ -94,7 +95,7 @@ class Day01(rawInput: List[String]):
                 (if x0 >= x1 then (x1 to (x0 - 1)) else ((x0 + 1) to x1))
                     .map(Point(_, y0))
             case _ =>
-                sys.error("Unreachable State")
+                impossibleStateError
 
         points.find(history.contains) match
             case Some(point) => Left(point)

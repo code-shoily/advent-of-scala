@@ -8,7 +8,7 @@
   */
 package advent_of_scala.year_2015
 
-import advent_of_scala.base.Solution
+import advent_of_scala.base.{Solution, impossibleStateError}
 
 type InputType = Seq[Int]
 
@@ -27,12 +27,12 @@ class Day01(rawInput: List[String]):
         rawInput.head.map((step: Char) => if step == '(' then 1 else -1)
 end Day01
 
-/*--------- Block to test this file on IDEs, comment this line with `//` to enable.
+// /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2015_01 =
     import advent_of_scala.utils.io.{readLines, printSolution}
     readLines(2015, 1) match
         case Some(raw_input) =>
             printSolution(Day01(raw_input).solve())
-        case _ => sys.error("Could not read file")
+        case _ => impossibleStateError
 end run_2015_01
 // */
