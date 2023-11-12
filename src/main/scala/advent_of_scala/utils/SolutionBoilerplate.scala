@@ -1,10 +1,11 @@
 package advent_of_scala.utils
 
-import java.nio.file.{Files, Path, Paths}
+import java.nio.file.{Files, Path, Paths, StandardOpenOption}
+import java.nio.charset.StandardCharsets
 
-class SolutionTemplate(year: Int, day: Int):
-    def write(): Option[String] =
-        val source = createInputStub
+class SolutionBoilerplate(year: Int, day: Int):
+    def create(): Option[String] =
+        val source = createSourceStub
         val test = createTestStub
         val input = createInputStub
 
@@ -19,7 +20,7 @@ class SolutionTemplate(year: Int, day: Int):
         else
             None
         end if
-    end write
+    end create
 
     def createSourceStub: Option[(Path, String)] =
         if !Files.exists(sourcePath) then Some((sourcePath, sourceContent)) else None
@@ -97,5 +98,5 @@ class SolutionTemplate(year: Int, day: Int):
         Paths.get(s"src/test/scala/advent_of_scala/$year/Day${"%02d".format(day)}Suite.scala")
     def sourcePath: Path =
         Paths.get(s"src/main/scala/advent_of_scala/$year/Day${"%02d".format(day)}.scala")
-    def inputPath: Path = Paths.get(s"src/main/resources/$year/${"%02d".format(day)}.txt")
-end SolutionTemplate
+    def inputPath: Path = Paths.get(s"src/main/resources/inputs/$year/${"%02d".format(day)}.txt")
+end SolutionBoilerplate
