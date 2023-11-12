@@ -2,7 +2,7 @@
   *
   * Link: https://adventofcode.com/2021/day/2
   *
-  * Difficulty:
+  * Difficulty: xs
   *
   * Tags: pattern-matching
   *

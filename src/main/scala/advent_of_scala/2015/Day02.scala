@@ -2,10 +2,10 @@
   *
   * Link: https://adventofcode.com/2015/day/2
   *
-  * Difficulty:
+  * Difficulty: xs
   *
-  * Tags:
-  *
+  * Tags: geometry
+  * 
   * Answers: (1_606_483, 3_842_356)
   */
 package advent_of_scala.year_2015
