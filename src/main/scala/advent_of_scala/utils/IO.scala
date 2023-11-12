@@ -1,21 +1,11 @@
 package advent_of_scala.utils
 
 import scala.io.StdIn.readInt
-
 import scala.io.Source
 import java.net.URL
 import java.io.FileNotFoundException
-import advent_of_scala.base.Solution
 
-object Perf:
-    def timed[T](block: => T): T =
-        val before = System.currentTimeMillis
-        val result = block
-        val after = System.currentTimeMillis
-        println("Elapsed time: " + (after - before) + "ms")
-        result
-    end timed
-end Perf
+import advent_of_scala.base.Solution
 
 object IO:
     def consolePrompt: (Int, Int) =

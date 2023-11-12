@@ -11,7 +11,6 @@ import advent_of_scala.{
 import advent_of_scala.base.Solver
 import advent_of_scala.utils.IO.{consolePrompt, printSolution, readLines, validateInput}
 import advent_of_scala.utils.SolutionBoilerplate
-import advent_of_scala.utils.Perf.{timed}
 
 def getSolverForYear(year: Int, input: List[String]): Solver =
     year match
@@ -53,9 +52,9 @@ end generateSolutionStub
     args match
         case Nil =>
             val (year, day) = consolePrompt
-            timed(() => runSolver(year, day))
+            runSolver(year, day)
         case ("gen" | "g" | "generate") :: year :: day :: Nil =>
             generateSolutionStub(year.toInt, day.toInt)
         case year :: day :: Nil =>
-            timed(() => runSolver(year.toInt, day.toInt))
+            runSolver(year.toInt, day.toInt)
 end main
