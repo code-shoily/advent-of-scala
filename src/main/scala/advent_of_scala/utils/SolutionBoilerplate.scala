@@ -33,13 +33,15 @@ class SolutionBoilerplate(year: Int, day: Int):
 
     private def sourceContent: String =
         s"""
-        |/** Day $day: <TITLE HERE>
+        |/** $year/$day: ???
         |  *
         |  * Link: https://adventofcode.com/$year/day/$day
         |  *
         |  * Difficulty: 
         |  *
         |  * Tags:
+        |  *
+        |  * Answers: (???, ???)
         |  */
         |package advent_of_scala.year_$year
         |
@@ -62,7 +64,7 @@ class SolutionBoilerplate(year: Int, day: Int):
         |end Day${"%02d".format(day)}
         |
         |/*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-        |@main def run_${"%02d".format(day)} =
+        |@main def run_${year}_${"%02d".format(day)} =
         |    import advent_of_scala.utils.IO.{readLines, printSolution}
         |    readLines($year, $day) match
         |        case Some(raw_input) =>
@@ -70,8 +72,7 @@ class SolutionBoilerplate(year: Int, day: Int):
         |        case _ => impossibleStateError
         |end run_${year}_${"%02d".format(day)}
         |// */
-        |
-        """.stripMargin
+        |""".stripMargin
 
     private def testContent: String =
         s"""
@@ -92,7 +93,7 @@ class SolutionBoilerplate(year: Int, day: Int):
         |        assertEquals(solution, result)
         |    }
         |end Day${"%02d".format(day)}Suite
-        """.stripMargin
+        |""".stripMargin
 
     def testPath: Path =
         Paths.get(s"src/test/scala/advent_of_scala/$year/Day${"%02d".format(day)}Suite.scala")
