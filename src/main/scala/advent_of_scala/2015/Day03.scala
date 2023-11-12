@@ -84,7 +84,7 @@ final def divideInstructions(
     case a :: b :: rest => divideInstructions(rest, a :: part1, b :: part2)
     case _              => (part1.reverse, part2.reverse)
 
-// /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
+/*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2015_03 =
     import advent_of_scala.utils.IO.{readLines, printSolution}
     readLines(2015, 3) match
