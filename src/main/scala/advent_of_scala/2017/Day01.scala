@@ -55,7 +55,7 @@ end Day01
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2017_01 =
-    import advent_of_scala.utils.io.{readLines, printSolution}
+    import advent_of_scala.utils.IO.{readLines, printSolution}
 
     readLines(2017, 1) match
         case Some(rawInput) =>
