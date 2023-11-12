@@ -4,7 +4,7 @@
   *
   * Difficulty: xs
   *
-  * Tags: string 
+  * Tags: string
   *
   * Answers: (255, 55)
   */

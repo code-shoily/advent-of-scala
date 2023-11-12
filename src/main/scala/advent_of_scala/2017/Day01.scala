@@ -11,14 +11,14 @@ package advent_of_scala.year_2017
 import advent_of_scala.base.Solution
 import scala.annotation.tailrec
 
-type InputType = Seq[Int]
+type InputType1 = Seq[Int]
 
 class Day01(rawInput: List[String]):
-    def solvePart1(input: InputType): Int =
+    def solvePart1(input: InputType1): Int =
         val head = input.head
 
         @tailrec
-        def recurse(lst: InputType, total: Int = 0): Int =
+        def recurse(lst: InputType1, total: Int = 0): Int =
             lst match
                 case x :: (y :: rest) if x == y =>
                     recurse(y :: rest, total + x)
@@ -28,7 +28,7 @@ class Day01(rawInput: List[String]):
         recurse(input)
     end solvePart1
 
-    def solvePart2(input: InputType): Int =
+    def solvePart2(input: InputType1): Int =
         @tailrec
         def recurse(list1: Seq[Int], list2: Seq[Int], total: Int = 0): Int =
             (list1, list2) match
@@ -49,7 +49,7 @@ class Day01(rawInput: List[String]):
         (part1, part2)
     end solve
 
-    def parseInput: InputType =
+    def parseInput: InputType1 =
         rawInput.head.toVector.map(_.toInt - '0'.toInt).toList
 end Day01
 

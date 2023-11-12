@@ -12,11 +12,11 @@ package advent_of_scala.year_2022
 
 import advent_of_scala.base.{Solution, impossibleStateError}
 
-type InputType = List[((Int, Int), (Int, Int))]
+type InputType4 = List[((Int, Int), (Int, Int))]
 
 class Day04(rawInput: List[String]):
-    def solvePart1(input: InputType): Int = input.count(fullyContains)
-    def solvePart2(input: InputType): Int = input.count(overlaps)
+    def solvePart1(input: InputType4): Int = input.count(fullyContains)
+    def solvePart2(input: InputType4): Int = input.count(overlaps)
 
     def solve: Solution =
         val input = parseInput
@@ -25,7 +25,7 @@ class Day04(rawInput: List[String]):
         (part1, part2)
     end solve
 
-    private def parseInput: InputType =
+    private def parseInput: InputType4 =
         def toRange(rr: String): (Int, Int) =
             val Array(a, b) = rr split ("-") map (_.toInt)
             (a, b)

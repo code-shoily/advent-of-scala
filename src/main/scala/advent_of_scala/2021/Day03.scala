@@ -12,7 +12,7 @@ package advent_of_scala.year_2021
 
 import advent_of_scala.base.{Solution, impossibleStateError}
 
-type InputType = List[Array[Int]]
+type InputType3 = List[Array[Int]]
 
 def asBin(binArray: IndexedSeq[Int], size: Int): Int =
     binArray.zipWithIndex.map { case (v, i) => v * Math.pow(2, size - i - 1) }.sum.toInt
@@ -20,8 +20,8 @@ def asBin(binArray: IndexedSeq[Int], size: Int): Int =
 class Day03(rawInput: List[String]):
     val size = rawInput.head.length()
 
-    def solvePart1(input: InputType): Int = bitToInt(getBitVector(input), size)
-    def solvePart2(input: InputType): Int =
+    def solvePart1(input: InputType3): Int = bitToInt(getBitVector(input), size)
+    def solvePart2(input: InputType3): Int =
         val o2 = scrubberRating(true)
         val co2 = scrubberRating(false)
         asBin(o2(input, 0), size) * asBin(co2(input, 0), size)
@@ -34,7 +34,7 @@ class Day03(rawInput: List[String]):
         (part1, part2)
     end solve
 
-    private def parseInput: InputType = rawInput.map(_.split("").map(_.toInt))
+    private def parseInput: InputType3 = rawInput.map(_.split("").map(_.toInt))
 end Day03
 
 def getBitVector(lines: List[Array[Int]]): Vector[Bits] =

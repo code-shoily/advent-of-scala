@@ -10,7 +10,7 @@ package advent_of_scala.year_2016
 
 import advent_of_scala.base.{Solution, impossibleStateError}
 
-type InputType = Seq[Instruction]
+type InputType1 = Seq[Instruction]
 
 enum Direction:
     case North, South, East, West
@@ -54,13 +54,13 @@ def step(grid: Grid, instruction: Instruction): Grid =
 end step
 
 class Day01(rawInput: List[String]):
-    def solvePart1(input: InputType): Int =
+    def solvePart1(input: InputType1): Int =
         input
             .foldLeft(Grid(Direction.North, Point(0, 0)))(step)
             .currentLocation
             .distanceFromOrigin
 
-    def solvePart2(input: InputType): Int =
+    def solvePart2(input: InputType1): Int =
         input
             .scanLeft(
               State(false, Grid(Direction.North, Point(0, 0)), Set[Point](), None)
@@ -109,7 +109,7 @@ class Day01(rawInput: List[String]):
         (part1, part2)
     end solve
 
-    private def parseInput: InputType =
+    private def parseInput: InputType1 =
         rawInput.head
             .split(",\\s?")
             .map(instruction =>

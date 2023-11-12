@@ -10,11 +10,11 @@ package advent_of_scala.year_2015
 
 import advent_of_scala.base.{Solution, impossibleStateError}
 
-type InputType = Seq[Int]
+type InputType1 = Seq[Int]
 
 class Day01(rawInput: List[String]):
-    def solvePart1(input: InputType): Int = input.sum
-    def solvePart2(input: InputType): Int = input.scan(0)(_ + _).indexOf(-1)
+    def solvePart1(input: InputType1): Int = input.sum
+    def solvePart2(input: InputType1): Int = input.scan(0)(_ + _).indexOf(-1)
 
     def solve: Solution =
         val input = parseInput
@@ -23,7 +23,7 @@ class Day01(rawInput: List[String]):
         (part1, part2)
     end solve
 
-    private def parseInput: InputType =
+    private def parseInput: InputType1 =
         rawInput.head.map((step: Char) => if step == '(' then 1 else -1)
 end Day01
 

@@ -12,11 +12,11 @@ package advent_of_scala.year_2022
 
 import advent_of_scala.base.{Solution, impossibleStateError}
 
-type InputType = List[(Items, Items)]
+type InputType2 = List[(Items, Items)]
 
 class Day02(rawInput: List[String]):
-    def solvePart1(input: InputType): Int = input.foldLeft(0)((acc, x) => acc + computeScore(x))
-    def solvePart2(input: InputType): Int = solvePart1(input.map(strategicRemap))
+    def solvePart1(input: InputType2): Int = input.foldLeft(0)((acc, x) => acc + computeScore(x))
+    def solvePart2(input: InputType2): Int = solvePart1(input.map(strategicRemap))
 
     def solve: Solution =
         val input = parseInput
@@ -25,7 +25,7 @@ class Day02(rawInput: List[String]):
         (part1, part2)
     end solve
 
-    private def parseInput: InputType = rawInput.map(strategyToItems)
+    private def parseInput: InputType2 = rawInput.map(strategyToItems)
 end Day02
 
 enum Items:

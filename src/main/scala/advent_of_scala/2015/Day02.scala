@@ -12,7 +12,7 @@ package advent_of_scala.year_2015
 
 import advent_of_scala.base.{Solution, impossibleStateError}
 
-type InputType = List[Dimension]
+type InputType2 = List[Dimension]
 
 case class Dimension(width: Int, length: Int, height: Int):
     def wrappingPaperNeeded = smallestArea + surfaceArea
@@ -24,8 +24,8 @@ case class Dimension(width: Int, length: Int, height: Int):
 end Dimension
 
 class Day02(rawInput: List[String]):
-    def solvePart1(input: InputType): Int = input.map(_.wrappingPaperNeeded).sum
-    def solvePart2(input: InputType): Int = input.map(_.ribbonNeeded).sum
+    def solvePart1(input: InputType2): Int = input.map(_.wrappingPaperNeeded).sum
+    def solvePart2(input: InputType2): Int = input.map(_.ribbonNeeded).sum
 
     def solve: Solution =
         val input = parseInput
@@ -34,7 +34,7 @@ class Day02(rawInput: List[String]):
         (part1, part2)
     end solve
 
-    private def parseInput: InputType =
+    private def parseInput: InputType2 =
         rawInput.map {
             line =>
                 line.split("x").toList match
