@@ -15,9 +15,10 @@ import advent_of_scala.base.{Solution, impossibleStateError}
 type InputType = List[Command]
 
 class Day02(rawInput: List[String]):
-    def solvePart1(input: InputType): Int = input.foldLeft(Position(0, 0))(navigate).result
-    def solvePart2(input: InputType): Int =
-        input.foldLeft(Position(0, 0))(navigateWithAim).result
+    def solvePart1(input: InputType): Int = solver(input, navigate)
+    def solvePart2(input: InputType): Int = solver(input, navigateWithAim)
+    def solver(input: InputType, navigationAction: (Position, Command) => Position) =
+        input.foldLeft(Position(0, 0))(navigationAction).result
 
     def solve: Solution =
         val input = parseInput
