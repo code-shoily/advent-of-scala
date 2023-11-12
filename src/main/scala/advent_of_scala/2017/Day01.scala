@@ -42,7 +42,7 @@ class Day01(rawInput: List[String]):
         recurse(firstHalf, secondHalf)
     end solvePart2
 
-    def solve(): Solution =
+    def solve: Solution =
         val input = parseInput
         val part1 = solvePart1(input)
         val part2 = solvePart2(input)
@@ -55,12 +55,12 @@ end Day01
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2017_01 =
-    import advent_of_scala.utils.io.{readLines, printSolution}
+    import advent_of_scala.utils.IO.{readLines, printSolution}
 
     readLines(2017, 1) match
         case Some(rawInput) =>
             val solver = Day01(rawInput)
-            printSolution(solver.solve())
+            printSolution(solver.solve)
         case _ => sys.error("Could not read file")
     end match
 end run_2017_01

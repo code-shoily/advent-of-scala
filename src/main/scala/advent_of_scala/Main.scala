@@ -10,6 +10,7 @@ import advent_of_scala.{
 }
 import advent_of_scala.base.Solver
 import advent_of_scala.utils.IO.{consolePrompt, printSolution, readLines, validateInput}
+import advent_of_scala.utils.SolutionBoilerplate
 import advent_of_scala.utils.Perf.{timed}
 
 def getSolverForYear(year: Int, input: List[String]): Solver =
@@ -40,7 +41,9 @@ end runSolver
 
 def generateSolutionStub(year: Int, day: Int) =
     if validateInput(year, day) then
-        println(s"Generating solution template for $year/$day")
+        SolutionBoilerplate(year, day).create() match
+            case Some(status) => println(status)
+            case None         => println(s"Solution code for $year/$day already exists")
     else
         println(s"Invalid parameters for year and day: ($year, $day)")
     end if

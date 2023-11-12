@@ -4,4 +4,16 @@ This repository contains my attempts to learn Scala 3 by solving [Advent of Code
 
 ### Usage
 
-This is a normal sbt project. You can compile code with `sbt compile`, run it with `sbt run`, tests codes with `sbt test`, and `sbt console` will start a Scala 3 REPL.
+#### Running a solution
+
+To run a particular days result, type `sbt "run <year> <day>"` or if you are on the sbt console, `sbt run <year> <day>`. Please note that `year` is 4-digits (i.e. `2015`) while day is without any leading `0` (i.e. `1`, `24`).
+
+#### Creating boilerplate
+
+To quickly create boilerplate(s) for solution source, test and input files, type `sbt "run gen <year> <day>"` or (in sbt console) `sbt run gen <year> <day>`. Same format for `year` and `day` applies. Instead of `gen`, we could also use `g` or `generator`. 
+
+This will not overwrite anything and will only generate if the the day was not already solved (i.e. none of source, input or test files exist).
+
+### Testing
+
+As with all sbt projects, `sbt test` or `test` (in console) runs all the tests.

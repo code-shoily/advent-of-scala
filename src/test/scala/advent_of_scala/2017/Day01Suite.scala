@@ -1,6 +1,6 @@
 package advent_of_scala.tests.year_2017
 
-import advent_of_scala.utils.io.readLines
+import advent_of_scala.utils.IO.readLines
 import advent_of_scala.year_2017.Day01
 
 class Day01Suite extends munit.FunSuite:
@@ -10,7 +10,7 @@ class Day01Suite extends munit.FunSuite:
 
     test("Day 1 solve yields correct result") {
         val rawInput = readLines(year, day).get
-        val solution = Day01(rawInput).solve()
+        val solution = Day01(rawInput).solve
 
         assertEquals(solution, result)
     }
