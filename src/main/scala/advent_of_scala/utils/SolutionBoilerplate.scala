@@ -66,7 +66,7 @@ class SolutionBoilerplate(year: Int, day: Int):
         |    import advent_of_scala.utils.IO.{readLines, printSolution}
         |    readLines($year, $day) match
         |        case Some(raw_input) =>
-        |            printSolution(Day${"%02d".format(day)}(raw_input).solve())
+        |            printSolution(Day${"%02d".format(day)}(raw_input).solve)
         |        case _ => impossibleStateError
         |end run_${year}_${"%02d".format(day)}
         |// */
@@ -87,7 +87,7 @@ class SolutionBoilerplate(year: Int, day: Int):
         |
         |    test("Day $day solve yields correct result") {
         |        val rawInput = readLines(year, day).get
-        |        val solution = Day${"%02d".format(day)}(rawInput).solve()
+        |        val solution = Day${"%02d".format(day)}(rawInput).solve
         |
         |        assertEquals(solution, result)
         |    }

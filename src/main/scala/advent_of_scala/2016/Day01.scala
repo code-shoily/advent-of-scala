@@ -102,7 +102,7 @@ class Day01(rawInput: List[String]):
             case _           => Right(history ++ points)
     end exploreVisits
 
-    def solve(): Solution =
+    def solve: Solution =
         val input = parseInput
         val part1 = solvePart1(input)
         val part2 = solvePart2(input)
@@ -122,7 +122,7 @@ end Day01
     import advent_of_scala.utils.IO.{readLines, printSolution}
     readLines(2016, 1) match
         case Some(raw_input) =>
-            printSolution(Day01(raw_input).solve())
+            printSolution(Day01(raw_input).solve)
         case _ => sys.error("Could not read file")
 end run_2016_01
 // */
