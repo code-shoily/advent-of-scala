@@ -27,7 +27,7 @@ class Day01(rawInput: List[String]):
         rawInput.head.map((step: Char) => if step == '(' then 1 else -1)
 end Day01
 
-// /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
+/*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2015_01 =
     import advent_of_scala.utils.io.{readLines, printSolution}
     readLines(2015, 1) match

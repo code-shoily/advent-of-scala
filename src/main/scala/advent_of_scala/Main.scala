@@ -9,7 +9,8 @@ import advent_of_scala.{
     year_2022
 }
 import advent_of_scala.base.Solver
-import advent_of_scala.utils.io.{consolePrompt, printSolution, readLines, validateInput}
+import advent_of_scala.utils.IO.{consolePrompt, printSolution, readLines, validateInput}
+import advent_of_scala.utils.Perf.{timed}
 
 def getSolverForYear(year: Int, input: List[String]): Solver =
     year match
@@ -21,10 +22,9 @@ def getSolverForYear(year: Int, input: List[String]): Solver =
         case 2020 => year_2020.Solver2020(input)
         case 2021 => year_2021.Solver2021(input)
         case 2022 => year_2022.Solver2022(input)
+end getSolverForYear
 
-@main def main: Unit =
-    val (year, day) = consolePrompt
-
+def runSolver(year: Int, day: Int) =
     if validateInput(year, day) then
         readLines(year, day) match
             case Some(raw_input) =>
@@ -35,6 +35,24 @@ def getSolverForYear(year: Int, input: List[String]): Solver =
                 sys.exit(1)
     else
         println(s"Invalid parameters for year and day: ($year, $day)")
-        sys.exit(1)
     end if
+end runSolver
+
+def generateSolutionStub(year: Int, day: Int) =
+    if validateInput(year, day) then
+        println(s"Generating solution template for $year/$day")
+    else
+        println(s"Invalid parameters for year and day: ($year, $day)")
+    end if
+end generateSolutionStub
+
+@main def main(args: String*): Unit =
+    args match
+        case Nil =>
+            val (year, day) = consolePrompt
+            timed(() => runSolver(year, day))
+        case ("gen" | "g" | "generate") :: year :: day :: Nil =>
+            generateSolutionStub(year.toInt, day.toInt)
+        case year :: day :: Nil =>
+            timed(() => runSolver(year.toInt, day.toInt))
 end main
