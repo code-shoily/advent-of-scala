@@ -32,7 +32,7 @@ class SolutionBoilerplate(year: Int, day: Int):
         if !Files.exists(inputPath) then Some((inputPath, "")) else None
 
     private def sourceContent: String =
-        s"""
+        f"""
         |/** $year/$day: ???
         |  *
         |  * Link: https://adventofcode.com/$year/day/$day
@@ -47,11 +47,11 @@ class SolutionBoilerplate(year: Int, day: Int):
         |
         |import advent_of_scala.base.{Solution, impossibleStateError}
         |
-        |type InputType = List[String]
+        |type InputType$day = List[String]
         |
-        |class Day${"%02d".format(day)}(rawInput: List[String]):
-        |    def solvePart1(input: InputType): Int = ???
-        |    def solvePart2(input: InputType): Int = ???
+        |class Day${day}%02d(rawInput: List[String]):
+        |    def solvePart1(input: InputType$day): Int = ???
+        |    def solvePart2(input: InputType$day): Int = ???
         |
         |    def solve: Solution =
         |        val input = parseInput
@@ -60,44 +60,44 @@ class SolutionBoilerplate(year: Int, day: Int):
         |        (part1, part2)
         |    end solve
         |
-        |    private def parseInput: InputType = rawInput
-        |end Day${"%02d".format(day)}
+        |    private def parseInput: InputType$day = rawInput
+        |end Day${day}%02d
         |
         |/*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-        |@main def run_${year}_${"%02d".format(day)} =
+        |@main def run_${year}_${day}%02d =
         |    import advent_of_scala.utils.IO.{readLines, printSolution}
         |    readLines($year, $day) match
         |        case Some(raw_input) =>
-        |            printSolution(Day${"%02d".format(day)}(raw_input).solve)
+        |            printSolution(Day${day}%02d(raw_input).solve)
         |        case _ => impossibleStateError
-        |end run_${year}_${"%02d".format(day)}
+        |end run_${year}_${day}%02d
         |// */
         |""".stripMargin
 
     private def testContent: String =
-        s"""
+        f"""
         |package advent_of_scala.tests.year_$year
         |
         |import advent_of_scala.utils.IO.readLines
-        |import advent_of_scala.year_$year.Day${"%02d".format(day)}
+        |import advent_of_scala.year_$year.Day${day}%02d
         |
-        |class Day${"%02d".format(day)}Suite extends munit.FunSuite:
+        |class Day${day}%02dSuite extends munit.FunSuite:
         |    val year = $year
         |    val day = $day
         |    val result = ???
         |
         |    test("Day $day solve yields correct result") {
         |        val rawInput = readLines(year, day).get
-        |        val solution = Day${"%02d".format(day)}(rawInput).solve
+        |        val solution = Day${day}%02d(rawInput).solve
         |
         |        assertEquals(solution, result)
         |    }
-        |end Day${"%02d".format(day)}Suite
+        |end Day${day}%02dSuite
         |""".stripMargin
 
     def testPath: Path =
-        Paths.get(s"src/test/scala/advent_of_scala/$year/Day${"%02d".format(day)}Suite.scala")
+        Paths.get(f"src/test/scala/advent_of_scala/$year/Day${day}%02dSuite.scala")
     def sourcePath: Path =
-        Paths.get(s"src/main/scala/advent_of_scala/$year/Day${"%02d".format(day)}.scala")
-    def inputPath: Path = Paths.get(s"src/main/resources/inputs/$year/${"%02d".format(day)}.txt")
+        Paths.get(f"src/main/scala/advent_of_scala/$year/Day${day}%02d.scala")
+    def inputPath: Path = Paths.get(f"src/main/resources/inputs/$year/${day}%02d.txt")
 end SolutionBoilerplate

@@ -19,7 +19,7 @@ object IO:
     end consolePrompt
 
     def readLines(year: Int, day: Int): Option[List[String]] =
-        val path = s"inputs/${year}/${"%02d".format(day)}.txt"
+        val path = f"inputs/${year}/${day}%02d.txt"
         try
             val source = Source.fromResource(path)
             Some(source.getLines().toList)

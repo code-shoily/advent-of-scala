@@ -38,11 +38,11 @@ class SolutionBoilerplateSuite extends munit.FunSuite:
             |
             |import advent_of_scala.base.{Solution, impossibleStateError}
             |
-            |type InputType = List[String]
+            |type InputType1 = List[String]
             |
             |class Day01(rawInput: List[String]):
-            |    def solvePart1(input: InputType): Int = ???
-            |    def solvePart2(input: InputType): Int = ???
+            |    def solvePart1(input: InputType1): Int = ???
+            |    def solvePart2(input: InputType1): Int = ???
             |
             |    def solve: Solution =
             |        val input = parseInput
@@ -51,7 +51,7 @@ class SolutionBoilerplateSuite extends munit.FunSuite:
             |        (part1, part2)
             |    end solve
             |
-            |    private def parseInput: InputType = rawInput
+            |    private def parseInput: InputType1 = rawInput
             |end Day01
             |
             |/*--------- Block to test this file on IDEs, comment this line with `//` to enable.
