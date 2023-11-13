@@ -19,10 +19,6 @@ object RemoteDataFetcher:
 
     def fetchTitle(year: Int, day: Int): String =
         quickRequest.get(uri"https://adventofcode.com/$year/day/$day").send().body
-
-    @main def main(args: String*) =
-        println(fetchTitle(2015, 1))
-
 end RemoteDataFetcher
 
 class SolutionBoilerplate(year: Int, day: Int, fetchFromRemote: Boolean = false):
