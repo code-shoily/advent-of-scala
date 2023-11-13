@@ -1,6 +1,9 @@
 # macOS
 .DS_Store
+
+# Personal
 scratchpad.worksheet.sc
+.envrc
 
 # sbt specific
 dist/*

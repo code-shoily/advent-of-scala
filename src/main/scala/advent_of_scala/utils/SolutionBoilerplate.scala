@@ -3,7 +3,29 @@ package advent_of_scala.utils
 import java.nio.file.{Files, Path, Paths, StandardOpenOption}
 import java.nio.charset.StandardCharsets
 
-class SolutionBoilerplate(year: Int, day: Int):
+import sttp.client4.quick.*
+
+object RemoteDataFetcher:
+    def fetchInputData(year: Int, day: Int): String =
+        sys.env.getOrElse("COOKIE", "0") match
+            case "0" => ""
+            case cookie =>
+                quickRequest.get(uri"https://adventofcode.com/$year/day/$day/input").cookie(
+                  "session",
+                  cookie
+                ).send().body
+        end match
+    end fetchInputData
+
+    def fetchTitle(year: Int, day: Int): String =
+        quickRequest.get(uri"https://adventofcode.com/$year/day/$day").send().body
+
+    @main def main(args: String*) =
+        println(fetchTitle(2015, 1))
+
+end RemoteDataFetcher
+
+class SolutionBoilerplate(year: Int, day: Int, fetchFromRemote: Boolean = false):
     def create(): Option[String] =
         val source = createSourceStub
         val test = createTestStub
@@ -29,7 +51,10 @@ class SolutionBoilerplate(year: Int, day: Int):
         if !Files.exists(testPath) then Some((testPath, testContent)) else None
 
     def createInputStub: Option[(Path, String)] =
-        if !Files.exists(inputPath) then Some((inputPath, "")) else None
+        val inputContent =
+            if fetchFromRemote then RemoteDataFetcher.fetchInputData(year, day) else ""
+        if !Files.exists(inputPath) then Some((inputPath, inputContent)) else None
+    end createInputStub
 
     private def sourceContent: String =
         f"""

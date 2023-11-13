@@ -40,7 +40,7 @@ end runSolver
 
 def generateSolutionStub(year: Int, day: Int) =
     if validateInput(year, day) then
-        SolutionBoilerplate(year, day).create() match
+        SolutionBoilerplate(year, day, true).create() match
             case Some(status) => println(status)
             case None         => println(s"Solution code for $year/$day already exists")
     else

@@ -6,5 +6,8 @@ lazy val root = project
       name := "advent-of-scala",
       version := "0.1.0-SNAPSHOT",
       scalaVersion := scala3Version,
-      libraryDependencies += "org.scalameta" %% "munit" % "0.7.29" % Test
+      libraryDependencies ++= Seq(
+        "com.softwaremill.sttp.client4" %% "core" % "4.0.0-M6",
+        "org.scalameta" %% "munit" % "0.7.29" % Test
+      )
     )
