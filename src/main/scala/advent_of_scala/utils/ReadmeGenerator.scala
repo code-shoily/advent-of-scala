@@ -112,7 +112,7 @@ object SolutionMeta:
     def markDownTableHeader: String =
         """
       # || Day | Title | Status | Difficulty | Solution Page | Input | Test Page | Answer | Tags | 
-      # || :---: | :------: | ---: | :---: | :---: | :---: | :---: | :---: | :---: |""" stripMargin {
+      # || :---: | :------: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |""" stripMargin {
             '#'
         }
 
