@@ -21,7 +21,7 @@ case class SolutionMeta(
     def statusIcon: String = if isPartial then ":2nd_place_medal:" else ":1st_place_medal:"
     def difficultyIcon: String = difficulty match
         case "xs" => ":grin:"
-        case "s"  => "slightly_smiling_face:"
+        case "s"  => ":slightly_smiling_face:"
         case "m"  => ":neutral_face:"
         case "l"  => ":expressionless:"
         case "xl" => ":skull:"
