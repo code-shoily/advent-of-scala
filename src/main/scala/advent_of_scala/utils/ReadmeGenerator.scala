@@ -19,9 +19,16 @@ case class SolutionMeta(
 ):
     def isPartial: Boolean = answers.endsWith("!")
     def statusIcon: String = if isPartial then ":2nd_place_medal:" else ":1st_place_medal:"
+    def difficultyIcon: String = difficulty match
+        case "xs" => ":grin:"
+        case "s"  => "slightly_smiling_face:"
+        case "m"  => ":neutral_face:"
+        case "l"  => ":expressionless:"
+        case "xl" => ":skull:"
+
     def asMarkDownRow: String =
         s"""
-       #|| $day | [$title]($mainLink) | $statusIcon | $difficulty | [Day${"%02d".format(
+       #|| $day | [$title]($mainLink) | $statusIcon | $difficultyIcon | [Day${"%02d".format(
             day
           )}.scala](/$sourceLink) | [${"%02d".format(
             day
