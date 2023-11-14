@@ -10,5 +10,5 @@
 
 
 | Day | Title | Status | Difficulty | Solution Page | Input | Test Page | Answer | Tags | 
-| :---: | :------: | ---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| 1 | [Day 1: Chronal Calibration](https://adventofcode.com/2018/day/1) | :1st_place_medal: | xs | [Day01.scala](/src/main/scala/advent_of_scala/2018/Day01.scala) | [01.txt](/src/main/resources/inputs/2018/01.txt) | [Day01Suite.scala](/src/test/scala/advent_of_scala/2018/Day01Suite.scala) | (590, 83_445) | linked-list |
+| :---: | :------: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| 1 | [Day 1: Chronal Calibration](https://adventofcode.com/2018/day/1) | :1st_place_medal: | :grin: | [Day01.scala](/src/main/scala/advent_of_scala/2018/Day01.scala) | [01.txt](/src/main/resources/inputs/2018/01.txt) | [Day01Suite.scala](/src/test/scala/advent_of_scala/2018/Day01Suite.scala) | (590, 83_445) | linked-list |

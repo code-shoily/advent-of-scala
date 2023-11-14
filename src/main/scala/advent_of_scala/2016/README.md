@@ -10,5 +10,5 @@
 
 
 | Day | Title | Status | Difficulty | Solution Page | Input | Test Page | Answer | Tags | 
-| :---: | :------: | ---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| 1 | [Day 1: No Time for a Taxicab](https://adventofcode.com/2016/day/1) | :1st_place_medal: | xs | [Day01.scala](/src/main/scala/advent_of_scala/2016/Day01.scala) | [01.txt](/src/main/resources/inputs/2016/01.txt) | [Day01Suite.scala](/src/test/scala/advent_of_scala/2016/Day01Suite.scala) | (253, 126) | grid,navigation |
+| :---: | :------: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| 1 | [Day 1: No Time for a Taxicab](https://adventofcode.com/2016/day/1) | :1st_place_medal: | :grin: | [Day01.scala](/src/main/scala/advent_of_scala/2016/Day01.scala) | [01.txt](/src/main/resources/inputs/2016/01.txt) | [Day01Suite.scala](/src/test/scala/advent_of_scala/2016/Day01Suite.scala) | (253, 126) | grid,navigation |

@@ -10,7 +10,7 @@
 
 
 | Day | Title | Status | Difficulty | Solution Page | Input | Test Page | Answer | Tags | 
-| :---: | :------: | ---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| 1 | [Day 1: Sonar Sweep](https://adventofcode.com/2021/day/1) | :1st_place_medal: | xs | [Day01.scala](/src/main/scala/advent_of_scala/2021/Day01.scala) | [01.txt](/src/main/resources/inputs/2021/01.txt) | [Day01Suite.scala](/src/test/scala/advent_of_scala/2021/Day01Suite.scala) | (1139, 1103) | sequence |
-| 2 | [2021/2: Dive!](https://adventofcode.com/2021/day/2) | :1st_place_medal: | xs | [Day02.scala](/src/main/scala/advent_of_scala/2021/Day02.scala) | [02.txt](/src/main/resources/inputs/2021/02.txt) | [Day02Suite.scala](/src/test/scala/advent_of_scala/2021/Day02Suite.scala) | (1_660_158, 1_604_592_846) | pattern-matching |
-| 3 | [2021/3: ???](https://adventofcode.com/2021/day/3) | :1st_place_medal: | xs | [Day03.scala](/src/main/scala/advent_of_scala/2021/Day03.scala) | [03.txt](/src/main/resources/inputs/2021/03.txt) | [Day03Suite.scala](/src/test/scala/advent_of_scala/2021/Day03Suite.scala) | (1_540_244, 4_203_981) | vector,mutation,number-system |
+| :---: | :------: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| 1 | [Day 1: Sonar Sweep](https://adventofcode.com/2021/day/1) | :1st_place_medal: | :grin: | [Day01.scala](/src/main/scala/advent_of_scala/2021/Day01.scala) | [01.txt](/src/main/resources/inputs/2021/01.txt) | [Day01Suite.scala](/src/test/scala/advent_of_scala/2021/Day01Suite.scala) | (1139, 1103) | sequence |
+| 2 | [2021/2: Dive!](https://adventofcode.com/2021/day/2) | :1st_place_medal: | :grin: | [Day02.scala](/src/main/scala/advent_of_scala/2021/Day02.scala) | [02.txt](/src/main/resources/inputs/2021/02.txt) | [Day02Suite.scala](/src/test/scala/advent_of_scala/2021/Day02Suite.scala) | (1_660_158, 1_604_592_846) | pattern-matching |
+| 3 | [2021/3: ???](https://adventofcode.com/2021/day/3) | :1st_place_medal: | :grin: | [Day03.scala](/src/main/scala/advent_of_scala/2021/Day03.scala) | [03.txt](/src/main/resources/inputs/2021/03.txt) | [Day03Suite.scala](/src/test/scala/advent_of_scala/2021/Day03Suite.scala) | (1_540_244, 4_203_981) | vector,mutation,number-system |
