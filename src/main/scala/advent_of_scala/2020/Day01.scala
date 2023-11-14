@@ -5,6 +5,8 @@
   * Difficulty: xs
   *
   * Tags: 2sum 3sum two-pointer
+  *
+  * Answers: (1_014_624, 80_072_256)
   */
 package advent_of_scala.year_2020
 
