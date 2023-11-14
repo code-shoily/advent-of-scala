@@ -4,7 +4,9 @@
   *
   * Difficulty: xs
   *
-  * Tags: grid
+  * Tags: grid navigation
+  * 
+  * Answers: (253, 126)
   */
 package advent_of_scala.year_2016
 

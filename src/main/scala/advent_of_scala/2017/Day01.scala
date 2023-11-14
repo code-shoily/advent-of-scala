@@ -5,6 +5,8 @@
   * Difficulty: xs
   *
   * Tags: linked-list
+  * 
+  * Answers: (1089, 1156)
   */
 package advent_of_scala.year_2017
 
