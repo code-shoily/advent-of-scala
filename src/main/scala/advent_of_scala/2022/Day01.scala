@@ -5,7 +5,7 @@
   * Difficulty: xs
   *
   * Tags: heap sort
-  * 
+  *
   * Answers: (70_720, 207_148)
   */
 package advent_of_scala.year_2022

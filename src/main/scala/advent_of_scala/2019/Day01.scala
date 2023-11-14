@@ -5,7 +5,7 @@
   * Difficulty: xs
   *
   * Tags: recursion reduce
-  * 
+  *
   * Answers: (3_421_505, 5_129_386)
   */
 package advent_of_scala.year_2019

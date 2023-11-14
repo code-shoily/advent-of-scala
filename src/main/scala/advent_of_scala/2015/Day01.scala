@@ -5,7 +5,7 @@
   * Difficulty: xs
   *
   * Tags: sequence reduce
-  * 
+  *
   * Answers: (232, 1783)
   */
 package advent_of_scala.year_2015

@@ -5,7 +5,7 @@
   * Difficulty: xs
   *
   * Tags: sequence
-  * 
+  *
   * Answers: (1139, 1103)
   */
 package advent_of_scala.year_2021
