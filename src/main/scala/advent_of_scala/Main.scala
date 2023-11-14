@@ -10,7 +10,7 @@ import advent_of_scala.{
 }
 import advent_of_scala.base.Solver
 import advent_of_scala.utils.IO.{consolePrompt, printSolution, readLines, validateInput}
-import advent_of_scala.utils.SolutionBoilerplate
+import advent_of_scala.utils.{SolutionBoilerplate, SolutionMeta}
 
 def getSolverForYear(year: Int, input: List[String]): Solver =
     year match
@@ -53,6 +53,11 @@ end generateSolutionStub
         case Nil =>
             val (year, day) = consolePrompt
             runSolver(year, day)
+        case "readme" :: Nil =>
+            for
+                year <- 2015 to 2022
+            do
+                println(SolutionMeta writeReadMeForYear (year))
         case ("gen" | "g" | "generate") :: year :: day :: Nil =>
             generateSolutionStub(year.toInt, day.toInt)
         case year :: day :: Nil =>
