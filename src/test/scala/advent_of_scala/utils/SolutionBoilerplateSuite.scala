@@ -71,7 +71,7 @@ class SolutionBoilerplateSuite extends munit.FunSuite:
         val testPath = "src/test/scala/advent_of_scala/2014/Day01Suite.scala"
         val testContent =
             """
-            |package advent_of_scala.tests.year_2014
+            |package advent_of_scala.year_2014
             |
             |import advent_of_scala.utils.IO.readLines
             |import advent_of_scala.year_2014.Day01

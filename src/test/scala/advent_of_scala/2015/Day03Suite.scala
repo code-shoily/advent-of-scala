@@ -1,7 +1,6 @@
-package advent_of_scala.tests.year_2015
+package advent_of_scala.year_2015
 
 import advent_of_scala.utils.IO.readLines
-import advent_of_scala.year_2015.Day03
 
 class Day03Suite extends munit.FunSuite:
     val year = 2015
