@@ -54,6 +54,7 @@ end generateSolutionStub
             val (year, day) = consolePrompt
             runSolver(year, day)
         case "readme" :: Nil =>
+            SolutionMeta.writeReadme()
             for
                 year <- 2015 to 2022
             do
