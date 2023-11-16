@@ -4,6 +4,10 @@ import java.nio.file.{Files, Paths}
 import scala.io.Source
 
 final val lastYear = 2022
+final val starIcon = ":star:"
+final val trophy = ":trophy:"
+final val trophy1 = ":1st_place_medal:"
+final val trophy2 = ":2nd_place_medal:"
 
 case class SolutionMeta(
     year: Int,
@@ -18,13 +22,17 @@ case class SolutionMeta(
     testLink: String
 ):
     def isPartial: Boolean = answers.endsWith("!")
-    def statusIcon: String = if isPartial then ":2nd_place_medal:" else ":1st_place_medal:"
-    def difficultyIcon: String = difficulty match
-        case "xs" => ":grin:"
-        case "s"  => ":slightly_smiling_face:"
-        case "m"  => ":neutral_face:"
-        case "l"  => ":expressionless:"
-        case "xl" => ":skull:"
+    def statusIcon: String = if isPartial then trophy2 else trophy1
+    def difficultyIcon: String =
+        val icon = s"$starIcon "
+        difficulty match
+            case "xs" => icon * 1
+            case "s"  => icon * 2
+            case "m"  => icon * 3
+            case "l"  => icon * 4
+            case "xl" => icon * 5
+        end match
+    end difficultyIcon
 
     def asMarkDownRow: String =
         s"""
@@ -70,16 +78,16 @@ object SolutionMeta:
 
             val meta =
                 SolutionMeta(
-                  year,
-                  day,
-                  title,
-                  attrBy("Difficulty"),
-                  attrBy("Tags").split(" ").toList,
-                  attrBy("Answers"),
-                  links("mainLink"),
-                  links("sourceLink"),
-                  links("inputLink"),
-                  links("testLink")
+                  year = year,
+                  day = day,
+                  title = title,
+                  difficulty = attrBy("Difficulty"),
+                  tags = attrBy("Tags").split(" ").toList,
+                  answers = attrBy("Answers"),
+                  mainLink = links("mainLink"),
+                  sourceLink = links("sourceLink"),
+                  inputLink = links("inputLink"),
+                  testLink = links("testLink")
                 )
             Some(meta)
         else
@@ -112,7 +120,7 @@ object SolutionMeta:
       |
       |$yearFormat
       |
-      |## :trophy: ${starsCollected(metadata, year)}/50
+      |## $trophy ${starsCollected(metadata, year)}/50
       |""".stripMargin
     end markDownPageHeaderForYear
 
@@ -139,4 +147,39 @@ object SolutionMeta:
 
         s"[Success] Solution status updated the readme at $newPath"
     end writeReadMeForYear
+
+    def trophy(year: Int, day: Int): String =
+        solutionMetaIfExists(year, day) match
+            case Some(metadata) => metadata.statusIcon
+            case None           => ""
+
+    def summaryTable =
+        val header = "|:calendar:" + (2015 to 2022).map(year => s"[$year](/src/main/scala/advent_of_scala/$year)").mkString("|", "|", "|")
+        val aligner = "|:-:| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |"
+        val body =
+            (1 to 25) map { day =>
+                s"|$day" + (2015 to 2022).map(trophy(_, day)).mkString("|", "|", "|")
+            } mkString ("\n")
+        val trophies =
+            (1 to 25).map(day =>
+                (2015 to 2022).map({
+                    trophy(_, day) match
+                        case `trophy1` => 2
+                        case `trophy2` => 1
+                        case _         => 0
+                }).sum
+            ).sum
+        val table = s"$header\n$aligner\n$body"
+
+        (trophies, table)
+    end summaryTable
+
+    def writeReadme() =
+        val (trophy, table) = summaryTable
+        val content = Source.fromResource(
+          "templates/README_TEMPLATE.md"
+        ).getLines().toList.mkString("\n").format(trophy, table)
+
+        Files.write(Paths.get("README.md"), content.getBytes())
+    end writeReadme
 end SolutionMeta
