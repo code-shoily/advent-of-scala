@@ -54,7 +54,7 @@ class SolutionBoilerplate(year: Int, day: Int, fetchFromRemote: Boolean = false)
 
     private def sourceContent: String =
         f"""
-        |/** $year/$day: ???
+        |/** $year/$day: <TITLE>
         |  *
         |  * Link: https://adventofcode.com/$year/day/$day
         |  *
@@ -62,11 +62,11 @@ class SolutionBoilerplate(year: Int, day: Int, fetchFromRemote: Boolean = false)
         |  *
         |  * Tags:
         |  *
-        |  * Answers: (???, ???)
+        |  * Answers: <ANSWER>
         |  */
         |package advent_of_scala.year_$year
         |
-        |import advent_of_scala.base.{Solution, impossibleStateError}
+        |import advent_of_scala.base.Solution
         |
         |type InputType$day = List[String]
         |
@@ -87,6 +87,7 @@ class SolutionBoilerplate(year: Int, day: Int, fetchFromRemote: Boolean = false)
         |/*--------- Block to test this file on IDEs, comment this line with `//` to enable.
         |@main def run_${year}_${day}%02d =
         |    import advent_of_scala.utils.IO.{readLines, printSolution}
+        |    import advent_of_scala.base.impossibleStateError
         |    readLines($year, $day) match
         |        case Some(raw_input) =>
         |            printSolution(Day${day}%02d(raw_input).solve)
