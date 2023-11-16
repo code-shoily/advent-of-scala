@@ -5,7 +5,7 @@ import scala.io.Source
 
 final val lastYear = 2022
 final val starIcon = ":star:"
-final val trophy = ":trophy:"
+final val trophyGeneral = ":trophy:"
 final val trophy1 = ":1st_place_medal:"
 final val trophy2 = ":2nd_place_medal:"
 
@@ -120,7 +120,7 @@ object SolutionMeta:
       |
       |$yearFormat
       |
-      |## $trophy ${starsCollected(metadata, year)}/50
+      |## $trophyGeneral ${starsCollected(metadata, year)}/50
       |""".stripMargin
     end markDownPageHeaderForYear
 
@@ -154,7 +154,9 @@ object SolutionMeta:
             case None           => ""
 
     def summaryTable =
-        val header = "|:calendar:" + (2015 to 2022).map(year => s"[$year](/src/main/scala/advent_of_scala/$year)").mkString("|", "|", "|")
+        val header = "|:calendar:" + (2015 to 2022).map(year =>
+            s"[$year](/src/main/scala/advent_of_scala/$year)"
+        ).mkString("|", "|", "|")
         val aligner = "|:-:| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |"
         val body =
             (1 to 25) map { day =>
