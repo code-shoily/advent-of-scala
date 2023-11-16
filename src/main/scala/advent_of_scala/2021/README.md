@@ -6,7 +6,7 @@
 
 [2015](/src/main/scala/advent_of_scala/2015/README.md) | [2016](/src/main/scala/advent_of_scala/2016/README.md) | [2017](/src/main/scala/advent_of_scala/2017/README.md) | [2018](/src/main/scala/advent_of_scala/2018/README.md) | [2019](/src/main/scala/advent_of_scala/2019/README.md) | [2020](/src/main/scala/advent_of_scala/2020/README.md) | 2021 | [2022](/src/main/scala/advent_of_scala/2022/README.md)
 
-## advent_of_scala.utils.SolutionMeta$$$Lambda$7118/0x0000000101e91040@65104496 6/50
+## advent_of_scala.utils.SolutionMeta$$$Lambda$5201/0x000000010160d040@3dfe8599 6/50
 
 
 | Day | Title | Status | Difficulty | Solution Page | Input | Test Page | Answer | Tags | 

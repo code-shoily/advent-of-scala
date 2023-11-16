@@ -20,7 +20,9 @@ This will not overwrite anything and will only generate if the the day was not a
 
 ### Updating solution status
 
-In order to update the `year/README.md` with updated information, run `sbt "run readme"` to regenerate all README files reflecting the solution status.
+In order to update the `year/README.md` with updated information per year, and `README.md` with summarized solution status of all years- run `sbt "run readme"` to regenerate all README files reflecting the solution status.
+
+Please note, there are two parts of the `README.md` content - static and dynamic. The instructions to run and test the system (including this text) is the static part, and the table (that you see below) is the dynamic part, which get updated every time a solution is attempted. If we want to change the static content, then instead of updating `README.md` (as it will be overriden any way) we should edit the `/src/main/resources/templates/README_TEMPLATE.md` file with the information. 
 
 ### Progress:
 
