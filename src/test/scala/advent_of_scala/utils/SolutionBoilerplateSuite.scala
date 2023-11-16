@@ -24,7 +24,7 @@ class SolutionBoilerplateSuite extends munit.FunSuite:
         val sourcePath = "src/main/scala/advent_of_scala/2014/Day01.scala"
         val sourceContent =
             """
-            |/** 2014/1: ???
+            |/** 2014/1: <TITLE>
             |  *
             |  * Link: https://adventofcode.com/2014/day/1
             |  *
@@ -32,11 +32,11 @@ class SolutionBoilerplateSuite extends munit.FunSuite:
             |  *
             |  * Tags:
             |  *
-            |  * Answers: (???, ???)
+            |  * Answers: <ANSWER>
             |  */
             |package advent_of_scala.year_2014
             |
-            |import advent_of_scala.base.{Solution, impossibleStateError}
+            |import advent_of_scala.base.Solution
             |
             |type InputType1 = List[String]
             |
@@ -57,6 +57,7 @@ class SolutionBoilerplateSuite extends munit.FunSuite:
             |/*--------- Block to test this file on IDEs, comment this line with `//` to enable.
             |@main def run_2014_01 =
             |    import advent_of_scala.utils.IO.{readLines, printSolution}
+            |    import advent_of_scala.base.impossibleStateError
             |    readLines(2014, 1) match
             |        case Some(raw_input) =>
             |            printSolution(Day01(raw_input).solve)
