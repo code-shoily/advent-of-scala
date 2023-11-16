@@ -10,5 +10,6 @@ class Solver2021(input: List[String]) extends Solver:
             case 3 => Day03(input).solve
             case 4 => Day04(input).solve
             case 5 => Day05(input).solve
+            case 6 => Day06(input).solve
             case _ => didNotSolveError(2021, day)
 end Solver2021
