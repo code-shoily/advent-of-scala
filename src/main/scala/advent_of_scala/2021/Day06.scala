@@ -4,7 +4,7 @@
   *
   * Difficulty: m
   *
-  * Tags: tabulation large-number
+  * Tags: dynamic-programming large-number
   *
   * Answers: (350_149, 1_590_327_954_513)
   */
