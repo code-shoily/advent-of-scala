@@ -20,13 +20,13 @@ class Day03(rawInput: List[String]):
     def solver(input: List[List[Array[Char]]]) = input.map(getCommonItem(_*)).map(getPriority).sum
 
     def solve: Solution =
-        val input = parseInput
+        val input = parsedInput
         val part1 = solvePart1(input)
         val part2 = solvePart2(input)
         (part1, part2)
     end solve
 
-    private def parseInput: InputType3 = rawInput.map(_.toCharArray())
+    private def parsedInput: InputType3 = rawInput.map(_.toCharArray())
 end Day03
 
 def byHalf(items: Array[Char]) = items.splitAt(items.length / 2).toList

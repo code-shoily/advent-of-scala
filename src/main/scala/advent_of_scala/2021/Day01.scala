@@ -19,13 +19,13 @@ class Day01(rawInput: List[String]):
     def solvePart2(input: InputType1): Int = countIncrements(input, 3)
 
     def solve: Solution =
-        val input = parseInput
+        val input = parsedInput
         val part1 = solvePart1(input)
         val part2 = solvePart2(input)
         (part1, part2)
     end solve
 
-    def parseInput: InputType1 = rawInput.map(_.toInt)
+    def parsedInput: InputType1 = rawInput.map(_.toInt)
 
     private def countIncrements(sigs: InputType1, by: Int): Int =
         (0 until (sigs.length - by)).foldLeft(0)((incr, idx) =>

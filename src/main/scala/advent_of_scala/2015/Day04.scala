@@ -20,13 +20,13 @@ class Day04(rawInput: List[String]):
     def solvePart2(input: String): Int = mine(input, "000000").get
 
     def solve: Solution =
-        val input = parseInput
+        val input = parsedInput
         val part1 = solvePart1(input)
         val part2 = solvePart2(input)
         (part1, part2)
     end solve
 
-    private def parseInput: String = rawInput.head
+    private def parsedInput: String = rawInput.head
 end Day04
 
 val md = MessageDigest.getInstance("MD5")

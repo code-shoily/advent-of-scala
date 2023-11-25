@@ -16,7 +16,7 @@ case class InputType4(numbers: Seq[Int], boards: Bingo)
 
 class Day04(rawInput: List[String]):
     def solve: Solution =
-        val InputType4(numbers, initialState) = parseInput
+        val InputType4(numbers, initialState) = parsedInput
         numbers.foldLeft(initialState) { (bingo, n) =>
             val newBoards = bingo.boards filterNot (_.hasWon) map (Board.pick(_, n))
             newBoards find (_.hasWon) match
@@ -28,13 +28,13 @@ class Day04(rawInput: List[String]):
         }.result
     end solve
 
-    private def parseInput: InputType4 =
+    private def parsedInput: InputType4 =
         val sections = rawInput.mkString("\n").split("\n\n").toSeq
         InputType4(
           sections.head.split(",").map(_.toInt),
           Bingo(sections.tail.map(Board.fromString(_)), None, None)
         )
-    end parseInput
+    end parsedInput
 end Day04
 
 case class Board(

@@ -16,11 +16,11 @@ type InputType6 = Seq[Int]
 
 class Day06(rawInput: List[String]):
     def solve: Solution =
-        val input = parseInput
+        val input = parsedInput
         (simulate(input, 80), simulate(input, 256))
     end solve
 
-    private def parseInput: InputType6 = rawInput.head.split(",").map(_.toInt).toSeq
+    private def parsedInput: InputType6 = rawInput.head.split(",").map(_.toInt).toSeq
 end Day06
 
 def simulate(input: Seq[Int], days: Int): Long =

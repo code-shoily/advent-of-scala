@@ -27,13 +27,13 @@ class Day05(rawInput: List[String]):
     end solvePart2
 
     def solve: Solution =
-        val input = parseInput
+        val input = parsedInput
         val part1 = solvePart1(input)
         val part2 = solvePart2(input)
         (part1, part2)
     end solve
 
-    private def parseInput: InputType5 = rawInput.map(_.toList)
+    private def parsedInput: InputType5 = rawInput.map(_.toList)
 end Day05
 
 val vowels = List('a', 'e', 'i', 'o', 'u')

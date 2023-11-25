@@ -18,13 +18,13 @@ type InputType5 = (Map[Char, List[Char]], Moves)
 
 class Day05(rawInput: List[String]):
     def solve: Solution =
-        val input = parseInput
+        val input = parsedInput
         given containers: Containers = input._1
         given moves: Moves = input._2
         (getTopContainers(true), getTopContainers(false))
     end solve
 
-    private def parseInput =
+    private def parsedInput =
         val input = rawInput.mkString("\n").split("\n\n")
         val movePattern = "move (\\d+) from (\\d+) to (\\d+)".r
 
@@ -61,7 +61,7 @@ class Day05(rawInput: List[String]):
         end containerMap
 
         (containerMap, moveSequence)
-    end parseInput
+    end parsedInput
 end Day05
 
 case class Move(quantity: Int, source: Char, destination: Char):

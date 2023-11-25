@@ -18,13 +18,13 @@ class Day05(rawInput: List[String]):
     def solveForLines(input: InputType5, f: (Line => Boolean)) =
         input filter (f) flatMap (_.points) groupBy (identity) count (_._2.length > 1)
     def solve: Solution =
-        val input = parseInput
+        val input = parsedInput
         val part1 = solveForLines(input, (line: Line) => line.isOrthogonal)
         val part2 = solveForLines(input, (_: Line) => true)
         (part1, part2)
     end solve
 
-    private def parseInput: InputType5 = rawInput.map(Line.fromString(_)).toSeq
+    private def parsedInput: InputType5 = rawInput.map(Line.fromString(_)).toSeq
 end Day05
 
 def toPoint(data: String): Point = data.split(",").toList match

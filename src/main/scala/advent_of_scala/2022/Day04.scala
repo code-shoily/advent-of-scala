@@ -19,20 +19,20 @@ class Day04(rawInput: List[String]):
     def solvePart2(input: InputType4): Int = input.count(overlaps)
 
     def solve: Solution =
-        val input = parseInput
+        val input = parsedInput
         val part1 = solvePart1(input)
         val part2 = solvePart2(input)
         (part1, part2)
     end solve
 
-    private def parseInput: InputType4 =
+    private def parsedInput: InputType4 =
         def toRange(rr: String): (Int, Int) =
             val Array(a, b) = rr split ("-") map (_.toInt)
             (a, b)
         rawInput map (_.split(",").toSeq) map { case Seq(a, b) =>
             (toRange(a), toRange(b))
         }
-    end parseInput
+    end parsedInput
 end Day04
 
 def fullyContains(a: (Int, Int), b: (Int, Int)): Boolean = (a, b) match

@@ -16,13 +16,13 @@ type InputType6 = Array[Char]
 
 class Day06(rawInput: List[String]):
     def solve: Solution =
-        val input = parseInput
+        val input = parsedInput
         def findMarker(window: Int): Int =
             window + input.sliding(window).indexWhere(_.toSet.size == window)
         (findMarker(4), findMarker(14))
     end solve
 
-    private def parseInput: InputType6 = rawInput.head.toCharArray()
+    private def parsedInput: InputType6 = rawInput.head.toCharArray()
 end Day06
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.

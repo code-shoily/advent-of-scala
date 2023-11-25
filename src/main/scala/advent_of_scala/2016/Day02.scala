@@ -33,7 +33,7 @@ class Day02(rawInput: List[String]):
       List(" ", " ", " ", " ", " ", " ", " ")
     )
     def solve: Solution =
-        val input = parseInput
+        val input = parsedInput
         val solver = crackCode(input)
         (solver(numPad1, (2, 2)), solver(numPad2, (1, 3)))
     end solve
@@ -54,7 +54,7 @@ class Day02(rawInput: List[String]):
             (code :+ pad(x)(y), (x, y))
         }._1 mkString ""
 
-    private def parseInput: InputType2 = rawInput map { _.split("").toList }
+    private def parsedInput: InputType2 = rawInput map { _.split("").toList }
 end Day02
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.

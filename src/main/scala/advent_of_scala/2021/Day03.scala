@@ -28,13 +28,13 @@ class Day03(rawInput: List[String]):
     end solvePart2
 
     def solve: Solution =
-        val input = parseInput
+        val input = parsedInput
         val part1 = solvePart1(input)
         val part2 = solvePart2(input)
         (part1, part2)
     end solve
 
-    private def parseInput: InputType3 = rawInput.map(_.split("").map(_.toInt))
+    private def parsedInput: InputType3 = rawInput.map(_.split("").map(_.toInt))
 end Day03
 
 def getBitVector(lines: List[Array[Int]]): Vector[Bits] =

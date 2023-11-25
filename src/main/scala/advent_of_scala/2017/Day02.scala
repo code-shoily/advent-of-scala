@@ -19,13 +19,13 @@ class Day02(rawInput: List[String]):
     def solvePart2(input: InputType2): Int = input map (dividingPair) reduce (_ + _)
 
     def solve: Solution =
-        val input = parseInput
+        val input = parsedInput
         val part1 = solvePart1(input)
         val part2 = solvePart2(input)
         (part1, part2)
     end solve
 
-    private def parseInput: InputType2 = rawInput map {
+    private def parsedInput: InputType2 = rawInput map {
         _.split("\n") flatMap { _.split("\t") map (_.toInt) } sortBy identity
     }
 end Day02

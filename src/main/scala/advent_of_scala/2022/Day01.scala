@@ -21,13 +21,13 @@ class Day01(rawInput: List[String]):
     def solvePart2(input: InputType1): Int = input.take(3).sum
 
     def solve: Solution =
-        val input = parseInput
+        val input = parsedInput
         val part1 = solvePart1(input)
         val part2 = solvePart2(input)
         (part1, part2)
     end solve
 
-    private def parseInput: InputType1 =
+    private def parsedInput: InputType1 =
         val pq = PriorityQueue[Int]()
         val calories =
             rawInput.foldLeft(List[Int](0))((acc, x) =>
@@ -37,7 +37,7 @@ class Day01(rawInput: List[String]):
 
         pq.enqueue(calories*)
         pq
-    end parseInput
+    end parsedInput
 end Day01
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.

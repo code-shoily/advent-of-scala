@@ -45,13 +45,13 @@ class SolutionBoilerplateSuite extends munit.FunSuite:
             |    def solvePart2(input: InputType1): Int = ???
             |
             |    def solve: Solution =
-            |        val input = parseInput
+            |        val input = parsedInput
             |        val part1 = solvePart1(input)
             |        val part2 = solvePart2(input)
             |        (part1, part2)
             |    end solve
             |
-            |    private def parseInput: InputType1 = rawInput
+            |    private def parsedInput: InputType1 = rawInput
             |end Day01
             |
             |/*--------- Block to test this file on IDEs, comment this line with `//` to enable.

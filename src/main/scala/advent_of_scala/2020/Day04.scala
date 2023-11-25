@@ -17,7 +17,7 @@ type InputType4 = List[Option[Map[String, String]]]
 class Day04(rawInput: List[String]):
 
     def solve: Solution =
-        val input = parseInput
+        val input = parsedInput
         val part1 = input.length
         val part2 = input map {
             case Some(data) => Passport.fromMap(data)
@@ -26,7 +26,7 @@ class Day04(rawInput: List[String]):
         (part1, part2)
     end solve
 
-    private def parseInput: InputType4 =
+    private def parsedInput: InputType4 =
         rawInput.mkString("\n").split("\n\n").toList map (validPassportMap) filter { _.isDefined }
 end Day04
 

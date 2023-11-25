@@ -35,13 +35,13 @@ class Day01(rawInput: List[String]):
     end solvePart2
 
     def solve: Solution =
-        val input = parseInput
+        val input = parsedInput
         val part1 = solvePart1(input)
         val part2 = solvePart2(input)
         (part1, part2)
     end solve
 
-    def parseInput: InputType1 = rawInput.map(_.toInt).toList
+    def parsedInput: InputType1 = rawInput.map(_.toInt).toList
 end Day01
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.

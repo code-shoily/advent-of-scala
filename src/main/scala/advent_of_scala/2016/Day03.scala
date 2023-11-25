@@ -16,11 +16,11 @@ type InputType3 = List[(Int, Int, Int)]
 
 class Day03(rawInput: List[String]):
     def solve: Solution =
-        val input = parseInput
+        val input = parsedInput
         (input count (isTriangle), getVerticalTriplets(input) count (isTriangle))
     end solve
 
-    private def parseInput: InputType3 =
+    private def parsedInput: InputType3 =
         rawInput map {
             _.trim().split("\\s+").toList.map(_.toInt) match
                 case a :: b :: c :: Nil => (a, b, c)

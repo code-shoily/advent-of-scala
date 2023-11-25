@@ -75,13 +75,13 @@ class SolutionBoilerplate(year: Int, day: Int, fetchFromRemote: Boolean = false)
         |    def solvePart2(input: InputType$day): Int = ???
         |
         |    def solve: Solution =
-        |        val input = parseInput
+        |        val input = parsedInput
         |        val part1 = solvePart1(input)
         |        val part2 = solvePart2(input)
         |        (part1, part2)
         |    end solve
         |
-        |    private def parseInput: InputType$day = rawInput
+        |    private def parsedInput: InputType$day = rawInput
         |end Day${day}%02d
         |
         |/*--------- Block to test this file on IDEs, comment this line with `//` to enable.

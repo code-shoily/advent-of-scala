@@ -21,13 +21,13 @@ class Day02(rawInput: List[String]):
         input.foldLeft(Position(0, 0))(navigationAction).result
 
     def solve: Solution =
-        val input = parseInput
+        val input = parsedInput
         val part1 = solvePart1(input)
         val part2 = solvePart2(input)
         (part1, part2)
     end solve
 
-    private def parseInput: InputType2 = rawInput.map(createCommand(_))
+    private def parsedInput: InputType2 = rawInput.map(createCommand(_))
 end Day02
 
 enum Direction:

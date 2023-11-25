@@ -105,13 +105,13 @@ class Day01(rawInput: List[String]):
     end exploreVisits
 
     def solve: Solution =
-        val input = parseInput
+        val input = parsedInput
         val part1 = solvePart1(input)
         val part2 = solvePart2(input)
         (part1, part2)
     end solve
 
-    private def parseInput: InputType1 =
+    private def parsedInput: InputType1 =
         rawInput.head
             .split(",\\s?")
             .map(instruction =>

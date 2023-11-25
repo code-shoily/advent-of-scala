@@ -29,13 +29,13 @@ class Day01(rawInput: List[String]):
             .head
 
     def solve: Solution =
-        val input = parseInput
+        val input = parsedInput
         val part1 = solvePart1(input)
         val part2 = solvePart2(input)
         (part1, part2)
     end solve
 
-    private def parseInput: InputType1 = rawInput.map(_.toInt).sorted
+    private def parsedInput: InputType1 = rawInput.map(_.toInt).sorted
 
     private def twoSumMultiplied(input: InputType1, target: Int): Option[Int] =
         var result = 0

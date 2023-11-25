@@ -16,14 +16,14 @@ type InputType2 = List[Policy]
 
 class Day02(rawInput: List[String]):
     def solve: Solution =
-        val input = parseInput
+        val input = parsedInput
         (
           input count { _.isPasswordValidV1 },
           input count { _.isPasswordValidV2 }
         )
     end solve
 
-    private def parseInput: InputType2 = rawInput map (Policy.fromLine(_))
+    private def parsedInput: InputType2 = rawInput map (Policy.fromLine(_))
 end Day02
 
 case class Policy(from: Int, to: Int, char: Char, password: String):
