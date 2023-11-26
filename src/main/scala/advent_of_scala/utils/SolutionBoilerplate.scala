@@ -67,22 +67,24 @@ class SolutionBoilerplate(year: Int, day: Int, fetchFromRemote: Boolean = false)
         |package advent_of_scala.year_$year
         |
         |import advent_of_scala.base.Solution
+        |import Day${day}%02d.*
         |
         |type InputType$day = List[String]
         |
         |class Day${day}%02d(rawInput: List[String]):
-        |    def solvePart1(input: InputType$day): Int = ???
-        |    def solvePart2(input: InputType$day): Int = ???
+        |    def solvePart1(input: InputType$day) = ???
+        |    def solvePart2(input: InputType$day) = ???
         |
         |    def solve: Solution =
         |        val input = parsedInput
-        |        val part1 = solvePart1(input)
-        |        val part2 = solvePart2(input)
-        |        (part1, part2)
+        |        (solvePart1(input), solvePart2(input))
         |    end solve
         |
         |    private def parsedInput: InputType$day = rawInput
         |end Day${day}%02d
+        |
+        |object Day${day}%02d:
+        |   ???
         |
         |/*--------- Block to test this file on IDEs, comment this line with `//` to enable.
         |@main def run_${year}_${day}%02d =
