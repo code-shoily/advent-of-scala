@@ -1,4 +1,3 @@
-
 package advent_of_scala.year_2017
 
 import advent_of_scala.utils.IO.readLines
