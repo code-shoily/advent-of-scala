@@ -39,22 +39,20 @@ class SolutionBoilerplateSuite extends munit.FunSuite:
             |import advent_of_scala.base.Solution
             |import Day01.*
             |
-            |type InputType1 = List[String]
-            |
             |class Day01(rawInput: List[String]):
-            |    def solvePart1(input: InputType1) = ???
-            |    def solvePart2(input: InputType1) = ???
+            |    def solvePart1(input: InputType) = ???
+            |    def solvePart2(input: InputType) = ???
             |
             |    def solve: Solution =
             |        val input = parsedInput
             |        (solvePart1(input), solvePart2(input))
             |    end solve
             |
-            |    private def parsedInput: InputType1 = rawInput
+            |    private def parsedInput: InputType = rawInput
             |end Day01
             |
             |object Day01:
-            |   ???
+            |    type InputType = List[String]
             |
             |/*--------- Block to test this file on IDEs, comment this line with `//` to enable.
             |@main def run_2014_01 =
