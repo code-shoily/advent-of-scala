@@ -4,7 +4,7 @@
   *
   * Difficulty: s
   *
-  * Tags: dfs md5 inline-input assymmetric-result
+  * Tags: graph-traversal md5 inline-input assymmetric-result
   *
   * Answers: ("DURLDRRDRD", 650)
   */

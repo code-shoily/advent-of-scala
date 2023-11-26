@@ -4,7 +4,7 @@
   *
   * Difficulty: m
   *
-  * Tags: bitwise linked-list mutable
+  * Tags: bitwise linked-list mutation
   *
   * Answers: (1_842_613, 1_424_135)
   */

@@ -13,7 +13,7 @@ package advent_of_scala.year_2015
 import scala.annotation.tailrec
 
 import advent_of_scala.base.{Solution, impossibleStateError}
-import Day05.* 
+import Day05.*
 
 type InputType5 = List[List[Char]]
 

@@ -4,56 +4,16 @@
   *
   * Difficulty: xs
   *
-  * Tags: grid navigation
+  * Tags: grid2d walk
   *
   * Answers: (253, 126)
   */
 package advent_of_scala.year_2016
 
 import advent_of_scala.base.{Solution, impossibleStateError}
+import Day01.*
 
 type InputType1 = Seq[Instruction]
-
-enum Direction:
-    case North, South, East, West
-enum Axis:
-    case X, Y
-
-case class State(
-    twiceReached: Boolean,
-    grid: Grid,
-    history: Set[Point],
-    result: Option[Point]
-)
-case class Instruction(direction: String, steps: Int)
-case class Point(x: Int, y: Int):
-    def distanceFromOrigin: Int = x.abs + y.abs
-
-case class Grid(facing: Direction, currentLocation: Point)
-
-def getNextGridParams(dir: Direction, lr: String) = dir match
-    case Direction.North =>
-        if lr == "R" then (Direction.East, 1, Axis.X)
-        else (Direction.West, -1, Axis.X)
-    case Direction.South =>
-        if lr == "R" then (Direction.West, -1, Axis.X)
-        else (Direction.East, 1, Axis.X)
-    case Direction.East =>
-        if lr == "R" then (Direction.South, -1, Axis.Y)
-        else (Direction.North, 1, Axis.Y)
-    case Direction.West =>
-        if lr == "R" then (Direction.North, 1, Axis.Y)
-        else (Direction.South, -1, Axis.Y)
-
-def step(grid: Grid, instruction: Instruction): Grid =
-    val Point(x, y) = grid.currentLocation
-    val steps = instruction.steps
-
-    val (direction, multiplier, axis) =
-        getNextGridParams(grid.facing, instruction.direction)
-    if axis == Axis.X then Grid(direction, Point(x + multiplier * steps, y))
-    else Grid(direction, Point(x, y + multiplier * steps))
-end step
 
 class Day01(rawInput: List[String]):
     def solvePart1(input: InputType1): Int =
@@ -117,6 +77,49 @@ class Day01(rawInput: List[String]):
             .map(instruction =>
                 Instruction(instruction.slice(0, 1), instruction.substring(1).toInt)
             )
+end Day01
+
+object Day01:
+    enum Direction:
+        case North, South, East, West
+    enum Axis:
+        case X, Y
+
+    case class State(
+        twiceReached: Boolean,
+        grid: Grid,
+        history: Set[Point],
+        result: Option[Point]
+    )
+    case class Instruction(direction: String, steps: Int)
+    case class Point(x: Int, y: Int):
+        def distanceFromOrigin: Int = x.abs + y.abs
+
+    case class Grid(facing: Direction, currentLocation: Point)
+
+    def getNextGridParams(dir: Direction, lr: String) = dir match
+        case Direction.North =>
+            if lr == "R" then (Direction.East, 1, Axis.X)
+            else (Direction.West, -1, Axis.X)
+        case Direction.South =>
+            if lr == "R" then (Direction.West, -1, Axis.X)
+            else (Direction.East, 1, Axis.X)
+        case Direction.East =>
+            if lr == "R" then (Direction.South, -1, Axis.Y)
+            else (Direction.North, 1, Axis.Y)
+        case Direction.West =>
+            if lr == "R" then (Direction.North, 1, Axis.Y)
+            else (Direction.South, -1, Axis.Y)
+
+    def step(grid: Grid, instruction: Instruction): Grid =
+        val Point(x, y) = grid.currentLocation
+        val steps = instruction.steps
+
+        val (direction, multiplier, axis) =
+            getNextGridParams(grid.facing, instruction.direction)
+        if axis == Axis.X then Grid(direction, Point(x + multiplier * steps, y))
+        else Grid(direction, Point(x, y + multiplier * steps))
+    end step
 end Day01
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.

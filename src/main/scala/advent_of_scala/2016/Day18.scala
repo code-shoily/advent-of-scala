@@ -4,7 +4,7 @@
   *
   * Difficulty: s
   *
-  * Tags: bitwise bignum unfold
+  * Tags: bitwise bignum
   *
   * Answers: (1951, 20_002_936)
   */

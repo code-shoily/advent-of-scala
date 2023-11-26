@@ -4,7 +4,7 @@
   *
   * Difficulty: xs
   *
-  * Tags: walk2D string-result
+  * Tags: walk string-result
   *
   * Answers: ("76792", "A7AC3")
   */
