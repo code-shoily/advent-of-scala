@@ -6,7 +6,7 @@
 
 [2015](/src/main/scala/advent_of_scala/2015/README.md) | 2016 | [2017](/src/main/scala/advent_of_scala/2017/README.md) | [2018](/src/main/scala/advent_of_scala/2018/README.md) | [2019](/src/main/scala/advent_of_scala/2019/README.md) | [2020](/src/main/scala/advent_of_scala/2020/README.md) | [2021](/src/main/scala/advent_of_scala/2021/README.md) | [2022](/src/main/scala/advent_of_scala/2022/README.md)
 
-## :trophy: 8/50
+## :trophy: 10/50
 
 
 | Day | Title | Status | Difficulty | Solution Page | Input | Test Page | Answer | Tags | 
@@ -15,3 +15,4 @@
 | 2 | [2016/2: Bathroom Security](https://adventofcode.com/2016/day/2) | :1st_place_medal: | :star:  | [Day02.scala](/src/main/scala/advent_of_scala/2016/Day02.scala) | [02.txt](/src/main/resources/inputs/2016/02.txt) | [Day02Suite.scala](/src/test/scala/advent_of_scala/2016/Day02Suite.scala) | ("76792", "A7AC3") | walk2D,string-result |
 | 3 | [2016/3: Squares With Three Sides](https://adventofcode.com/2016/day/3) | :1st_place_medal: | :star:  | [Day03.scala](/src/main/scala/advent_of_scala/2016/Day03.scala) | [03.txt](/src/main/resources/inputs/2016/03.txt) | [Day03Suite.scala](/src/test/scala/advent_of_scala/2016/Day03Suite.scala) | (993, 1849) | geometry,transpose |
 | 17 | [2016/17: <TITLE>](https://adventofcode.com/2016/day/17) | :1st_place_medal: | :star: :star:  | [Day17.scala](/src/main/scala/advent_of_scala/2016/Day17.scala) | [17.txt](/src/main/resources/inputs/2016/17.txt) | [Day17Suite.scala](/src/test/scala/advent_of_scala/2016/Day17Suite.scala) | ("DURLDRRDRD", 650) | dfs,md5,inline-input,assymmetric-result |
+| 19 | [2016/19: An Elephant Named Joseph](https://adventofcode.com/2016/day/19) | :1st_place_medal: | :star: :star: :star:  | [Day19.scala](/src/main/scala/advent_of_scala/2016/Day19.scala) | [19.txt](/src/main/resources/inputs/2016/19.txt) | [Day19Suite.scala](/src/test/scala/advent_of_scala/2016/Day19Suite.scala) | (1_842_613, 1_424_135) | bitwise,linked-list,mutable |
