@@ -6,6 +6,7 @@ class Solver2016(input: List[String]) extends Solver:
     override def solveFor(day: Int): Solution =
         day match
             case 1 => Day01(input).solve
+            case 2 => Day02(input).solve
             case 3 => Day03(input).solve
             case _ => didNotSolveError(2016, day)
 end Solver2016
