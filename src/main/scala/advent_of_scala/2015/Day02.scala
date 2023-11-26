@@ -11,17 +11,9 @@
 package advent_of_scala.year_2015
 
 import advent_of_scala.base.{Solution, impossibleStateError}
+import Day02.*
 
 type InputType2 = List[Dimension]
-
-case class Dimension(width: Int, length: Int, height: Int):
-    def wrappingPaperNeeded = smallestArea + surfaceArea
-    def ribbonNeeded = smallestPerimeter + volume
-    private def smallestArea = List(width * length, length * height, height * width).min
-    private def surfaceArea = 2 * (width * length + length * height + height * width)
-    private def volume = width * length * height
-    private def smallestPerimeter = List(width, length, height).sorted.take(2).map(_ * 2).sum
-end Dimension
 
 class Day02(rawInput: List[String]):
     def solvePart1(input: InputType2): Int = input.map(_.wrappingPaperNeeded).sum
@@ -41,6 +33,18 @@ class Day02(rawInput: List[String]):
                     case w :: l :: h :: Nil => Dimension(w.toInt, l.toInt, h.toInt)
                     case _                  => sys.error("Can't have this")
         }
+end Day02
+
+object Day02:
+    case class Dimension(width: Int, length: Int, height: Int):
+        def wrappingPaperNeeded = smallestArea + surfaceArea
+        def ribbonNeeded = smallestPerimeter + volume
+
+        private def smallestArea = List(width * length, length * height, height * width).min
+        private def surfaceArea = 2 * (width * length + length * height + height * width)
+        private def volume = width * length * height
+        private def smallestPerimeter = List(width, length, height).sorted.take(2).map(_ * 2).sum
+    end Dimension
 end Day02
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.

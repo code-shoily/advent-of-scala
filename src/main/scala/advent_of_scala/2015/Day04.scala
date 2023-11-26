@@ -4,7 +4,7 @@
   *
   * Difficulty: s
   *
-  * Tags: md5 digest inline-input
+  * Tags: md5 digest bitwise inline-input
   *
   * Answers: (254_575, 1_038_736)
   */
@@ -14,6 +14,7 @@ import java.nio.charset.StandardCharsets
 import java.security.MessageDigest
 
 import advent_of_scala.base.{Solution, impossibleStateError}
+import Day04.*
 
 class Day04(rawInput: List[String]):
     def solvePart1(input: String): Int = mine(input, "00000").get
@@ -29,24 +30,26 @@ class Day04(rawInput: List[String]):
     private def parsedInput: String = rawInput.head
 end Day04
 
-val md = MessageDigest.getInstance("MD5")
+object Day04:
+    val md = MessageDigest.getInstance("MD5")
 
-def mine(input: String, prefix: String): Option[Int] =
-    def toHexBinary(bytes: Array[Byte]): String =
-        val hexArray = "0123456789ABCDEF".toCharArray
-        val hexChars = new Array[Char](bytes.length * 2)
-        for i <- bytes.indices do
-            val v = bytes(i) & 0xff
-            hexChars(i * 2) = hexArray(v >>> 4)
-            hexChars(i * 2 + 1) = hexArray(v & 0x0f)
-        new String(hexChars)
-    end toHexBinary
+    def mine(input: String, prefix: String): Option[Int] =
+        def toHexBinary(bytes: Array[Byte]): String =
+            val hexArray = "0123456789ABCDEF".toCharArray
+            val hexChars = new Array[Char](bytes.length * 2)
+            for i <- bytes.indices do
+                val v = bytes(i) & 0xff
+                hexChars(i * 2) = hexArray(v >>> 4)
+                hexChars(i * 2 + 1) = hexArray(v & 0x0f)
+            new String(hexChars)
+        end toHexBinary
 
-    LazyList.from(1).find { i =>
-        md.update((input + i).getBytes(StandardCharsets.UTF_8))
-        toHexBinary(md.digest()) startsWith (prefix)
-    }
-end mine
+        LazyList.from(1).find { i =>
+            md.update((input + i).getBytes(StandardCharsets.UTF_8))
+            toHexBinary(md.digest()) startsWith (prefix)
+        }
+    end mine
+end Day04
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2015_04 =

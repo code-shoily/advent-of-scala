@@ -4,7 +4,7 @@
   *
   * Difficulty: xs
   *
-  * Tags: sequence reduce
+  * Tags: sequence reduction
   *
   * Answers: (232, 1783)
   */
