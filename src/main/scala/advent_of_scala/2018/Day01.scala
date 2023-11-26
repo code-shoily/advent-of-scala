@@ -13,16 +13,14 @@ package advent_of_scala.year_2018
 import advent_of_scala.base.Solution
 import scala.annotation.tailrec
 
-type InputType1 = List[Int]
-
 class Day01(rawInput: List[String]):
-    def solvePart1(input: InputType1): Int = input.sum
-    def solvePart2(input: InputType1): Int =
+    def solvePart1(input: List[Int]): Int = input.sum
+    def solvePart2(input: List[Int]): Int =
         val frequencyHistory = Set[Int]()
 
         @tailrec
         def recurse(
-            frequencies: InputType1,
+            frequencies: List[Int],
             history: Set[Int],
             total: Int = 0
         ): Int = frequencies match
@@ -41,7 +39,7 @@ class Day01(rawInput: List[String]):
         (part1, part2)
     end solve
 
-    def parsedInput: InputType1 = rawInput.map(_.toInt).toList
+    def parsedInput = rawInput.map(_.toInt).toList
 end Day01
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.

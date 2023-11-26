@@ -13,8 +13,6 @@ package advent_of_scala.year_2020
 import advent_of_scala.base.{Solution, impossibleStateError}
 import Day02.*
 
-type InputType2 = List[Policy]
-
 class Day02(rawInput: List[String]):
     def solve: Solution =
         val input = parsedInput
@@ -24,10 +22,12 @@ class Day02(rawInput: List[String]):
         )
     end solve
 
-    private def parsedInput: InputType2 = rawInput map (Policy.fromLine(_))
+    private def parsedInput: InputType = rawInput map (Policy.fromLine(_))
 end Day02
 
 object Day02:
+    type InputType = List[Policy]
+
     case class Policy(from: Int, to: Int, char: Char, password: String):
         def isPasswordValidV1 =
             val charCount = password.filter(_ == char).length()

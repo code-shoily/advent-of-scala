@@ -16,10 +16,8 @@ import Day08.*
 import Digit.*
 import Segment.*
 
-type InputType8 = List[String]
-
 class Day08(rawInput: List[String]):
-    def solvePart1(input: InputType8): Int = {
+    def solvePart1(input: List[String]): Int = {
         for
             display <- input map { _.split('|')(1).trim }
             segments <- display split (" ")
@@ -27,7 +25,7 @@ class Day08(rawInput: List[String]):
         yield uniqueDigit
     }.size
 
-    def solvePart2(input: InputType8): Int =
+    def solvePart2(input: List[String]): Int =
         def splitParts(line: String): (Seq[Segments], Seq[Segments]) =
             line.split('|') map {
                 _.trim.split(" ").toSeq map (Segment.toSegments)
@@ -40,13 +38,10 @@ class Day08(rawInput: List[String]):
     end solvePart2
 
     def solve: Solution =
-        val input = parsedInput
-        val part1 = solvePart1(input)
-        val part2 = solvePart2(input)
+        val part1 = solvePart1(rawInput)
+        val part2 = solvePart2(rawInput)
         (part1, part2)
     end solve
-
-    private def parsedInput: InputType8 = rawInput
 end Day08
 
 object Day08:

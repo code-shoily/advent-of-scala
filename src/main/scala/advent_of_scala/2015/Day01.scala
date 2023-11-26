@@ -11,12 +11,11 @@
 package advent_of_scala.year_2015
 
 import advent_of_scala.base.{Solution, impossibleStateError}
-
-type InputType1 = Seq[Int]
+import Day01.*
 
 class Day01(rawInput: List[String]):
-    def solvePart1(input: InputType1): Int = input.sum
-    def solvePart2(input: InputType1): Int = input.scan(0)(_ + _).indexOf(-1)
+    def solvePart1(input: InputType): Int = input.sum
+    def solvePart2(input: InputType): Int = input.scan(0)(_ + _).indexOf(-1)
 
     def solve: Solution =
         val input = parsedInput
@@ -25,9 +24,12 @@ class Day01(rawInput: List[String]):
         (part1, part2)
     end solve
 
-    private def parsedInput: InputType1 =
+    private def parsedInput: InputType =
         rawInput.head.map((step: Char) => if step == '(' then 1 else -1)
 end Day01
+
+object Day01:
+    type InputType = Seq[Int]
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2015_01 =

@@ -13,8 +13,6 @@ package advent_of_scala.year_2017
 import advent_of_scala.base.Solution
 import Day24.*
 
-type InputType24 = Set[Component]
-
 class Day24(rawInput: List[String]):
     def solve: Solution =
         val input = parsedInput
@@ -23,7 +21,7 @@ class Day24(rawInput: List[String]):
         (solverPart1(input), solverPart2(input))
     end solve
 
-    private def parsedInput: InputType24 =
+    private def parsedInput: InputType =
         rawInput.toSet.map { line =>
             val Array(a, b) = line.split("/").map(_.toInt)
             Component(a, b, a + b)
@@ -31,12 +29,15 @@ class Day24(rawInput: List[String]):
 end Day24
 
 object Day24:
+    type InputType = Set[Component]
+
     case class Component(a: Int, b: Int, strength: Int):
         def matches(n: Int) = n == a || n == b
         def passthrough = a == b
         def opposite(n: Int) = if n == a then b else a
+    end Component
 
-    def build(ordering: Ordering[(Int, Int)])(input: InputType24) =
+    def build(ordering: Ordering[(Int, Int)])(input: InputType) =
         def doBuild(components: Set[Component], current: Int, depth: Int, total: Int): (Int, Int) =
             val candidates = components.filter(_.matches(current))
             val shortlist = candidates.find(_.passthrough).map(Set(_)).getOrElse(candidates)

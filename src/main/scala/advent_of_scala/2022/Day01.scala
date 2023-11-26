@@ -14,11 +14,9 @@ import scala.collection.mutable.PriorityQueue
 
 import advent_of_scala.base.Solution
 
-type InputType1 = PriorityQueue[Int]
-
 class Day01(rawInput: List[String]):
-    def solvePart1(input: InputType1): Int = input.head
-    def solvePart2(input: InputType1): Int = input.take(3).sum
+    def solvePart1(input: PriorityQueue[Int]): Int = input.head
+    def solvePart2(input: PriorityQueue[Int]): Int = input.take(3).sum
 
     def solve: Solution =
         val input = parsedInput
@@ -27,7 +25,7 @@ class Day01(rawInput: List[String]):
         (part1, part2)
     end solve
 
-    private def parsedInput: InputType1 =
+    private def parsedInput: PriorityQueue[Int] =
         val pq = PriorityQueue[Int]()
         val calories =
             rawInput.foldLeft(List[Int](0))((acc, x) =>

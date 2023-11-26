@@ -15,11 +15,9 @@ import scala.util.chaining.*
 import advent_of_scala.base.Solution
 import Day12.*
 
-type InputType12 = Map[String, List[String]]
-
 class Day12(rawInput: List[String]):
     def solve: Solution =
-        given input: InputType12 = parsedInput
+        given input: InputType = parsedInput
         (
           pathCount(_ => false, initialPath),
           pathCount(
@@ -29,15 +27,17 @@ class Day12(rawInput: List[String]):
         )
     end solve
 
-    private def parsedInput: InputType12 = rawInput.flatMap { case s"$l-$r" =>
+    private def parsedInput: InputType = rawInput.flatMap { case s"$l-$r" =>
         Seq(l -> r, r -> l)
     }.groupMap(_._1)(_._2)
 end Day12
 
 object Day12:
+    type InputType = Map[String, List[String]]
+
     final val initialPath = Seq("start")
 
-    def pathCount(pred: Seq[String] => Boolean, path: Seq[String])(using graph: InputType12): Int =
+    def pathCount(pred: Seq[String] => Boolean, path: Seq[String])(using graph: InputType): Int =
         path.head match
             case "end" => 1
             case cave => {

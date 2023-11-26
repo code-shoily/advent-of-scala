@@ -13,10 +13,8 @@ package advent_of_scala.year_2021
 import advent_of_scala.base.{Solution, impossibleStateError}
 import Day05.*
 
-type InputType5 = List[Line]
-
 class Day05(rawInput: List[String]):
-    def solveForLines(input: InputType5, f: (Line => Boolean)) =
+    def solveForLines(input: InputType, f: (Line => Boolean)) =
         input filter (f) flatMap (_.points) groupBy (identity) count (_._2.length > 1)
     def solve: Solution =
         val input = parsedInput
@@ -25,10 +23,12 @@ class Day05(rawInput: List[String]):
         (part1, part2)
     end solve
 
-    private def parsedInput: InputType5 = rawInput.map(Line.fromString(_)).toSeq
+    private def parsedInput: InputType = rawInput.map(Line.fromString(_)).toSeq
 end Day05
 
 object Day05:
+    type InputType = List[Line]
+
     def toPoint(data: String): Point = data.split(",").toList match
         case x :: y :: _ => Point(x.toInt, y.toInt)
         case _           => impossibleStateError

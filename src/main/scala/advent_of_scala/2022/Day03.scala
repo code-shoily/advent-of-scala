@@ -13,11 +13,9 @@ package advent_of_scala.year_2022
 import advent_of_scala.base.{Solution, impossibleStateError}
 import Day03.*
 
-type InputType3 = List[Array[Char]]
-
 class Day03(rawInput: List[String]):
-    def solvePart1(input: InputType3): Int = solver(input.map(byHalf))
-    def solvePart2(input: InputType3): Int = solver(input.grouped(3).toList)
+    def solvePart1(input: InputType): Int = solver(input.map(byHalf))
+    def solvePart2(input: InputType): Int = solver(input.grouped(3).toList)
     def solver(input: List[List[Array[Char]]]) = input.map(getCommonItem(_*)).map(getPriority).sum
 
     def solve: Solution =
@@ -27,10 +25,12 @@ class Day03(rawInput: List[String]):
         (part1, part2)
     end solve
 
-    private def parsedInput: InputType3 = rawInput.map(_.toCharArray())
+    private def parsedInput: InputType = rawInput.map(_.toCharArray())
 end Day03
 
 object Day03:
+    type InputType = List[Array[Char]]
+
     def byHalf(items: Array[Char]) = items.splitAt(items.length / 2).toList
     def getCommonItem(items: Array[Char]*) = items.reduce(_ intersect _).head
     def getPriority(itemType: Char) = itemType match

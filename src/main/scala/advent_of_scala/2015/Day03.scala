@@ -15,15 +15,13 @@ import scala.annotation.tailrec
 import advent_of_scala.base.{Solution, impossibleStateError}
 import Day03.*
 
-type InputType3 = List[Direction]
-
 class Day03(rawInput: List[String]):
-    def solvePart1(input: InputType3): Int =
+    def solvePart1(input: InputType): Int =
         val delivery = Delivery()
         delivery.followDirections(input)
         delivery.visitedHouses.size
 
-    def solvePart2(input: InputType3): Int =
+    def solvePart2(input: InputType): Int =
         val santaVisits = Delivery()
         val roboVisits = Delivery()
         val (santaDirections, roboDirections): (List[Direction], List[Direction]) =
@@ -42,10 +40,12 @@ class Day03(rawInput: List[String]):
         (part1, part2)
     end solve
 
-    private def parsedInput: InputType3 = rawInput.head.map(asDirection(_)).toList
+    private def parsedInput: InputType = rawInput.head.map(asDirection(_)).toList
 end Day03
 
 object Day03:
+    type InputType = List[Direction]
+
     enum Direction:
         case Up, Down, Left, Right
 
@@ -62,7 +62,7 @@ object Day03:
         var house = House(0, 0)
         var visitedHouses = Set[House]() + house
 
-        def followDirections(directions: InputType3) = directions.foreach(nextHouse)
+        def followDirections(directions: InputType) = directions.foreach(nextHouse)
 
         def nextHouse(direction: Direction) =
             val House(x, y) = house
@@ -80,10 +80,10 @@ object Day03:
 
     @tailrec
     final def divideInstructions(
-        instructions: InputType3,
-        part1: InputType3,
-        part2: InputType3
-    ): (InputType3, InputType3) = instructions match
+        instructions: InputType,
+        part1: InputType,
+        part2: InputType
+    ): (InputType, InputType) = instructions match
         case a :: b :: rest => divideInstructions(rest, a :: part1, b :: part2)
         case _              => (part1.reverse, part2.reverse)
 end Day03

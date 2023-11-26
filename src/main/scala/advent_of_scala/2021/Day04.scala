@@ -13,11 +13,9 @@ package advent_of_scala.year_2021
 import advent_of_scala.base.{Solution, impossibleStateError}
 import Day04.*
 
-case class InputType4(numbers: Seq[Int], boards: Bingo)
-
 class Day04(rawInput: List[String]):
     def solve: Solution =
-        val InputType4(numbers, initialState) = parsedInput
+        val InputType(numbers, initialState) = parsedInput
         numbers.foldLeft(initialState) { (bingo, n) =>
             val newBoards = bingo.boards filterNot (_.hasWon) map (Board.pick(_, n))
             newBoards find (_.hasWon) match
@@ -29,9 +27,9 @@ class Day04(rawInput: List[String]):
         }.result
     end solve
 
-    private def parsedInput: InputType4 =
+    private def parsedInput: InputType =
         val sections = rawInput.mkString("\n").split("\n\n").toSeq
-        InputType4(
+        InputType(
           sections.head.split(",").map(_.toInt),
           Bingo(sections.tail.map(Board.fromString(_)), None, None)
         )
@@ -39,6 +37,8 @@ class Day04(rawInput: List[String]):
 end Day04
 
 object Day04:
+    case class InputType(numbers: Seq[Int], boards: Bingo)
+
     case class Board(
         val mapping: Map[Int, (Int, Int)],
         val rows: Vector[Int] = Vector.from[Int](Seq(0, 0, 0, 0, 0)),

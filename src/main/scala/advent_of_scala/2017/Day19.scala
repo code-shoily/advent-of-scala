@@ -13,8 +13,6 @@ package advent_of_scala.year_2017
 import advent_of_scala.base.Solution
 import scala.annotation.tailrec
 
-type InputType19 = List[String]
-
 class Day19(rawInput: List[String]):
     def solve: Solution = Day19.traverse(rawInput)
 

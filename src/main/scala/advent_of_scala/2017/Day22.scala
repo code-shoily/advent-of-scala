@@ -14,10 +14,8 @@ import advent_of_scala.base.{Solution, impossibleStateError}
 import Day22.*
 import Node.*
 
-type InputType22 = State
-
 class Day22(rawInput: List[String]):
-    def solvePart1(input: InputType22): Int =
+    def solvePart1(input: State): Int =
         def step(state: State): State = state.grid(state.location) match
             case Clean    => state.next(Infected, state.direction.ccw, 1)
             case Infected => state.next(Clean, state.direction.cw, 0)
@@ -26,7 +24,7 @@ class Day22(rawInput: List[String]):
         Iterator.iterate(input)(step).drop(10_000).next().infected
     end solvePart1
 
-    def solvePart2(input: InputType22): Int =
+    def solvePart2(input: State): Int =
         def step(state: State): State = state.grid(state.location) match
             case Clean    => state.next(Weakened, state.direction.ccw, 0)
             case Weakened => state.next(Infected, state.direction, 1)
@@ -43,7 +41,7 @@ class Day22(rawInput: List[String]):
         (part1, part2)
     end solve
 
-    private def parsedInput: InputType22 =
+    private def parsedInput: State =
         val points =
             for
                 y <- rawInput.indices

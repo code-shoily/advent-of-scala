@@ -13,15 +13,13 @@ package advent_of_scala.year_2021
 import advent_of_scala.base.Solution
 import Day06.*
 
-type InputType6 = Seq[Int]
-
 class Day06(rawInput: List[String]):
     def solve: Solution =
         val input = parsedInput
         (simulate(input, 80), simulate(input, 256))
     end solve
 
-    private def parsedInput: InputType6 = rawInput.head.split(",").map(_.toInt).toSeq
+    private def parsedInput = rawInput.head.split(",").map(_.toInt).toSeq
 end Day06
 
 object Day06:

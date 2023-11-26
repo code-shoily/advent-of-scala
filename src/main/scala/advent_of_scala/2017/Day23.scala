@@ -14,8 +14,6 @@ import advent_of_scala.base.Solution
 import Day23.*
 import State.*
 
-type InputType23 = Cpu
-
 class Day23(rawInput: List[String]):
     def solve: Solution =
         val input = parsedInput
@@ -31,7 +29,7 @@ class Day23(rawInput: List[String]):
         (part1, part2)
     end solve
 
-    private def parsedInput: InputType23 = Cpu(rawInput)
+    private def parsedInput = Cpu(rawInput)
 end Day23
 
 object Day23:

@@ -13,8 +13,6 @@ package advent_of_scala.year_2021
 import advent_of_scala.base.{Solution, impossibleStateError}
 import Day13.*
 
-type InputType13 = (Set[Dot], List[Fold])
-
 class Day13(rawInput: List[String]):
     def solvePart1(dots: Set[Dot], folds: List[Fold]): Int =
         dots.map(folds.head.apply).size
@@ -39,7 +37,7 @@ class Day13(rawInput: List[String]):
         (part1, "LKREBPRK")
     end solve
 
-    private def parsedInput: InputType13 =
+    private def parsedInput =
         val sections = (rawInput mkString "\n") split ("\n\n")
         val dots = sections(0).linesIterator.map(Dot.parse).toSet
         val folds = sections(1).linesIterator.map(Fold.parse).toList

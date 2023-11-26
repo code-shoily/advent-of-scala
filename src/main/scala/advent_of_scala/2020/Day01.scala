@@ -12,14 +12,12 @@ package advent_of_scala.year_2020
 
 import advent_of_scala.base.{Solution, impossibleStateError}
 
-type InputType1 = Seq[Int]
-
 class Day01(rawInput: List[String]):
-    def solvePart1(input: InputType1): Int = twoSumMultiplied(input, 2020) match
+    def solvePart1(input: Seq[Int]): Int = twoSumMultiplied(input, 2020) match
         case Some(value) => value
         case None        => impossibleStateError
 
-    def solvePart2(input: InputType1): Int =
+    def solvePart2(input: Seq[Int]): Int =
         input.zipWithIndex
             .flatMap((entry) =>
                 twoSumMultiplied(input.drop(entry(1) + 1), 2020 - entry(0)) match
@@ -35,9 +33,9 @@ class Day01(rawInput: List[String]):
         (part1, part2)
     end solve
 
-    private def parsedInput: InputType1 = rawInput.map(_.toInt).sorted
+    private def parsedInput: Seq[Int] = rawInput.map(_.toInt).sorted
 
-    private def twoSumMultiplied(input: InputType1, target: Int): Option[Int] =
+    private def twoSumMultiplied(input: Seq[Int], target: Int): Option[Int] =
         var result = 0
         var left = 0
         var right = input.length - 1

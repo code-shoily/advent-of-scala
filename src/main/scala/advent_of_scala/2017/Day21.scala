@@ -11,8 +11,7 @@
 package advent_of_scala.year_2017
 
 import advent_of_scala.base.Solution
-
-type InputType21 = Map[Seq[String], Seq[String]]
+import Day21.*
 
 class Day21(rawInput: List[String]):
     def solve: Solution =
@@ -22,7 +21,7 @@ class Day21(rawInput: List[String]):
         (solverPart1(input), solverPart2(input))
     end solve
 
-    private def parsedInput: InputType21 =
+    private def parsedInput: InputType =
         def permutations(pattern: Seq[String]) =
             val rotated = Iterator.iterate(pattern, 4)(_.reverse.transpose.map(_.mkString)).toSeq
             rotated ++ rotated.map(_.reverse)
@@ -35,7 +34,7 @@ class Day21(rawInput: List[String]):
         }.toMap
     end parsedInput
 
-    def fractal(n: Int)(rules: InputType21): Int =
+    def fractal(n: Int)(rules: InputType): Int =
         Iterator.iterate(Seq(".#.", "..#", "###")) { pattern =>
             val size = if pattern.size % 2 == 0 then 2 else 3
             pattern
@@ -46,6 +45,9 @@ class Day21(rawInput: List[String]):
         }.drop(n).next().map(_.count(_ == '#')).sum
     end fractal
 end Day21
+
+object Day21:
+    type InputType = Map[Seq[String], Seq[String]]
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2017_21 =

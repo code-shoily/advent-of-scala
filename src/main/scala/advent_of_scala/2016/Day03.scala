@@ -13,15 +13,13 @@ package advent_of_scala.year_2016
 import advent_of_scala.base.{Solution, impossibleStateError}
 import Day03.*
 
-type InputType3 = List[(Int, Int, Int)]
-
 class Day03(rawInput: List[String]):
     def solve: Solution =
         val input = parsedInput
         (input count (isTriangle), getVerticalTriplets(input) count (isTriangle))
     end solve
 
-    private def parsedInput: InputType3 =
+    private def parsedInput: InputType =
         rawInput map {
             _.trim().split("\\s+").toList.map(_.toInt) match
                 case a :: b :: c :: Nil => (a, b, c)
@@ -30,6 +28,8 @@ class Day03(rawInput: List[String]):
 end Day03
 
 object Day03:
+    type InputType = List[(Int, Int, Int)]
+
     def isTriangle(triplets: (Int, Int, Int)) =
         val (a, b, c) = triplets
         (a + b) > c && (b + c) > a && (c + a) > b

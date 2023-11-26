@@ -13,11 +13,9 @@ package advent_of_scala.year_2022
 import advent_of_scala.base.{Solution, impossibleStateError}
 import Day04.*
 
-type InputType4 = List[((Int, Int), (Int, Int))]
-
 class Day04(rawInput: List[String]):
-    def solvePart1(input: InputType4): Int = input.count(fullyContains)
-    def solvePart2(input: InputType4): Int = input.count(overlaps)
+    def solvePart1(input: InputType): Int = input.count(fullyContains)
+    def solvePart2(input: InputType): Int = input.count(overlaps)
 
     def solve: Solution =
         val input = parsedInput
@@ -26,7 +24,7 @@ class Day04(rawInput: List[String]):
         (part1, part2)
     end solve
 
-    private def parsedInput: InputType4 =
+    private def parsedInput: InputType =
         def toRange(rr: String): (Int, Int) =
             val Array(a, b) = rr split ("-") map (_.toInt)
             (a, b)
@@ -37,6 +35,8 @@ class Day04(rawInput: List[String]):
 end Day04
 
 object Day04:
+    type InputType = List[((Int, Int), (Int, Int))]
+
     def fullyContains(a: (Int, Int), b: (Int, Int)): Boolean = (a, b) match
         case ((a1, b1), (a2, b2)) if a1 <= a2 && b1 >= b2 => true
         case ((a1, b1), (a2, b2)) if a2 <= a1 && b2 >= b1 => true

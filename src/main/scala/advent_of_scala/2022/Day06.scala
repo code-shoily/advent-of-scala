@@ -12,8 +12,6 @@ package advent_of_scala.year_2022
 
 import advent_of_scala.base.Solution
 
-type InputType6 = Array[Char]
-
 class Day06(rawInput: List[String]):
     def solve: Solution =
         val input = parsedInput
@@ -22,7 +20,7 @@ class Day06(rawInput: List[String]):
         (findMarker(4), findMarker(14))
     end solve
 
-    private def parsedInput: InputType6 = rawInput.head.toCharArray()
+    private def parsedInput = rawInput.head.toCharArray()
 end Day06
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.

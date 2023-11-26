@@ -13,8 +13,6 @@ package advent_of_scala.year_2020
 import advent_of_scala.base.{Solution, impossibleStateError}
 import Day04.*
 
-type InputType4 = List[Option[Map[String, String]]]
-
 class Day04(rawInput: List[String]):
 
     def solve: Solution =
@@ -27,11 +25,13 @@ class Day04(rawInput: List[String]):
         (part1, part2)
     end solve
 
-    private def parsedInput: InputType4 =
+    private def parsedInput: InputType =
         rawInput.mkString("\n").split("\n\n").toList map (validPassportMap) filter { _.isDefined }
 end Day04
 
 object Day04:
+    type InputType = List[Option[Map[String, String]]]
+
     case class Passport(
         byr: Int,
         iyr: Int,

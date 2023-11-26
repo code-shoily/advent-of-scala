@@ -13,13 +13,11 @@ package advent_of_scala.year_2019
 import advent_of_scala.base.Solution
 import scala.annotation.tailrec
 
-type InputType1 = Seq[Int]
-
 class Day01(rawInput: List[String]):
-    def solvePart1(input: InputType1): Int =
+    def solvePart1(input: Seq[Int]): Int =
         input.map(_ / 3 - 2).sum
 
-    def solvePart2(input: InputType1): Int =
+    def solvePart2(input: Seq[Int]): Int =
         @tailrec
         def getFuel(mass: Int, fuel: Int = 0): Int =
             (mass / 3 - 2) match
@@ -36,7 +34,7 @@ class Day01(rawInput: List[String]):
         (part1, part2)
     end solve
 
-    def parsedInput: InputType1 = rawInput.map(_.toInt)
+    def parsedInput: Seq[Int] = rawInput.map(_.toInt)
 end Day01
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.

@@ -13,12 +13,10 @@ package advent_of_scala.year_2021
 import advent_of_scala.base.{Solution, impossibleStateError}
 import Day02.*
 
-type InputType2 = List[Command]
-
 class Day02(rawInput: List[String]):
-    def solvePart1(input: InputType2): Int = solver(input, navigate)
-    def solvePart2(input: InputType2): Int = solver(input, navigateWithAim)
-    def solver(input: InputType2, navigationAction: (Position, Command) => Position) =
+    def solvePart1(input: InputType): Int = solver(input, navigate)
+    def solvePart2(input: InputType): Int = solver(input, navigateWithAim)
+    def solver(input: InputType, navigationAction: (Position, Command) => Position) =
         input.foldLeft(Position(0, 0))(navigationAction).result
 
     def solve: Solution =
@@ -28,10 +26,12 @@ class Day02(rawInput: List[String]):
         (part1, part2)
     end solve
 
-    private def parsedInput: InputType2 = rawInput.map(createCommand(_))
+    private def parsedInput: InputType = rawInput.map(createCommand(_))
 end Day02
 
 object Day02:
+    type InputType = List[Command]
+
     enum Direction:
         case Forward, Up, Down
 

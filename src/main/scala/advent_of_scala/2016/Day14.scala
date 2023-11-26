@@ -13,18 +13,16 @@ package advent_of_scala.year_2016
 import advent_of_scala.base.Solution
 import Day14.*
 
-type InputType14 = String
-
 class Day14(rawInput: List[String]):
-    def solvePart1(input: InputType14) = generatePad(index => single(s"$input$index"))
-    def solvePart2(input: InputType14) = generatePad(index => stretched(s"$input$index"))
+    def solvePart1(input: String) = generatePad(index => single(s"$input$index"))
+    def solvePart2(input: String) = generatePad(index => stretched(s"$input$index"))
 
     def solve: Solution =
         val input = parsedInput
         (solvePart1(input), solvePart2(input))
     end solve
 
-    private def parsedInput: InputType14 = rawInput.head.strip
+    private def parsedInput: String = rawInput.head.strip
 end Day14
 
 object Day14:

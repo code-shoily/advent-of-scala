@@ -13,11 +13,9 @@ package advent_of_scala.year_2017
 import advent_of_scala.base.{Solution, impossibleStateError}
 import Day02.*
 
-type InputType2 = List[Array[Int]]
-
 class Day02(rawInput: List[String]):
-    def solvePart1(input: InputType2): Int = input map { row => row.last - row.head } reduce (_ + _)
-    def solvePart2(input: InputType2): Int = input map (dividingPair) reduce (_ + _)
+    def solvePart1(input: InputType): Int = input map { row => row.last - row.head } reduce (_ + _)
+    def solvePart2(input: InputType): Int = input map (dividingPair) reduce (_ + _)
 
     def solve: Solution =
         val input = parsedInput
@@ -26,12 +24,14 @@ class Day02(rawInput: List[String]):
         (part1, part2)
     end solve
 
-    private def parsedInput: InputType2 = rawInput map {
+    private def parsedInput: InputType = rawInput map {
         _.split("\n") flatMap { _.split("\t") map (_.toInt) } sortBy identity
     }
 end Day02
 
 object Day02:
+    type InputType = List[Array[Int]]
+
     def dividingPair(row: Array[Int]) =
         (for
             i <- (0 until row.length)

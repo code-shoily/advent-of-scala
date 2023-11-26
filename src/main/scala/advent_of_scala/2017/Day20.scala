@@ -16,10 +16,10 @@ import advent_of_scala.base.Solution
 
 import Day20.*
 
-type InputType20 = Seq[Particle]
-
 class Day20(rawInput: List[String]):
-    def solvePart1(input: InputType20): Int =
+    type InputType = Seq[Particle]
+
+    def solvePart1(input: InputType): Int =
         Iterator.iterate(input)(_.map(_.step))
             .drop(500)
             .next()
@@ -27,7 +27,7 @@ class Day20(rawInput: List[String]):
             .minBy(_._1.p.manhattan)
             ._2
 
-    def solvePart2(input: InputType20): Int =
+    def solvePart2(input: InputType): Int =
         Iterator.iterate(input)(
           _.map(_.step)
               .groupBy(_.p)
@@ -44,7 +44,7 @@ class Day20(rawInput: List[String]):
         (part1, part2)
     end solve
 
-    private def parsedInput: InputType20 = rawInput map {
+    private def parsedInput: InputType = rawInput map {
         _.split("[^-\\d]+").tail map (_.toInt) pipe {
             case Array(sx, sy, sz, vx, vy, vz, ax, ay, az) =>
                 Particle(Point(sx, sy, sz), Point(vx, vy, vz), Point(ax, ay, az))

@@ -15,14 +15,12 @@ import scala.annotation.tailrec
 import advent_of_scala.base.{Solution, impossibleStateError}
 import Day05.*
 
-type InputType5 = List[List[Char]]
-
 class Day05(rawInput: List[String]):
-    def solvePart1(input: InputType5): Int =
+    def solvePart1(input: InputType): Int =
         def isNice(chars: List[Char]) = noDQ(chars) && threeVowels(chars) && dupes(chars)
         input count (isNice)
 
-    def solvePart2(input: InputType5): Int =
+    def solvePart2(input: InputType): Int =
         def isNice(chars: List[Char]) =
             repeatingPairs(chars, Set[(Char, Char)](), None) && sandwitched(chars)
         input count (isNice)
@@ -35,10 +33,12 @@ class Day05(rawInput: List[String]):
         (part1, part2)
     end solve
 
-    private def parsedInput: InputType5 = rawInput.map(_.toList)
+    private def parsedInput: InputType = rawInput.map(_.toList)
 end Day05
 
 object Day05:
+    type InputType = List[List[Char]]
+
     val vowels = List('a', 'e', 'i', 'o', 'u')
     val disqualifiers = Set[(Char, Char)](('a', 'b'), ('c', 'd'), ('p', 'q'), ('x', 'y'))
 

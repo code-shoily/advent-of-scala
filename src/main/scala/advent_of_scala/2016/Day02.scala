@@ -11,8 +11,7 @@
 package advent_of_scala.year_2016
 
 import advent_of_scala.base.Solution
-
-type InputType2 = List[List[String]]
+import Day02.*
 
 class Day02(rawInput: List[String]):
     val numPad1 = List(
@@ -38,7 +37,7 @@ class Day02(rawInput: List[String]):
         (solver(numPad1, (2, 2)), solver(numPad2, (1, 3)))
     end solve
 
-    private def crackCode(input: InputType2)(pad: List[List[String]], startAt: (Int, Int)) =
+    private def crackCode(input: InputType)(pad: List[List[String]], startAt: (Int, Int)) =
         input.foldLeft((Vector[String](), startAt)) { case ((code, pos), directions) =>
             val (x, y) =
                 directions.foldLeft(pos) { case ((x, y), direction) =>
@@ -54,8 +53,11 @@ class Day02(rawInput: List[String]):
             (code :+ pad(x)(y), (x, y))
         }._1 mkString ""
 
-    private def parsedInput: InputType2 = rawInput map { _.split("").toList }
+    private def parsedInput: InputType = rawInput map { _.split("").toList }
 end Day02
+
+object Day02:
+    type InputType = List[List[String]]
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2016_02 =

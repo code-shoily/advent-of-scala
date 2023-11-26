@@ -12,11 +12,9 @@ package advent_of_scala.year_2021
 
 import advent_of_scala.base.Solution
 
-type InputType1 = Seq[Int]
-
 class Day01(rawInput: List[String]):
-    def solvePart1(input: InputType1): Int = countIncrements(input, 1)
-    def solvePart2(input: InputType1): Int = countIncrements(input, 3)
+    def solvePart1(input: Seq[Int]): Int = countIncrements(input, 1)
+    def solvePart2(input: Seq[Int]): Int = countIncrements(input, 3)
 
     def solve: Solution =
         val input = parsedInput
@@ -25,9 +23,9 @@ class Day01(rawInput: List[String]):
         (part1, part2)
     end solve
 
-    def parsedInput: InputType1 = rawInput.map(_.toInt)
+    def parsedInput: Seq[Int] = rawInput.map(_.toInt)
 
-    private def countIncrements(sigs: InputType1, by: Int): Int =
+    private def countIncrements(sigs: Seq[Int], by: Int): Int =
         (0 until (sigs.length - by)).foldLeft(0)((incr, idx) =>
             incr + (if sigs(idx) < sigs(idx + by) then 1 else 0)
         )
