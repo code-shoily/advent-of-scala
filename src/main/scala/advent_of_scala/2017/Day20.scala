@@ -1,4 +1,4 @@
-/** 2017/20: <TITLE>
+/** 2017/20: Particle Swarm
   *
   * Link: https://adventofcode.com/2017/day/20
   *

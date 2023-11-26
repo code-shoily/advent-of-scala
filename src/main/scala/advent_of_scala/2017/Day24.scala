@@ -1,4 +1,4 @@
-/** 2017/24: <TITLE>
+/** 2017/24: Electromagnetic Moat
   *
   * Link: https://adventofcode.com/2017/day/24
   *

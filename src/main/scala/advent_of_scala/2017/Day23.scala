@@ -1,4 +1,4 @@
-/** 2017/23: <TITLE>
+/** 2017/23: Coprocessor Coflagration
   *
   * Link: https://adventofcode.com/2017/day/23
   *
