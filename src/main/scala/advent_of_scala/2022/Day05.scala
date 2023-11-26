@@ -4,17 +4,14 @@
   *
   * Difficulty: m
   *
-  * Tags: parse-heavy stack linked-list map string-result
+  * Tags: parse-heavy stack linked-list string-result
   *
   * Answers: ("VPCDMSLWJ", "TPWCGNCCG")
   */
 package advent_of_scala.year_2022
 
 import advent_of_scala.base.Solution
-
-type Containers = Map[Char, List[Char]]
-type Moves = Seq[Move]
-type InputType5 = (Map[Char, List[Char]], Moves)
+import Day05.*
 
 class Day05(rawInput: List[String]):
     def solve: Solution =
@@ -64,22 +61,28 @@ class Day05(rawInput: List[String]):
     end parsedInput
 end Day05
 
-case class Move(quantity: Int, source: Char, destination: Char):
-    def moveContainers(shouldReverse: Boolean)(containers: Containers) =
-        val (containersToMove, remainingContainers) = containers(source).splitAt(quantity)
-        val destinationContainers =
-            (if shouldReverse then containersToMove.reverse else containersToMove) ++ containers(
-              destination
-            )
+object Day05:
+    type Containers = Map[Char, List[Char]]
+    type Moves = Seq[Move]
 
-        containers + (destination -> destinationContainers) + (source -> remainingContainers)
-    end moveContainers
-end Move
+    case class Move(quantity: Int, source: Char, destination: Char):
+        def moveContainers(shouldReverse: Boolean)(containers: Containers) =
+            val (containersToMove, remainingContainers) = containers(source).splitAt(quantity)
+            val destinationContainers =
+                (if shouldReverse then containersToMove.reverse
+                 else containersToMove) ++ containers(
+                  destination
+                )
 
-def getTopContainers(shouldReverse: Boolean)(using containers: Containers, moves: Moves) =
-    moves.foldLeft(containers) { (acc, move) =>
-        move.moveContainers(shouldReverse)(acc)
-    }.toList.sortBy(_._1).map(_._2.head).mkString
+            containers + (destination -> destinationContainers) + (source -> remainingContainers)
+        end moveContainers
+    end Move
+
+    def getTopContainers(shouldReverse: Boolean)(using containers: Containers, moves: Moves) =
+        moves.foldLeft(containers) { (acc, move) =>
+            move.moveContainers(shouldReverse)(acc)
+        }.toList.sortBy(_._1).map(_._2.head).mkString
+end Day05
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2022_05 =

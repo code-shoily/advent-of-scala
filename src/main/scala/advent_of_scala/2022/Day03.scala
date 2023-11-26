@@ -4,13 +4,14 @@
   *
   * Difficulty: xs
   *
-  * Tags: chunk char
+  * Tags: group
   *
   * Answers: (8233, 2821)
   */
 package advent_of_scala.year_2022
 
 import advent_of_scala.base.{Solution, impossibleStateError}
+import Day03.*
 
 type InputType3 = List[Array[Char]]
 
@@ -29,11 +30,13 @@ class Day03(rawInput: List[String]):
     private def parsedInput: InputType3 = rawInput.map(_.toCharArray())
 end Day03
 
-def byHalf(items: Array[Char]) = items.splitAt(items.length / 2).toList
-def getCommonItem(items: Array[Char]*) = items.reduce(_ intersect _).head
-def getPriority(itemType: Char) = itemType match
-    case lowerCase if ('a' to 'z').contains(lowerCase) => (itemType.toInt % 'a'.toInt) + 1
-    case upperCase if ('A' to 'Z').contains(upperCase) => (itemType.toInt % 'A'.toInt) + 27
+object Day03:
+    def byHalf(items: Array[Char]) = items.splitAt(items.length / 2).toList
+    def getCommonItem(items: Array[Char]*) = items.reduce(_ intersect _).head
+    def getPriority(itemType: Char) = itemType match
+        case lowerCase if ('a' to 'z').contains(lowerCase) => (itemType.toInt % 'a'.toInt) + 1
+        case upperCase if ('A' to 'Z').contains(upperCase) => (itemType.toInt % 'A'.toInt) + 27
+end Day03
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2022_03 =

@@ -4,13 +4,14 @@
   *
   * Difficulty: l
   *
-  * Tags: comprehension visual-result revisit
+  * Tags: visual-result revisit
   *
   * Answers: (653, "LKREBPRK")
   */
 package advent_of_scala.year_2021
 
 import advent_of_scala.base.{Solution, impossibleStateError}
+import Day13.*
 
 type InputType13 = (Set[Dot], List[Fold])
 
@@ -46,36 +47,38 @@ class Day13(rawInput: List[String]):
     end parsedInput
 end Day13
 
-case class Dot(x: Int, y: Int)
+object Day13:
+    case class Dot(x: Int, y: Int)
 
-object Dot:
-    def parse(line: String): Dot =
-        line match
-            case s"$x,$y" => Dot(x.toInt, y.toInt)
-            case _        => impossibleStateError
-end Dot
+    object Dot:
+        def parse(line: String): Dot =
+            line match
+                case s"$x,$y" => Dot(x.toInt, y.toInt)
+                case _        => impossibleStateError
+    end Dot
 
-enum Fold:
-    case Vertical(x: Int)
-    case Horizontal(y: Int)
+    enum Fold:
+        case Vertical(x: Int)
+        case Horizontal(y: Int)
 
-    def apply(dot: Dot): Dot =
-        this match
-            case Vertical(x: Int)   => Dot(fold(along = x)(dot.x), dot.y)
-            case Horizontal(y: Int) => Dot(dot.x, fold(along = y)(dot.y))
+        def apply(dot: Dot): Dot =
+            this match
+                case Vertical(x: Int)   => Dot(fold(along = x)(dot.x), dot.y)
+                case Horizontal(y: Int) => Dot(dot.x, fold(along = y)(dot.y))
 
-    def fold(along: Int)(value: Int): Int =
-        if value < along then value
-        else along - (value - along)
-end Fold
+        def fold(along: Int)(value: Int): Int =
+            if value < along then value
+            else along - (value - along)
+    end Fold
 
-object Fold:
-    def parse(line: String): Fold =
-        line match
-            case s"fold along x=$x" => Vertical(x.toInt)
-            case s"fold along y=$y" => Horizontal(y.toInt)
-            case _                  => impossibleStateError
-end Fold
+    object Fold:
+        def parse(line: String): Fold =
+            line match
+                case s"fold along x=$x" => Vertical(x.toInt)
+                case s"fold along y=$y" => Horizontal(y.toInt)
+                case _                  => impossibleStateError
+    end Fold
+end Day13
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2021_13 =

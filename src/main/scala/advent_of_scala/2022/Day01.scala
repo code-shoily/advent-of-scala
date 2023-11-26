@@ -4,7 +4,7 @@
   *
   * Difficulty: xs
   *
-  * Tags: heap sort
+  * Tags: priority-queue
   *
   * Answers: (70_720, 207_148)
   */

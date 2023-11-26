@@ -4,7 +4,7 @@
   *
   * Difficulty: m
   *
-  * Tags: graph dfs
+  * Tags: graph graph-traversal
   *
   * Answers: (4659, 148_962)
   */
@@ -13,9 +13,9 @@ package advent_of_scala.year_2021
 import scala.util.chaining.*
 
 import advent_of_scala.base.Solution
+import Day12.*
 
 type InputType12 = Map[String, List[String]]
-final val initialPath = Seq("start")
 
 class Day12(rawInput: List[String]):
     def solve: Solution =
@@ -34,15 +34,19 @@ class Day12(rawInput: List[String]):
     }.groupMap(_._1)(_._2)
 end Day12
 
-def pathCount(pred: Seq[String] => Boolean, path: Seq[String])(using graph: InputType12): Int =
-    path.head match
-        case "end" => 1
-        case cave => {
-                graph(cave) filter {
-                    case "start" => false
-                    case t       => (t.head.isUpper || !path.contains(t) || pred(path))
-                } map { cave => pathCount(pred, cave +: path) }
-            }.sum
+object Day12:
+    final val initialPath = Seq("start")
+
+    def pathCount(pred: Seq[String] => Boolean, path: Seq[String])(using graph: InputType12): Int =
+        path.head match
+            case "end" => 1
+            case cave => {
+                    graph(cave) filter {
+                        case "start" => false
+                        case t       => (t.head.isUpper || !path.contains(t) || pred(path))
+                    } map { cave => pathCount(pred, cave +: path) }
+                }.sum
+end Day12
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2021_12 =

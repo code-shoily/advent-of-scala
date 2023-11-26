@@ -4,7 +4,7 @@
   *
   * Difficulty: xs
   *
-  * Tags: sliding-window set
+  * Tags: sliding-window
   *
   * Answers: (1651, 3837)
   */

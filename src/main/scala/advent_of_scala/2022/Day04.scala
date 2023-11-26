@@ -11,6 +11,7 @@
 package advent_of_scala.year_2022
 
 import advent_of_scala.base.{Solution, impossibleStateError}
+import Day04.*
 
 type InputType4 = List[((Int, Int), (Int, Int))]
 
@@ -35,15 +36,17 @@ class Day04(rawInput: List[String]):
     end parsedInput
 end Day04
 
-def fullyContains(a: (Int, Int), b: (Int, Int)): Boolean = (a, b) match
-    case ((a1, b1), (a2, b2)) if a1 <= a2 && b1 >= b2 => true
-    case ((a1, b1), (a2, b2)) if a2 <= a1 && b2 >= b1 => true
-    case _                                            => false
+object Day04:
+    def fullyContains(a: (Int, Int), b: (Int, Int)): Boolean = (a, b) match
+        case ((a1, b1), (a2, b2)) if a1 <= a2 && b1 >= b2 => true
+        case ((a1, b1), (a2, b2)) if a2 <= a1 && b2 >= b1 => true
+        case _                                            => false
 
-def overlaps(a: (Int, Int), b: (Int, Int)): Boolean = (a, b) match
-    case ((a1, b1), (a2, b2)) if b1 >= a2 && b1 <= b2 => true
-    case ((a1, b1), (a2, b2)) if b2 >= a1 && b2 <= b1 => true
-    case _                                            => false
+    def overlaps(a: (Int, Int), b: (Int, Int)): Boolean = (a, b) match
+        case ((a1, b1), (a2, b2)) if b1 >= a2 && b1 <= b2 => true
+        case ((a1, b1), (a2, b2)) if b2 >= a1 && b2 <= b1 => true
+        case _                                            => false
+end Day04
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2022_04 =

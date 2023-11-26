@@ -4,13 +4,14 @@
   *
   * Difficulty: xs
   *
-  * Tags: pattern-matching
+  * Tags: walk
   *
   * Answers: (1_660_158, 1_604_592_846)
   */
 package advent_of_scala.year_2021
 
 import advent_of_scala.base.{Solution, impossibleStateError}
+import Day02.*
 
 type InputType2 = List[Command]
 
@@ -30,39 +31,41 @@ class Day02(rawInput: List[String]):
     private def parsedInput: InputType2 = rawInput.map(createCommand(_))
 end Day02
 
-enum Direction:
-    case Forward, Up, Down
+object Day02:
+    enum Direction:
+        case Forward, Up, Down
 
-case class Command(direction: Direction, x: Int)
-case class Position(horizontal: Int, depth: Int, aim: Int = 0):
-    def result = horizontal * depth
+    case class Command(direction: Direction, x: Int)
+    case class Position(horizontal: Int, depth: Int, aim: Int = 0):
+        def result = horizontal * depth
 
-def navigate(currentPosition: Position, command: Command): Position =
-    val Position(horizontal, depth, aim) = currentPosition
+    def navigate(currentPosition: Position, command: Command): Position =
+        val Position(horizontal, depth, aim) = currentPosition
 
-    command match
-        case Command(Direction.Forward, x) => Position(horizontal + x, depth)
-        case Command(Direction.Up, x)      => Position(horizontal, depth - x)
-        case Command(Direction.Down, x)    => Position(horizontal, depth + x)
-    end match
-end navigate
+        command match
+            case Command(Direction.Forward, x) => Position(horizontal + x, depth)
+            case Command(Direction.Up, x)      => Position(horizontal, depth - x)
+            case Command(Direction.Down, x)    => Position(horizontal, depth + x)
+        end match
+    end navigate
 
-def navigateWithAim(currentPosition: Position, command: Command): Position =
-    val Position(horizontal, depth, aim) = currentPosition
+    def navigateWithAim(currentPosition: Position, command: Command): Position =
+        val Position(horizontal, depth, aim) = currentPosition
 
-    command match
-        case Command(Direction.Forward, x) => Position(horizontal + x, depth + aim * x, aim)
-        case Command(Direction.Up, x)      => Position(horizontal, depth, aim - x)
-        case Command(Direction.Down, x)    => Position(horizontal, depth, aim + x)
-    end match
-end navigateWithAim
+        command match
+            case Command(Direction.Forward, x) => Position(horizontal + x, depth + aim * x, aim)
+            case Command(Direction.Up, x)      => Position(horizontal, depth, aim - x)
+            case Command(Direction.Down, x)    => Position(horizontal, depth, aim + x)
+        end match
+    end navigateWithAim
 
-def createCommand(commandStr: String) =
-    commandStr.split(" ") match
-        case Array("forward", x) => Command(Direction.Forward, x.toInt)
-        case Array("up", x)      => Command(Direction.Up, x.toInt)
-        case Array("down", x)    => Command(Direction.Down, x.toInt)
-        case _                   => impossibleStateError
+    def createCommand(commandStr: String) =
+        commandStr.split(" ") match
+            case Array("forward", x) => Command(Direction.Forward, x.toInt)
+            case Array("up", x)      => Command(Direction.Up, x.toInt)
+            case Array("down", x)    => Command(Direction.Down, x.toInt)
+            case _                   => impossibleStateError
+end Day02
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2021_02 =

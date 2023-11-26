@@ -4,7 +4,7 @@
   *
   * Difficulty: xs
   *
-  * Tags: sequence
+  * Tags: sequence-query
   *
   * Answers: (1139, 1103)
   */

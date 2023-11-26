@@ -4,18 +4,16 @@
   *
   * Difficulty: xs
   *
-  * Tags: vector mutation number-system
+  * Tags: mutation number-base
   *
   * Answers: (1_540_244, 4_203_981)
   */
 package advent_of_scala.year_2021
 
 import advent_of_scala.base.{Solution, impossibleStateError}
+import Day03.*
 
 type InputType3 = List[Array[Int]]
-
-def asBin(binArray: IndexedSeq[Int], size: Int): Int =
-    binArray.zipWithIndex.map { case (v, i) => v * Math.pow(2, size - i - 1) }.sum.toInt
 
 class Day03(rawInput: List[String]):
     val size = rawInput.head.length()
@@ -34,38 +32,48 @@ class Day03(rawInput: List[String]):
         (part1, part2)
     end solve
 
-    private def parsedInput: InputType3 = rawInput.map(_.split("").map(_.toInt))
+    private def parsedInput: InputType3 = rawInput map { _.split("") map (_.toInt) }
 end Day03
 
-def getBitVector(lines: List[Array[Int]]): Vector[Bits] =
-    val bitVector: Vector[Bits] = Vector.from(for _ <- (1 to lines.head.length) yield Bits(0, 0))
-    lines.foreach(_.zipWithIndex.foreach { case (bit, idx) => bitVector(idx).update(bit) })
-    bitVector
-end getBitVector
+object Day03:
+    def asBin(binArray: IndexedSeq[Int], size: Int): Int =
+        binArray.zipWithIndex.map { case (v, i) => v * Math.pow(2, size - i - 1) }.sum.toInt
 
-case class Bits(var oneCount: Int, var zeroCount: Int):
-    def update(bit: Int) = bit match
-        case 1 => oneCount += 1
-        case 0 => zeroCount += 1
-    def mostCommon = if oneCount >= zeroCount then 1 else 0
-    def leastCommon = if oneCount >= zeroCount then 0 else 1
-end Bits
+    def getBitVector(lines: List[Array[Int]]): Vector[Bits] =
+        val bitVector: Vector[Bits] =
+            Vector.from(for _ <- (1 to lines.head.length) yield Bits(0, 0))
+        lines.foreach(_.zipWithIndex.foreach { case (bit, idx) => bitVector(idx).update(bit) })
+        bitVector
+    end getBitVector
 
-def bitToInt(bits: Vector[Bits], n: Int): Int =
-    val gamma = asBin((0 until n).map(bits(_).mostCommon), n)
-    val epsilon = asBin((0 until n).map(bits(_).leastCommon), n)
-    gamma * epsilon
-end bitToInt
+    case class Bits(var oneCount: Int, var zeroCount: Int):
+        def update(bit: Int) = bit match
+            case 1 => oneCount += 1
+            case 0 => zeroCount += 1
+        def mostCommon = if oneCount >= zeroCount then 1 else 0
+        def leastCommon = if oneCount >= zeroCount then 0 else 1
+    end Bits
 
-def frequenciesAt(bitVector: Vector[Bits], idx: Int): (Int, Int) =
-    (bitVector(idx).mostCommon, bitVector(idx).leastCommon)
+    def bitToInt(bits: Vector[Bits], n: Int): Int =
+        val gamma = asBin((0 until n).map(bits(_).mostCommon), n)
+        val epsilon = asBin((0 until n).map(bits(_).leastCommon), n)
+        gamma * epsilon
+    end bitToInt
 
-def scrubberRating(isO2: Boolean)(rawBits: List[Array[Int]], idx: Int): Array[Int] = rawBits match
-    case done if rawBits.length == 1 => done.head
-    case interim =>
-        val bitVector = getBitVector(interim)
-        val compareWith = frequenciesAt(bitVector, idx)(if isO2 then 0 else 1)
-        scrubberRating(isO2)(rawBits.filter(_(idx) == compareWith), idx + 1 % rawBits.head.length)
+    def frequenciesAt(bitVector: Vector[Bits], idx: Int): (Int, Int) =
+        (bitVector(idx).mostCommon, bitVector(idx).leastCommon)
+
+    def scrubberRating(isO2: Boolean)(rawBits: List[Array[Int]], idx: Int): Array[Int] =
+        rawBits match
+            case done if rawBits.length == 1 => done.head
+            case interim =>
+                val bitVector = getBitVector(interim)
+                val compareWith = frequenciesAt(bitVector, idx)(if isO2 then 0 else 1)
+                scrubberRating(isO2)(
+                  rawBits.filter(_(idx) == compareWith),
+                  idx + 1 % rawBits.head.length
+                )
+end Day03
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2021_03 =
