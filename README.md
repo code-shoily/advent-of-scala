@@ -26,7 +26,7 @@ Please note, there are two parts of the `README.md` content - static and dynamic
 
 ### Progress:
 
-#### :trophy: 62/400
+#### :trophy: 64/400
 
 |:calendar:|[2015](/src/main/scala/advent_of_scala/2015)|[2016](/src/main/scala/advent_of_scala/2016)|[2017](/src/main/scala/advent_of_scala/2017)|[2018](/src/main/scala/advent_of_scala/2018)|[2019](/src/main/scala/advent_of_scala/2019)|[2020](/src/main/scala/advent_of_scala/2020)|[2021](/src/main/scala/advent_of_scala/2021)|[2022](/src/main/scala/advent_of_scala/2022)|
 |:-:| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -49,7 +49,7 @@ Please note, there are two parts of the `README.md` content - static and dynamic
 |17|||||||||
 |18|||||||||
 |19|||:1st_place_medal:||||||
-|20|||||||||
+|20|||:1st_place_medal:||||||
 |21|||||||||
 |22|||||||||
 |23|||||||||
