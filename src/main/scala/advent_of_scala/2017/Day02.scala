@@ -4,13 +4,14 @@
   *
   * Difficulty: xs
   *
-  * Tags: array arithmetic checksum
+  * Tags: arithmetic checksum
   *
   * Answers: (32020, 236)
   */
 package advent_of_scala.year_2017
 
 import advent_of_scala.base.{Solution, impossibleStateError}
+import Day02.*
 
 type InputType2 = List[Array[Int]]
 
@@ -30,15 +31,17 @@ class Day02(rawInput: List[String]):
     }
 end Day02
 
-def dividingPair(row: Array[Int]) =
-    (for
-        i <- (0 until row.length)
-        j <- (0 until row.length)
-        if j > i
-        if row(j) % row(i) == 0
-    yield (row(i), row(j))) match
-        case value if value.length == 1 => (value.head._2 / value.head._1)
-        case _                          => impossibleStateError
+object Day02:
+    def dividingPair(row: Array[Int]) =
+        (for
+            i <- (0 until row.length)
+            j <- (0 until row.length)
+            if j > i
+            if row(j) % row(i) == 0
+        yield (row(i), row(j))) match
+            case value if value.length == 1 => (value.head._2 / value.head._1)
+            case _                          => impossibleStateError
+end Day02
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2017_02 =

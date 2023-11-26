@@ -4,7 +4,7 @@
   *
   * Difficulty: s
   *
-  * Tags: game-of-life slow rotation
+  * Tags: game-of-life slow grid-rotation
   *
   * Answers: (5447, 2_511_705)
   */

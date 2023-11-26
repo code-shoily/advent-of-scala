@@ -10,8 +10,9 @@
   */
 package advent_of_scala.year_2017
 
-import advent_of_scala.base.Solution
 import scala.annotation.tailrec
+
+import advent_of_scala.base.Solution
 
 type InputType1 = Seq[Int]
 

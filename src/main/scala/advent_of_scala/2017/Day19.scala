@@ -4,7 +4,7 @@
   *
   * Difficulty: m
   *
-  * Tags: graph traversal assymmetric-result
+  * Tags: graph graph-traversal assymmetric-result
   *
   * Answers: ("LIWQYKMRP", 16764)
   */

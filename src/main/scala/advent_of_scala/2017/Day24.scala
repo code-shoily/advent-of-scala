@@ -37,13 +37,13 @@ object Day24:
         def opposite(n: Int) = if n == a then b else a
 
     def build(ordering: Ordering[(Int, Int)])(input: InputType24) =
-        def helper(components: Set[Component], current: Int, depth: Int, total: Int): (Int, Int) =
+        def doBuild(components: Set[Component], current: Int, depth: Int, total: Int): (Int, Int) =
             val candidates = components.filter(_.matches(current))
             val shortlist = candidates.find(_.passthrough).map(Set(_)).getOrElse(candidates)
             if shortlist.isEmpty then depth -> total
             else
                 shortlist.map(next =>
-                    helper(
+                    doBuild(
                       components - next,
                       next.opposite(current),
                       depth + 1,
@@ -51,9 +51,9 @@ object Day24:
                     )
                 ).max(ordering)
             end if
-        end helper
+        end doBuild
 
-        helper(input, 0, 0, 0)._2
+        doBuild(input, 0, 0, 0)._2
     end build
 end Day24
 

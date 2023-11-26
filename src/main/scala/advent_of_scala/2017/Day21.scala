@@ -4,7 +4,7 @@
   *
   * Difficulty: m
   *
-  * Tags: permutations transpose revisit
+  * Tags: combinatorics matrix revisit
   *
   * Answers: (133, 2_221_990)
   */
@@ -45,7 +45,6 @@ class Day21(rawInput: List[String]):
                 .flatMap { _.transpose.map(rules).transpose.map(_.mkString) }
         }.drop(n).next().map(_.count(_ == '#')).sum
     end fractal
-
 end Day21
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
