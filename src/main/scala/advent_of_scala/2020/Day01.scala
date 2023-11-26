@@ -4,7 +4,7 @@
   *
   * Difficulty: xs
   *
-  * Tags: 2sum 3sum two-pointer
+  * Tags: n-sum two-pointer
   *
   * Answers: (1_014_624, 80_072_256)
   */

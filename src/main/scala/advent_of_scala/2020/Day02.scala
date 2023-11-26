@@ -4,13 +4,14 @@
   *
   * Difficulty: xs
   *
-  * Tags: validation
+  * Tags: predicates
   *
   * Answers: (607, 321)
   */
 package advent_of_scala.year_2020
 
 import advent_of_scala.base.{Solution, impossibleStateError}
+import Day02.*
 
 type InputType2 = List[Policy]
 
@@ -26,32 +27,34 @@ class Day02(rawInput: List[String]):
     private def parsedInput: InputType2 = rawInput map (Policy.fromLine(_))
 end Day02
 
-case class Policy(from: Int, to: Int, char: Char, password: String):
-    def isPasswordValidV1 =
-        val charCount = password.filter(_ == char).length()
-        from <= charCount && to >= charCount
+object Day02:
+    case class Policy(from: Int, to: Int, char: Char, password: String):
+        def isPasswordValidV1 =
+            val charCount = password.filter(_ == char).length()
+            from <= charCount && to >= charCount
 
-    def isPasswordValidV2 =
-        val a = password.charAt(from - 1)
-        val b = password.charAt(to - 1)
-        (a == char && b != a) || (b == char && a != b)
-    end isPasswordValidV2
-end Policy
+        def isPasswordValidV2 =
+            val a = password.charAt(from - 1)
+            val b = password.charAt(to - 1)
+            (a == char && b != a) || (b == char && a != b)
+        end isPasswordValidV2
+    end Policy
 
-object Policy:
-    def fromLine(line: String) =
-        line.split(" ").toList match
-            case range :: char :: password :: Nil =>
-                val (from, to) = getRange(range)
-                Policy(from, to, char.stripSuffix(":").head, password)
-            case _ => impossibleStateError
-        end match
-    end fromLine
+    object Policy:
+        def fromLine(line: String) =
+            line.split(" ").toList match
+                case range :: char :: password :: Nil =>
+                    val (from, to) = getRange(range)
+                    Policy(from, to, char.stripSuffix(":").head, password)
+                case _ => impossibleStateError
+            end match
+        end fromLine
 
-    private def getRange(range: String) =
-        val parsed = range.split("-") map (_.toInt)
-        (parsed.head, parsed.last)
-end Policy
+        private def getRange(range: String) =
+            val parsed = range.split("-") map (_.toInt)
+            (parsed.head, parsed.last)
+    end Policy
+end Day02
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2020_02 =

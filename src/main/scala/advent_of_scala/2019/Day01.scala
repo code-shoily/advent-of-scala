@@ -4,7 +4,7 @@
   *
   * Difficulty: xs
   *
-  * Tags: recursion reduce
+  * Tags: recursion reduction
   *
   * Answers: (3_421_505, 5_129_386)
   */
