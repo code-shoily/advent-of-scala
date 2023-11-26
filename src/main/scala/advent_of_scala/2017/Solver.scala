@@ -11,5 +11,6 @@ class Solver2017(input: List[String]) extends Solver:
             case 20 => Day20(input).solve
             case 21 => Day21(input).solve
             case 22 => Day22(input).solve
+            case 23 => Day23(input).solve
             case _  => didNotSolveError(2017, day)
 end Solver2017
