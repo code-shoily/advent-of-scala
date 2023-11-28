@@ -6,7 +6,7 @@
 
 [2015](/src/main/scala/advent_of_scala/2015/README.md) | 2016 | [2017](/src/main/scala/advent_of_scala/2017/README.md) | [2018](/src/main/scala/advent_of_scala/2018/README.md) | [2019](/src/main/scala/advent_of_scala/2019/README.md) | [2020](/src/main/scala/advent_of_scala/2020/README.md) | [2021](/src/main/scala/advent_of_scala/2021/README.md) | [2022](/src/main/scala/advent_of_scala/2022/README.md)
 
-## :trophy: 14/50
+## :trophy: 16/50
 
 
 | Day | Title | Status | Difficulty | Solution Page | Input | Test Page | Answer | Tags | 
@@ -18,3 +18,4 @@
 | 17 | [2016/17: Two Steps Forward](https://adventofcode.com/2016/day/17) | :1st_place_medal: | :star: :star:  | [Day17.scala](/src/main/scala/advent_of_scala/2016/Day17.scala) | [17.txt](/src/main/resources/inputs/2016/17.txt) | [Day17Suite.scala](/src/test/scala/advent_of_scala/2016/Day17Suite.scala) | ("DURLDRRDRD", 650) | graph-traversal,md5,inline-input,assymmetric-result |
 | 18 | [2016/18: Like a Rogue](https://adventofcode.com/2016/day/18) | :1st_place_medal: | :star: :star:  | [Day18.scala](/src/main/scala/advent_of_scala/2016/Day18.scala) | [18.txt](/src/main/resources/inputs/2016/18.txt) | [Day18Suite.scala](/src/test/scala/advent_of_scala/2016/Day18Suite.scala) | (1951, 20_002_936) | bitwise,bignum |
 | 19 | [2016/19: An Elephant Named Joseph](https://adventofcode.com/2016/day/19) | :1st_place_medal: | :star: :star: :star:  | [Day19.scala](/src/main/scala/advent_of_scala/2016/Day19.scala) | [19.txt](/src/main/resources/inputs/2016/19.txt) | [Day19Suite.scala](/src/test/scala/advent_of_scala/2016/Day19Suite.scala) | (1_842_613, 1_424_135) | bitwise,linked-list,mutation |
+| 24 | [2016/24: Air Duct Spelunking](https://adventofcode.com/2016/day/24) | :1st_place_medal: | :star: :star: :star:  | [Day24.scala](/src/main/scala/advent_of_scala/2016/Day24.scala) | [24.txt](/src/main/resources/inputs/2016/24.txt) | [Day24Suite.scala](/src/test/scala/advent_of_scala/2016/Day24Suite.scala) | (462, 676) | graph-traversal,tsp |
