@@ -4,7 +4,7 @@
   *
   * Difficulty: s
   *
-  * Tags: sequence-query
+  * Tags: sequence
   *
   * Answers: (317_371, 2_080_951)
   */
