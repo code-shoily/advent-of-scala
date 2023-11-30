@@ -28,7 +28,7 @@ object IO:
 
     def printSolution(solution: Solution) =
         val (part1, part2) = solution
-        println(s"Part 1: $part1 \t Part 2: $part2")
+        println(s"($part1, $part2)")
 
     def validateInput(year: Int, day: Int): Boolean =
         if year < 2015 || year >= 2023 then false
