@@ -4,7 +4,7 @@
 
 [Main Page](https://adventofcode.com/2020)
 
-[2015](/src/main/scala/advent_of_scala/2015/README.md) | [2016](/src/main/scala/advent_of_scala/2016/README.md) | [2017](/src/main/scala/advent_of_scala/2017/README.md) | [2018](/src/main/scala/advent_of_scala/2018/README.md) | [2019](/src/main/scala/advent_of_scala/2019/README.md) | 2020 | [2021](/src/main/scala/advent_of_scala/2021/README.md) | [2022](/src/main/scala/advent_of_scala/2022/README.md)
+[2015](/src/main/scala/advent_of_scala/2015/README.md) | [2016](/src/main/scala/advent_of_scala/2016/README.md) | [2017](/src/main/scala/advent_of_scala/2017/README.md) | [2018](/src/main/scala/advent_of_scala/2018/README.md) | [2019](/src/main/scala/advent_of_scala/2019/README.md) | 2020 | [2021](/src/main/scala/advent_of_scala/2021/README.md) | [2022](/src/main/scala/advent_of_scala/2022/README.md) | [2023](/src/main/scala/advent_of_scala/2023/README.md)
 
 ## :trophy: 8/50
 

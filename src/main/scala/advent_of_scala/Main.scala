@@ -6,11 +6,14 @@ import advent_of_scala.{
     year_2019,
     year_2020,
     year_2021,
-    year_2022
+    year_2022,
+    year_2023
 }
 import advent_of_scala.base.Solver
 import advent_of_scala.utils.IO.{consolePrompt, printSolution, readLines, validateInput}
 import advent_of_scala.utils.{SolutionBoilerplate, SolutionMeta}
+
+final val lastYear = 2023
 
 def getSolverForYear(year: Int, input: List[String]): Solver =
     year match
@@ -22,6 +25,7 @@ def getSolverForYear(year: Int, input: List[String]): Solver =
         case 2020 => year_2020.Solver2020(input)
         case 2021 => year_2021.Solver2021(input)
         case 2022 => year_2022.Solver2022(input)
+        case 2023 => year_2023.Solver2023(input)
 end getSolverForYear
 
 def runSolver(year: Int, day: Int) =
@@ -56,7 +60,7 @@ end generateSolutionStub
         case "readme" :: Nil =>
             SolutionMeta.writeReadme()
             for
-                year <- 2015 to 2022
+                year <- 2015 to lastYear
             do
                 println(SolutionMeta writeReadMeForYear (year))
         case ("gen" | "g" | "generate") :: year :: day :: Nil =>

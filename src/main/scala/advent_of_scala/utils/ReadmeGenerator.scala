@@ -3,7 +3,7 @@ package advent_of_scala.utils
 import java.nio.file.{Files, Paths}
 import scala.io.Source
 
-final val lastYear = 2022
+final val lastYear = 2023
 final val starIcon = ":star:"
 final val trophyGeneral = ":trophy:"
 final val trophy1 = ":1st_place_medal:"
@@ -154,17 +154,17 @@ object SolutionMeta:
             case None           => ""
 
     def summaryTable =
-        val header = "|:calendar:" + (2015 to 2022).map(year =>
+        val header = "|:calendar:" + (2015 to lastYear).map(year =>
             s"[$year](/src/main/scala/advent_of_scala/$year)"
         ).mkString("|", "|", "|")
         val aligner = "|:-:| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |"
         val body =
             (1 to 25) map { day =>
-                s"|$day" + (2015 to 2022).map(trophy(_, day)).mkString("|", "|", "|")
+                s"|$day" + (2015 to lastYear).map(trophy(_, day)).mkString("|", "|", "|")
             } mkString ("\n")
         val trophies =
             (1 to 25).map(day =>
-                (2015 to 2022).map({
+                (2015 to lastYear).map({
                     trophy(_, day) match
                         case `trophy1` => 2
                         case `trophy2` => 1
