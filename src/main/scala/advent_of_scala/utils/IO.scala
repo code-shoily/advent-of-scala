@@ -31,7 +31,7 @@ object IO:
         println(s"($part1, $part2)")
 
     def validateInput(year: Int, day: Int): Boolean =
-        if year < 2015 || year >= 2023 then false
+        if year < 2015 || year > lastYear then false
         else if day < 1 || day >= 25 then false
         else true
 end IO
