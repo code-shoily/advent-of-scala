@@ -157,7 +157,8 @@ object SolutionMeta:
         val header = "|:calendar:" + (2015 to lastYear).map(year =>
             s"[$year](/src/main/scala/advent_of_scala/$year)"
         ).mkString("|", "|", "|")
-        val aligner = "|:-:| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |"
+        val aligner =
+            "|:-:| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |"
         val body =
             (1 to 25) map { day =>
                 s"|$day" + (2015 to lastYear).map(trophy(_, day)).mkString("|", "|", "|")
