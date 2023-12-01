@@ -13,17 +13,18 @@ package advent_of_scala.year_2023
 import scala.util.chaining.*
 import scala.util.matching.Regex.*
 
-import advent_of_scala.base.{Solution, impossibleStateError}
+import advent_of_scala.base.Solution
 import Day01.*
 
 class Day01(rawInput: List[String]):
-    def solver(finder: String => Int)(input: InputType) = input map finder reduce { _ + _ }
-    def solvePart1 = solver(numericDigits)
-    def solvePart2 = solver(numericOrWordedDigits)
-
     def solve: Solution =
         val input = parsedInput
-        (solvePart1(input), solvePart2(input))
+
+        def solver(finder: String => Int)(input: InputType) = input map finder reduce { _ + _ }
+        (
+          solver(numericDigits)(input),
+          solver(numericOrWordedDigits)(input)
+        )
     end solve
 
     private def parsedInput: InputType = rawInput
@@ -31,27 +32,23 @@ end Day01
 
 object Day01:
     type InputType = List[String]
-    private final val numbers =
-        List("one", "two", "three", "four", "five", "six", "seven", "eight", "nine")
 
-    def numericDigits(line: String) = "\\d".r.findAllMatchIn(line).toArray pipe { a =>
+    def numericDigits(line: String) = "\\d".r.findAllIn(line).toArray pipe { a =>
         tr(a.head) * 10 + tr(a.last)
     }
 
-    private val regex = ("\\d" :: numbers).mkString("(", "|", ")").r
-    private val regexRev = ("\\d" :: (numbers map { _.reverse })).mkString("(", "|", ")").r
+    val nums = List("one", "two", "three", "four", "five", "six", "seven", "eight", "nine")
+    val regex = ("\\d" :: nums).mkString("(", "|", ")").r
+    val regexRev = ("\\d" :: (nums map { _.reverse })).mkString("(", "|", ")").r
 
     def numericOrWordedDigits(line: String) =
-        (regex findFirstMatchIn (line) match
-            case Some(data) => tr(data) * 10
-            case _          => impossibleStateError
-        ) + (regexRev findFirstMatchIn (line.reverse) match
-            case Some(data) => tr(data, true)
-            case _          => impossibleStateError
+        tr(regex.findFirstIn(line).get) * 10 + tr(
+          regexRev.findFirstIn(line.reverse).get,
+          invert = true
         )
 
-    private def tr(value: Match, invert: Boolean = false) =
-        (if invert then value.toString().reverse else value.toString()) match
+    def tr(value: String, invert: Boolean = false) =
+        (if invert then value.reverse else value) match
             case "one" | "1"   => 1
             case "two" | "2"   => 2
             case "three" | "3" => 3
