@@ -22,7 +22,7 @@ case class SolutionMeta(
     testLink: String
 ):
     private def isPartial: Boolean = answers.endsWith("!")
-    def statusIcon: String = if isPartial then trophy2 else trophy1
+    private def statusIcon: String = if isPartial then trophy2 else trophy1
     private def difficultyIcon: String =
         val icon = s"$starIcon "
         difficulty match
@@ -47,6 +47,23 @@ case class SolutionMeta(
 end SolutionMeta
 
 object SolutionMeta:
+    def writeReadMeForYear(year: Int): String =
+        val content = readmeContent(year)
+        val location = Paths.get(s"src/main/scala/advent_of_scala/year_$year/README.md")
+        val newPath = Files.write(location, content.getBytes())
+
+        s"[Success] Solution status updated the readme at $newPath"
+    end writeReadMeForYear
+
+    def writeReadme(): Path =
+        val (trophy, table) = summaryTable
+        val content = Source.fromResource(
+            "templates/README_TEMPLATE.md"
+        ).getLines().toList.mkString("\n").format(trophy, table)
+
+        Files.write(Paths.get("README.md"), content.getBytes())
+    end writeReadme
+
     private def title(using sourceCodeLines: List[String]): String =
         sourceCodeLines.head.stripPrefix("/**").strip
 
@@ -56,8 +73,8 @@ object SolutionMeta:
     private def getLinks(year: Int, day: Int): Map[String, String] =
         Map(
           "mainLink" -> s"https://adventofcode.com/$year/day/$day",
-          "sourceLink" -> f"src/main/scala/advent_of_scala/$year/Day${day}%02d.scala",
-          "testLink" -> f"src/test/scala/advent_of_scala/$year/Day${day}%02dSuite.scala",
+          "sourceLink" -> f"src/main/scala/advent_of_scala/year_$year/Day${day}%02d.scala",
+          "testLink" -> f"src/test/scala/advent_of_scala/year_$year/Day${day}%02dSuite.scala",
           "inputLink" -> f"src/main/resources/inputs/$year/${day}%02d.txt"
         )
 
@@ -115,7 +132,7 @@ object SolutionMeta:
         def yearFormat =
             (2015 to lastYear) map {
                 case y if y == year => year.toString
-                case y              => s"[$y](/src/main/scala/advent_of_scala/$y/README.md)"
+                case y              => s"[$y](/src/main/scala/advent_of_scala/year_$y/README.md)"
             } mkString (" | ")
         s"""
       |# Advent of Code $year
@@ -144,14 +161,6 @@ object SolutionMeta:
       |""".stripMargin
     end readmeContent
 
-    def writeReadMeForYear(year: Int): String =
-        val content = readmeContent(year)
-        val location = Paths.get(s"src/main/scala/advent_of_scala/$year/README.md")
-        val newPath = Files.write(location, content.getBytes())
-
-        s"[Success] Solution status updated the readme at $newPath"
-    end writeReadMeForYear
-
     private def trophy(year: Int, day: Int): String =
         solutionMetaIfExists(year, day) match
             case Some(metadata) => metadata.statusIcon
@@ -159,7 +168,7 @@ object SolutionMeta:
 
     private def summaryTable =
         val header = "|:calendar:" + (2015 to lastYear).map(year =>
-            s"[$year](/src/main/scala/advent_of_scala/$year)"
+            s"[$year](/src/main/scala/advent_of_scala/year_$year)"
         ).mkString("|", "|", "|")
         val aligner =
             "|:-:| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |"
@@ -180,13 +189,4 @@ object SolutionMeta:
 
         (trophies, table)
     end summaryTable
-
-    def writeReadme(): Path =
-        val (trophy, table) = summaryTable
-        val content = Source.fromResource(
-          "templates/README_TEMPLATE.md"
-        ).getLines().toList.mkString("\n").format(trophy, table)
-
-        Files.write(Paths.get("README.md"), content.getBytes())
-    end writeReadme
 end SolutionMeta
