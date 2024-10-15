@@ -28,7 +28,7 @@ Please note, there are two parts of the `README.md` content - static and dynamic
 
 #### :trophy: 92/400
 
-|:calendar:|[2015](/src/main/scala/advent_of_scala/2015)|[2016](/src/main/scala/advent_of_scala/2016)|[2017](/src/main/scala/advent_of_scala/2017)|[2018](/src/main/scala/advent_of_scala/2018)|[2019](/src/main/scala/advent_of_scala/2019)|[2020](/src/main/scala/advent_of_scala/2020)|[2021](/src/main/scala/advent_of_scala/2021)|[2022](/src/main/scala/advent_of_scala/2022)|[2023](/src/main/scala/advent_of_scala/2023)|
+|:calendar:|[2015](/src/main/scala/advent_of_scala/year_2015)|[2016](/src/main/scala/advent_of_scala/year_2016)|[2017](/src/main/scala/advent_of_scala/year_2017)|[2018](/src/main/scala/advent_of_scala/year_2018)|[2019](/src/main/scala/advent_of_scala/year_2019)|[2020](/src/main/scala/advent_of_scala/year_2020)|[2021](/src/main/scala/advent_of_scala/year_2021)|[2022](/src/main/scala/advent_of_scala/year_2022)|[2023](/src/main/scala/advent_of_scala/year_2023)|
 |:-:| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 |1|:1st_place_medal:|:1st_place_medal:|:1st_place_medal:|:1st_place_medal:|:1st_place_medal:|:1st_place_medal:|:1st_place_medal:|:1st_place_medal:|:1st_place_medal:|
 |2|:1st_place_medal:|:1st_place_medal:|:1st_place_medal:|||:1st_place_medal:|:1st_place_medal:|:1st_place_medal:||

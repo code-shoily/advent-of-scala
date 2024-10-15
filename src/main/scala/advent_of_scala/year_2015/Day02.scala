@@ -37,8 +37,8 @@ object Day02:
     type InputType = List[Dimension]
 
     case class Dimension(width: Int, length: Int, height: Int):
-        def wrappingPaperNeeded = smallestArea + surfaceArea
-        def ribbonNeeded = smallestPerimeter + volume
+        def wrappingPaperNeeded: Int = smallestArea + surfaceArea
+        def ribbonNeeded: Int = smallestPerimeter + volume
 
         private def smallestArea = List(width * length, length * height, height * width).min
         private def surfaceArea = 2 * (width * length + length * height + height * width)
