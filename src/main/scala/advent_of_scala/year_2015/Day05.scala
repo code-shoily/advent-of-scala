@@ -12,18 +12,18 @@ package advent_of_scala.year_2015
 
 import scala.annotation.tailrec
 
-import advent_of_scala.base.{Solution, impossibleStateError}
+import advent_of_scala.base.Solution
 import Day05.*
 
 class Day05(rawInput: List[String]):
     def solvePart1(input: InputType): Int =
         def isNice(chars: List[Char]) = noDQ(chars) && threeVowels(chars) && dupes(chars)
-        input count (isNice)
+        input count isNice
 
     def solvePart2(input: InputType): Int =
         def isNice(chars: List[Char]) =
             repeatingPairs(chars, Set[(Char, Char)](), None) && sandwitched(chars)
-        input count (isNice)
+        input count isNice
     end solvePart2
 
     def solve: Solution =
@@ -39,8 +39,8 @@ end Day05
 object Day05:
     type InputType = List[List[Char]]
 
-    val vowels = List('a', 'e', 'i', 'o', 'u')
-    val disqualifiers = Set[(Char, Char)](('a', 'b'), ('c', 'd'), ('p', 'q'), ('x', 'y'))
+    private val vowels = List('a', 'e', 'i', 'o', 'u')
+    private val disqualifiers = Set[(Char, Char)](('a', 'b'), ('c', 'd'), ('p', 'q'), ('x', 'y'))
 
     @tailrec
     final def noDQ(chars: List[Char]): Boolean = chars match

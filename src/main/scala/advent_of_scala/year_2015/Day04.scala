@@ -13,7 +13,7 @@ package advent_of_scala.year_2015
 import java.nio.charset.StandardCharsets
 import java.security.MessageDigest
 
-import advent_of_scala.base.{Solution, impossibleStateError}
+import advent_of_scala.base.Solution
 import Day04.*
 
 class Day04(rawInput: List[String]):
@@ -31,7 +31,7 @@ class Day04(rawInput: List[String]):
 end Day04
 
 object Day04:
-    val md = MessageDigest.getInstance("MD5")
+    private val md = MessageDigest.getInstance("MD5")
 
     def mine(input: String, prefix: String): Option[Int] =
         def toHexBinary(bytes: Array[Byte]): String =
@@ -46,7 +46,7 @@ object Day04:
 
         LazyList.from(1).find { i =>
             md.update((input + i).getBytes(StandardCharsets.UTF_8))
-            toHexBinary(md.digest()) startsWith (prefix)
+            toHexBinary(md.digest()) startsWith prefix
         }
     end mine
 end Day04

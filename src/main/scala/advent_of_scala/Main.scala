@@ -1,19 +1,10 @@
-import advent_of_scala.{
-    year_2015,
-    year_2016,
-    year_2017,
-    year_2018,
-    year_2019,
-    year_2020,
-    year_2021,
-    year_2022,
-    year_2023
-}
+package advent_of_scala
+
 import advent_of_scala.base.Solver
 import advent_of_scala.utils.IO.{consolePrompt, printSolution, readLines, validateInput}
 import advent_of_scala.utils.{SolutionBoilerplate, SolutionMeta}
 
-final val lastYear = 2023
+val lastYear = 2023
 
 def getSolverForYear(year: Int, input: List[String]): Solver =
     year match
@@ -28,7 +19,7 @@ def getSolverForYear(year: Int, input: List[String]): Solver =
         case 2023 => year_2023.Solver2023(input)
 end getSolverForYear
 
-def runSolver(year: Int, day: Int) =
+def runSolver(year: Int, day: Int): Unit =
     if validateInput(year, day) then
         readLines(year, day) match
             case Some(raw_input) =>
@@ -42,7 +33,7 @@ def runSolver(year: Int, day: Int) =
     end if
 end runSolver
 
-def generateSolutionStub(year: Int, day: Int) =
+def generateSolutionStub(year: Int, day: Int): Unit =
     if validateInput(year, day) then
         SolutionBoilerplate(year, day, true).create() match
             case Some(status) => println(status)
@@ -62,7 +53,7 @@ end generateSolutionStub
             for
                 year <- 2015 to lastYear
             do
-                println(SolutionMeta writeReadMeForYear (year))
+                println(SolutionMeta.writeReadMeForYear(year))
         case ("gen" | "g" | "generate") :: year :: day :: Nil =>
             generateSolutionStub(year.toInt, day.toInt)
         case year :: day :: Nil =>

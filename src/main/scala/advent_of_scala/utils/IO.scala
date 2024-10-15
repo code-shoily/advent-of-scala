@@ -2,7 +2,6 @@ package advent_of_scala.utils
 
 import scala.io.StdIn.readInt
 import scala.io.Source
-import java.net.URL
 import java.io.FileNotFoundException
 
 import advent_of_scala.base.Solution
@@ -19,14 +18,14 @@ object IO:
     end consolePrompt
 
     def readLines(year: Int, day: Int): Option[List[String]] =
-        val path = f"inputs/${year}/${day}%02d.txt"
+        val path = f"inputs/$year/$day%02d.txt"
         try
             val source = Source.fromResource(path)
             Some(source.getLines().toList)
         catch case i: FileNotFoundException => None
     end readLines
 
-    def printSolution(solution: Solution) =
+    def printSolution(solution: Solution): Unit =
         val (part1, part2) = solution
         println(s"($part1, $part2)")
 
