@@ -1,7 +1,6 @@
 package advent_of_scala.utils
 
-import java.nio.file.{Files, Path, Paths, StandardOpenOption}
-import java.nio.charset.StandardCharsets
+import java.nio.file.{Files, Path, Paths}
 
 import sttp.client4.quick.*
 
@@ -118,8 +117,8 @@ class SolutionBoilerplate(year: Int, day: Int, fetchFromRemote: Boolean = false)
         |""".stripMargin
 
     def testPath: Path =
-        Paths.get(f"src/test/scala/advent_of_scala/$year/Day${day}%02dSuite.scala")
+        Paths.get(f"src/test/scala/advent_of_scala/year_$year/Day${day}%02dSuite.scala")
     def sourcePath: Path =
-        Paths.get(f"src/main/scala/advent_of_scala/$year/Day${day}%02d.scala")
+        Paths.get(f"src/main/scala/advent_of_scala/year_$year/Day${day}%02d.scala")
     def inputPath: Path = Paths.get(f"src/main/resources/inputs/$year/${day}%02d.txt")
 end SolutionBoilerplate

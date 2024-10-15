@@ -1,13 +1,13 @@
 package advent_of_scala.utils
 
-import java.nio.file.{Files, Paths}
+import java.nio.file.{Files, Path, Paths}
 import scala.io.Source
 
-final val lastYear = 2023
-final val starIcon = ":star:"
-final val trophyGeneral = ":trophy:"
-final val trophy1 = ":1st_place_medal:"
-final val trophy2 = ":2nd_place_medal:"
+val lastYear = 2023
+val starIcon = ":star:"
+val trophyGeneral = ":trophy:"
+val trophy1 = ":1st_place_medal:"
+val trophy2 = ":2nd_place_medal:"
 
 case class SolutionMeta(
     year: Int,
@@ -21,9 +21,9 @@ case class SolutionMeta(
     inputLink: String,
     testLink: String
 ):
-    def isPartial: Boolean = answers.endsWith("!")
+    private def isPartial: Boolean = answers.endsWith("!")
     def statusIcon: String = if isPartial then trophy2 else trophy1
-    def difficultyIcon: String =
+    private def difficultyIcon: String =
         val icon = s"$starIcon "
         difficulty match
             case "xs" => icon * 1
@@ -34,7 +34,7 @@ case class SolutionMeta(
         end match
     end difficultyIcon
 
-    def asMarkDownRow: String =
+    private def asMarkDownRow: String =
         s"""
        #|| $day | [$title]($mainLink) | $statusIcon | $difficultyIcon | [Day${"%02d".format(
             day
@@ -47,13 +47,13 @@ case class SolutionMeta(
 end SolutionMeta
 
 object SolutionMeta:
-    def title(using sourceCodeLines: List[String]): String =
-        sourceCodeLines(0).stripPrefix("/**").strip
+    private def title(using sourceCodeLines: List[String]): String =
+        sourceCodeLines.head.stripPrefix("/**").strip
 
-    def attrBy(attribute: String)(using sourceCodeLines: List[String]): String =
+    private def attrBy(attribute: String)(using sourceCodeLines: List[String]): String =
         sourceCodeLines.map(_.strip).find(_.startsWith(s"* $attribute:")).get.split(":")(1).strip()
 
-    def getLinks(year: Int, day: Int): Map[String, String] =
+    private def getLinks(year: Int, day: Int): Map[String, String] =
         Map(
           "mainLink" -> s"https://adventofcode.com/$year/day/$day",
           "sourceLink" -> f"src/main/scala/advent_of_scala/$year/Day${day}%02d.scala",
@@ -61,7 +61,7 @@ object SolutionMeta:
           "inputLink" -> f"src/main/resources/inputs/$year/${day}%02d.txt"
         )
 
-    def isPuzzleSolved(links: Map[String, String]): Boolean =
+    private def isPuzzleSolved(links: Map[String, String]): Boolean =
         val sourceLinkExists = Files.exists(Paths.get(links("sourceLink")))
         val testLinkExists = Files.exists(Paths.get(links("testLink")))
         val inputLinkExists = Files.exists(Paths.get(links("inputLink")))
@@ -69,12 +69,16 @@ object SolutionMeta:
         sourceLinkExists && testLinkExists && inputLinkExists
     end isPuzzleSolved
 
-    def solutionMetaIfExists(year: Int, day: Int): Option[SolutionMeta] =
+    private def solutionMetaIfExists(year: Int, day: Int): Option[SolutionMeta] =
         val links = getLinks(year, day)
 
         if isPuzzleSolved(links) then
             given sourceCodeLines: List[String] =
-                Source.fromFile(links("sourceLink")).getLines().toList
+                val src = Source.fromFile(links("sourceLink"))
+                val lines = src.getLines().toList
+                src.close()
+                lines
+            end sourceCodeLines
 
             val meta =
                 SolutionMeta(
@@ -95,7 +99,7 @@ object SolutionMeta:
         end if
     end solutionMetaIfExists
 
-    def solutionMetaForYear(year: Int): List[SolutionMeta] =
+    private def solutionMetaForYear(year: Int): List[SolutionMeta] =
         val days = 1 to 25
         val metadata: List[SolutionMeta] = {
             for day <- days yield solutionMetaIfExists(year, day)
@@ -104,13 +108,13 @@ object SolutionMeta:
         metadata
     end solutionMetaForYear
 
-    def starsCollected(metadata: List[SolutionMeta], year: Int): Int =
+    private def starsCollected(metadata: List[SolutionMeta], year: Int): Int =
         2 * metadata.length - metadata.count(_.isPartial)
 
-    def markDownPageHeaderForYear(metadata: List[SolutionMeta], year: Int): String =
+    private def markDownPageHeaderForYear(metadata: List[SolutionMeta], year: Int): String =
         def yearFormat =
             (2015 to lastYear) map {
-                case y if y == year => year.toString()
+                case y if y == year => year.toString
                 case y              => s"[$y](/src/main/scala/advent_of_scala/$y/README.md)"
             } mkString (" | ")
         s"""
@@ -124,14 +128,14 @@ object SolutionMeta:
       |""".stripMargin
     end markDownPageHeaderForYear
 
-    def markDownTableHeader: String =
+    private def markDownTableHeader: String =
         """
       # || Day | Title | Status | Difficulty | Solution Page | Input | Test Page | Answer | Tags | 
       # || :---: | :------: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |""" stripMargin {
             '#'
         }
 
-    def readmeContent(year: Int) =
+    private def readmeContent(year: Int) =
         val metadata = solutionMetaForYear(year)
 
         s"""
@@ -140,7 +144,7 @@ object SolutionMeta:
       |""".stripMargin
     end readmeContent
 
-    def writeReadMeForYear(year: Int) =
+    def writeReadMeForYear(year: Int): String =
         val content = readmeContent(year)
         val location = Paths.get(s"src/main/scala/advent_of_scala/$year/README.md")
         val newPath = Files.write(location, content.getBytes())
@@ -148,12 +152,12 @@ object SolutionMeta:
         s"[Success] Solution status updated the readme at $newPath"
     end writeReadMeForYear
 
-    def trophy(year: Int, day: Int): String =
+    private def trophy(year: Int, day: Int): String =
         solutionMetaIfExists(year, day) match
             case Some(metadata) => metadata.statusIcon
             case None           => ""
 
-    def summaryTable =
+    private def summaryTable =
         val header = "|:calendar:" + (2015 to lastYear).map(year =>
             s"[$year](/src/main/scala/advent_of_scala/$year)"
         ).mkString("|", "|", "|")
@@ -177,7 +181,7 @@ object SolutionMeta:
         (trophies, table)
     end summaryTable
 
-    def writeReadme() =
+    def writeReadme(): Path =
         val (trophy, table) = summaryTable
         val content = Source.fromResource(
           "templates/README_TEMPLATE.md"

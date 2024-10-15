@@ -21,7 +21,7 @@ class SolutionBoilerplateSuite extends munit.FunSuite:
     }
 
     test("Source file metadata correctly generates") {
-        val sourcePath = "src/main/scala/advent_of_scala/2014/Day01.scala"
+        val sourcePath = "src/main/scala/advent_of_scala/year_2014/Day01.scala"
         val sourceContent =
             """
             |/** 2014/1: <TITLE>
@@ -69,7 +69,7 @@ class SolutionBoilerplateSuite extends munit.FunSuite:
     }
 
     test("Test file metadata correctly generates") {
-        val testPath = "src/test/scala/advent_of_scala/2014/Day01Suite.scala"
+        val testPath = "src/test/scala/advent_of_scala/year_2014/Day01Suite.scala"
         val testContent =
             """
             |package advent_of_scala.year_2014
