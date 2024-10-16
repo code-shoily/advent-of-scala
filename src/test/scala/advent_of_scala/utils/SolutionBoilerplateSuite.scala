@@ -55,9 +55,10 @@ class SolutionBoilerplateSuite extends munit.FunSuite:
             |    type InputType = List[String]
             |
             |/*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-            |@main def run_2014_01 =
-            |    import advent_of_scala.utils.IO.{readLines, printSolution}
+            |@main def run_2014_01(): Unit =
             |    import advent_of_scala.base.impossibleStateError
+            |    import advent_of_scala.utils.IO.{readLines, printSolution}
+            |
             |    readLines(2014, 1) match
             |        case Some(raw_input) =>
             |            printSolution(Day01(raw_input).solve)

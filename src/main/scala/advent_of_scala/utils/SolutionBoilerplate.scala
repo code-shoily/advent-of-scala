@@ -28,7 +28,7 @@ class SolutionBoilerplate(year: Int, day: Int, fetchFromRemote: Boolean = false)
 
         if source.isDefined && test.isDefined && input.isDefined then
             val status =
-                List(source, test, input).map { (template) =>
+                List(source, test, input).map { template =>
                     val (path, content) = template.get
                     val newPath = Files.write(path, content.getBytes)
                     s"[SUCCESS] Wrote to $newPath."
@@ -66,9 +66,9 @@ class SolutionBoilerplate(year: Int, day: Int, fetchFromRemote: Boolean = false)
         |package advent_of_scala.year_$year
         |
         |import advent_of_scala.base.Solution
-        |import Day${day}%02d.*
+        |import Day$day%02d.*
         |
-        |class Day${day}%02d(rawInput: List[String]):
+        |class Day$day%02d(rawInput: List[String]):
         |    def solvePart1(input: InputType) = ???
         |    def solvePart2(input: InputType) = ???
         |
@@ -78,20 +78,21 @@ class SolutionBoilerplate(year: Int, day: Int, fetchFromRemote: Boolean = false)
         |    end solve
         |
         |    private def parsedInput: InputType = rawInput
-        |end Day${day}%02d
+        |end Day$day%02d
         |
-        |object Day${day}%02d:
+        |object Day$day%02d:
         |    type InputType = List[String]
         |
         |/*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-        |@main def run_${year}_${day}%02d =
-        |    import advent_of_scala.utils.IO.{readLines, printSolution}
+        |@main def run_${year}_$day%02d(): Unit =
         |    import advent_of_scala.base.impossibleStateError
+        |    import advent_of_scala.utils.IO.{readLines, printSolution}
+        |
         |    readLines($year, $day) match
         |        case Some(raw_input) =>
-        |            printSolution(Day${day}%02d(raw_input).solve)
+        |            printSolution(Day$day%02d(raw_input).solve)
         |        case _ => impossibleStateError
-        |end run_${year}_${day}%02d
+        |end run_${year}_$day%02d
         |// */
         |""".stripMargin
 
@@ -100,25 +101,25 @@ class SolutionBoilerplate(year: Int, day: Int, fetchFromRemote: Boolean = false)
         |package advent_of_scala.year_$year
         |
         |import advent_of_scala.utils.IO.readLines
-        |import advent_of_scala.year_$year.Day${day}%02d
+        |import advent_of_scala.year_$year.Day$day%02d
         |
-        |class Day${day}%02dSuite extends munit.FunSuite:
+        |class Day$day%02dSuite extends munit.FunSuite:
         |    val year = $year
         |    val day = $day
         |    val result = ???
         |
         |    test("Day $day solve yields correct result") {
         |        val rawInput = readLines(year, day).get
-        |        val solution = Day${day}%02d(rawInput).solve
+        |        val solution = Day$day%02d(rawInput).solve
         |
         |        assertEquals(solution, result)
         |    }
-        |end Day${day}%02dSuite
+        |end Day$day%02dSuite
         |""".stripMargin
 
     def testPath: Path =
-        Paths.get(f"src/test/scala/advent_of_scala/year_$year/Day${day}%02dSuite.scala")
+        Paths.get(f"src/test/scala/advent_of_scala/year_$year/Day$day%02dSuite.scala")
     def sourcePath: Path =
-        Paths.get(f"src/main/scala/advent_of_scala/year_$year/Day${day}%02d.scala")
-    def inputPath: Path = Paths.get(f"src/main/resources/inputs/$year/${day}%02d.txt")
+        Paths.get(f"src/main/scala/advent_of_scala/year_$year/Day$day%02d.scala")
+    def inputPath: Path = Paths.get(f"src/main/resources/inputs/$year/$day%02d.txt")
 end SolutionBoilerplate
