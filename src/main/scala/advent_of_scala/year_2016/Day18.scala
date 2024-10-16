@@ -18,7 +18,7 @@ class Day18(rawInput: List[String]):
         (safe(40), safe(400_000))
     end solve
 
-    def safe(count: Int)(using input: String): Int =
+    private def safe(count: Int)(using input: String): Int =
         val (width, start) =
             (input.length, BigInt(input map { c => if c == '^' then '1' else '0' }, 2))
         Iterator.iterate(start) { n =>
@@ -28,9 +28,9 @@ class Day18(rawInput: List[String]):
 end Day18
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2016_18 =
-    import advent_of_scala.utils.IO.{readLines, printSolution}
+@main def run_2016_18(): Unit =
     import advent_of_scala.base.impossibleStateError
+    import advent_of_scala.utils.IO.{readLines, printSolution}
     readLines(2016, 18) match
         case Some(raw_input) =>
             printSolution(Day18(raw_input).solve)

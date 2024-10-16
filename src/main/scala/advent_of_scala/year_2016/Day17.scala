@@ -12,16 +12,17 @@ package advent_of_scala.year_2016
 
 import java.security.MessageDigest
 import scala.util.chaining.*
-
 import advent_of_scala.base.Solution
 import Day17.*
+
+import scala.annotation.targetName
 
 class Day17(rawInput: List[String]):
     def solve: Solution = rawInput.head pipe dfs
 
 object Day17:
-    val md5 = MessageDigest.getInstance("MD5")
-    val directions =
+    val md5: MessageDigest = MessageDigest.getInstance("MD5")
+    val directions: Map[Char, Point] =
         Map(
           'U' -> Point(0, -1),
           'D' -> Point(0, 1),
@@ -30,12 +31,14 @@ object Day17:
         )
 
     case class Point(x: Int, y: Int):
+        @targetName("add")
         def +(other: Point): Point = Point(x + other.x, y + other.y)
         def isValid: Boolean = 0 <= x && x < 4 && 0 <= y && y < 4
+    end Point
 
     case class Room(location: Point, path: String):
         def hash(string: String): String =
-            md5.digest(string.getBytes) take (2) map ("%02x".format(_)) mkString ""
+            md5.digest(string.getBytes) take 2 map ("%02x".format(_)) mkString ""
 
         def neighbours(passcode: String): Set[Room] = directions
             .map((next, move) => Room(location + move, path + next))
@@ -45,21 +48,21 @@ object Day17:
             .toSet
     end Room
 
-    def dfs(passcode: String): (String, Int) =
+    private def dfs(passcode: String): (String, Int) =
         def dfsUtil(state: Room): Set[String] =
             if state.location == Point(3, 3) then Set(state.path)
-            else state neighbours (passcode) flatMap (dfsUtil)
+            else state.neighbours(passcode).flatMap(dfsUtil)
 
         val paths = dfsUtil(Room(Point(0, 0), ""))
 
-        (paths.minBy(_.size), paths.map(_.size).max)
+        (paths.minBy(_.length), paths.map(_.length).max)
     end dfs
 end Day17
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2016_17 =
-    import advent_of_scala.utils.IO.{readLines, printSolution}
+@main def run_2016_17(): Unit =
     import advent_of_scala.base.impossibleStateError
+    import advent_of_scala.utils.IO.{readLines, printSolution}
     readLines(2016, 17) match
         case Some(raw_input) =>
             printSolution(Day17(raw_input).solve)

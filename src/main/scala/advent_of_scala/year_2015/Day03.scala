@@ -12,7 +12,7 @@ package advent_of_scala.year_2015
 
 import scala.annotation.tailrec
 
-import advent_of_scala.base.{Solution, impossibleStateError}
+import advent_of_scala.base.Solution
 import Day03.*
 
 class Day03(rawInput: List[String]):
@@ -40,7 +40,7 @@ class Day03(rawInput: List[String]):
         (part1, part2)
     end solve
 
-    private def parsedInput: InputType = rawInput.head.map(asDirection(_)).toList
+    private def parsedInput: InputType = rawInput.head.map(asDirection).toList
 end Day03
 
 object Day03:
@@ -49,22 +49,16 @@ object Day03:
     enum Direction:
         case Up, Down, Left, Right
 
-    def asDirection(d: Char) = d match
-        case '^' => Direction.Up
-        case 'v' => Direction.Down
-        case '<' => Direction.Left
-        case '>' => Direction.Right
-
     case class House(x: Int, y: Int):
         def getNeighbour(xDiff: Int, yDiff: Int): House = House(x + xDiff, y + yDiff)
 
-    class Delivery:
-        var house = House(0, 0)
-        var visitedHouses = Set[House]() + house
+    private class Delivery:
+        private var house = House(0, 0)
+        var visitedHouses: Set[House] = Set[House]() + house
 
-        def followDirections(directions: InputType) = directions.foreach(nextHouse)
+        def followDirections(directions: InputType): Unit = directions.foreach(nextHouse)
 
-        def nextHouse(direction: Direction) =
+        private def nextHouse(direction: Direction): Unit =
             val House(x, y) = house
             val newHouse =
                 direction match
@@ -78,8 +72,14 @@ object Day03:
         end nextHouse
     end Delivery
 
+    private def asDirection(d: Char): Direction = d match
+        case '^' => Direction.Up
+        case 'v' => Direction.Down
+        case '<' => Direction.Left
+        case '>' => Direction.Right
+
     @tailrec
-    final def divideInstructions(
+    final private def divideInstructions(
         instructions: InputType,
         part1: InputType,
         part2: InputType
@@ -89,7 +89,8 @@ object Day03:
 end Day03
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2015_03 =
+@main def run_2015_03(): Unit =
+    import advent_of_scala.base.impossibleStateError
     import advent_of_scala.utils.IO.{readLines, printSolution}
     readLines(2015, 3) match
         case Some(raw_input) =>

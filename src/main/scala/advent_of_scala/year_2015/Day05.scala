@@ -40,16 +40,16 @@ object Day05:
     type InputType = List[List[Char]]
 
     private val vowels = List('a', 'e', 'i', 'o', 'u')
-    private val disqualifiers = Set[(Char, Char)](('a', 'b'), ('c', 'd'), ('p', 'q'), ('x', 'y'))
+    private val disqualifies = Set[(Char, Char)](('a', 'b'), ('c', 'd'), ('p', 'q'), ('x', 'y'))
 
     @tailrec
-    final def noDQ(chars: List[Char]): Boolean = chars match
-        case a :: b :: next if disqualifiers.contains((a, b)) => false
-        case _ :: next                                        => noDQ(next)
-        case Nil                                              => true
+    final private def noDQ(chars: List[Char]): Boolean = chars match
+        case a :: b :: next if disqualifies.contains((a, b)) => false
+        case _ :: next                                       => noDQ(next)
+        case Nil                                             => true
 
     @tailrec
-    final def threeVowels(chars: List[Char], count: Int = 0): Boolean =
+    final private def threeVowels(chars: List[Char], count: Int = 0): Boolean =
         if count == 3 then
             true
         else
@@ -59,13 +59,13 @@ object Day05:
                 case Nil                                   => false
 
     @tailrec
-    final def dupes(chars: List[Char]): Boolean = chars match
+    private final def dupes(chars: List[Char]): Boolean = chars match
         case a :: b :: next if a == b => true
         case _ :: next                => dupes(next)
         case Nil                      => false
 
     @tailrec
-    final def repeatingPairs(
+    private final def repeatingPairs(
         chars: List[Char],
         history: Set[(Char, Char)],
         lastMatch: Option[(Char, Char)]
@@ -81,15 +81,17 @@ object Day05:
         case _ => false
 
     @tailrec
-    final def sandwitched(chars: List[Char]): Boolean = chars match
+    private final def sandwitched(chars: List[Char]): Boolean = chars match
         case a :: b :: c :: rest if a == c => true
         case _ :: rest                     => sandwitched(rest)
         case Nil                           => false
 end Day05
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2015_05 =
+@main def run_2015_05(): Unit =
+    import advent_of_scala.base.impossibleStateError
     import advent_of_scala.utils.IO.{readLines, printSolution}
+
     readLines(2015, 5) match
         case Some(raw_input) =>
             printSolution(Day05(raw_input).solve)

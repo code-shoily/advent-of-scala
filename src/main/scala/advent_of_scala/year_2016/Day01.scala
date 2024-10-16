@@ -49,10 +49,10 @@ class Day01(rawInput: List[String]):
     ): Either[Point, Set[Point]] =
         val points = (previous.currentLocation, next.currentLocation) match
             case (Point(x0, y0), Point(x1, y1)) if x0 == x1 =>
-                (if y0 >= y1 then (y1 to (y0 - 1)) else ((y0 + 1) to y1))
+                (if y0 >= y1 then y1 until y0 else (y0 + 1) to y1)
                     .map(Point(x0, _))
             case (Point(x0, y0), Point(x1, y1)) if y0 == y1 =>
-                (if x0 >= x1 then (x1 to (x0 - 1)) else ((x0 + 1) to x1))
+                (if x0 >= x1 then x1 until x0 else (x0 + 1) to x1)
                     .map(Point(_, y0))
             case _ =>
                 impossibleStateError
@@ -82,7 +82,8 @@ object Day01:
 
     enum Direction:
         case North, South, East, West
-    enum Axis:
+
+    private enum Axis:
         case X, Y
 
     case class State(
@@ -97,7 +98,7 @@ object Day01:
 
     case class Grid(facing: Direction, currentLocation: Point)
 
-    def getNextGridParams(dir: Direction, lr: String) = dir match
+    private def getNextGridParams(dir: Direction, lr: String) = dir match
         case Direction.North =>
             if lr == "R" then (Direction.East, 1, Axis.X)
             else (Direction.West, -1, Axis.X)
@@ -123,11 +124,12 @@ object Day01:
 end Day01
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2016_01 =
+@main def run_2016_01(): Unit =
+    import advent_of_scala.base.impossibleStateError
     import advent_of_scala.utils.IO.{readLines, printSolution}
     readLines(2016, 1) match
         case Some(raw_input) =>
             printSolution(Day01(raw_input).solve)
-        case _ => sys.error("Could not read file")
+        case _ => impossibleStateError
 end run_2016_01
 // */

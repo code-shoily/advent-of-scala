@@ -14,15 +14,14 @@ import scala.util.chaining.*
 
 import advent_of_scala.base.Solution
 import Day22.*
-import Node.*
 import Point.*
 
 class Day22(rawInput: List[String]):
-    def solvePart1(input: InputType) =
+    def solvePart1(input: InputType): Int =
         input.toSeq.combinations(2).count { case Seq((_, first), (_, second)) =>
             (!first.empty && second.fit(first)) || (!second.empty && first.fit(second))
         }
-    def solvePart2 = aStar compose initial
+    def solvePart2: Map[Point, Node] => Int = aStar compose initial
 
     def solve: Solution =
         val input = parsedInput
@@ -39,11 +38,11 @@ end Day22
 
 object Day22:
     type InputType = Map[Point, Node]
-    val orthogonal = Seq((1, 0), (-1, 0), (0, 1), (0, -1))
+    private val orthogonal = Seq((1, 0), (-1, 0), (0, 1), (0, -1))
 
     case class Point(x: Int, y: Int):
         def adjacent: Seq[Point] = orthogonal.map(delta)
-        def delta(dx: Int, dy: Int) = Point(x + dx, y + dy)
+        def delta(dx: Int, dy: Int): Point = Point(x + dx, y + dy)
         def manhattan(other: Point): Int = (x - other.x).abs + (y - other.y).abs
     end Point
 
@@ -63,7 +62,7 @@ object Day22:
     def swap(grid: Map[Point, Node], src: Point, dest: Point): Map[Point, Node] =
         grid.updated(src, grid(src).clear).updated(dest, grid(dest).merge(grid(src)))
 
-    def initial(grid: Map[Point, Node]): Seq[State] =
+    private def initial(grid: Map[Point, Node]): Seq[State] =
         val goal = Point(grid.keys.map(_.x).max, 0)
         val pairs = grid.keys.toSeq.flatMap { src =>
             val node = grid(src)
@@ -83,7 +82,7 @@ object Day22:
             }
     end permutations
 
-    def aStar(initial: Seq[State]): Int =
+    private def aStar(initial: Seq[State]): Int =
         val cost = collection.mutable.Map.from(initial.map(s => s.hash -> 1))
         val todo = collection.mutable.PriorityQueue.from(initial.map(s => s -> s.heuristic))(
           Ordering.by(-_._2)
@@ -106,10 +105,10 @@ object Day22:
     end aStar
 end Day22
 
-/*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2016_22 =
-    import advent_of_scala.utils.IO.{readLines, printSolution}
+///*--------- Block to test this file on IDEs, comment this line with `//` to enable.
+@main def run_2016_22(): Unit =
     import advent_of_scala.base.impossibleStateError
+    import advent_of_scala.utils.IO.{readLines, printSolution}
     readLines(2016, 22) match
         case Some(raw_input) =>
             printSolution(Day22(raw_input).solve)

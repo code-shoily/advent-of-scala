@@ -20,7 +20,7 @@ class Day01(rawInput: List[String]):
     def solvePart2(input: Seq[Int]): Int =
         @tailrec
         def getFuel(mass: Int, fuel: Int = 0): Int =
-            (mass / 3 - 2) match
+            mass / 3 - 2 match
                 case notFuel if notFuel <= 0 => fuel
                 case fuelPart                => getFuel(fuelPart, fuelPart + fuel)
 
@@ -37,15 +37,16 @@ class Day01(rawInput: List[String]):
     def parsedInput: Seq[Int] = rawInput.map(_.toInt)
 end Day01
 
-/*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2019_01 =
+///*--------- Block to test this file on IDEs, comment this line with `//` to enable.
+@main def run_2019_01(): Unit =
+    import advent_of_scala.base.impossibleStateError
     import advent_of_scala.utils.IO.{readLines, printSolution}
 
     readLines(2019, 1) match
         case Some(rawInput) =>
             val solver = Day01(rawInput)
             printSolution(solver.solve)
-        case _ => sys.error("Could not read file")
+        case _ => impossibleStateError
     end match
 end run_2019_01
 // */

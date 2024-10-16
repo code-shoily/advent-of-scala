@@ -19,7 +19,7 @@ class Day01(rawInput: List[String]):
 
     def solvePart2(input: Seq[Int]): Int =
         input.zipWithIndex
-            .flatMap((entry) =>
+            .flatMap(entry =>
                 twoSumMultiplied(input.drop(entry(1) + 1), 2020 - entry(0)) match
                     case None       => None
                     case Some(mult) => Some(entry(0) * mult)
@@ -51,7 +51,7 @@ class Day01(rawInput: List[String]):
 end Day01
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2020_01 =
+@main def run_2020_01(): Unit =
     import advent_of_scala.utils.IO.{readLines, printSolution}
     readLines(2020, 1) match
         case Some(raw_input) =>

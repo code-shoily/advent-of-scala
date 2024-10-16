@@ -33,7 +33,7 @@ end Day04
 object Day04:
     private val md = MessageDigest.getInstance("MD5")
 
-    def mine(input: String, prefix: String): Option[Int] =
+    private def mine(input: String, prefix: String): Option[Int] =
         def toHexBinary(bytes: Array[Byte]): String =
             val hexArray = "0123456789ABCDEF".toCharArray
             val hexChars = new Array[Char](bytes.length * 2)
@@ -46,13 +46,14 @@ object Day04:
 
         LazyList.from(1).find { i =>
             md.update((input + i).getBytes(StandardCharsets.UTF_8))
-            toHexBinary(md.digest()) startsWith prefix
+            toHexBinary(md.digest()).startsWith(prefix)
         }
     end mine
 end Day04
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2015_04 =
+@main def run_2015_04(): Unit =
+    import advent_of_scala.base.impossibleStateError
     import advent_of_scala.utils.IO.{readLines, printSolution}
     readLines(2015, 4) match
         case Some(raw_input) =>

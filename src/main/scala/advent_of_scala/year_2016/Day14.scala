@@ -13,9 +13,12 @@ package advent_of_scala.year_2016
 import advent_of_scala.base.Solution
 import Day14.*
 
+import java.security.MessageDigest
+import scala.util.matching.UnanchoredRegex
+
 class Day14(rawInput: List[String]):
-    def solvePart1(input: String) = generatePad(index => single(s"$input$index"))
-    def solvePart2(input: String) = generatePad(index => stretched(s"$input$index"))
+    def solvePart1(input: String): Int = generatePad(index => single(s"$input$index"))
+    def solvePart2(input: String): Int = generatePad(index => stretched(s"$input$index"))
 
     def solve: Solution =
         val input = parsedInput
@@ -26,14 +29,16 @@ class Day14(rawInput: List[String]):
 end Day14
 
 object Day14:
-    val md5 = java.security.MessageDigest.getInstance("MD5")
-    val three = "(.)\\1{2}".r.unanchored
-    val five = "(.)\\1{4}".r.unanchored
+    val md5: MessageDigest = java.security.MessageDigest.getInstance("MD5")
+    val three: UnanchoredRegex = "(.)\\1{2}".r.unanchored
+    val five: UnanchoredRegex = "(.)\\1{4}".r.unanchored
 
-    def single(string: String): String = md5.digest(string.getBytes).map("%02x".format(_)).mkString
-    def stretched(string: String): String = Iterator.iterate(string)(single).drop(2017).next()
+    private def single(string: String): String =
+        md5.digest(string.getBytes).map("%02x".format(_)).mkString
+    private def stretched(string: String): String =
+        Iterator.iterate(string)(single).drop(2017).next()
 
-    def generatePad(hash: Int => String): Int =
+    private def generatePad(hash: Int => String): Int =
         def check(window: Seq[(String, Int)]): Boolean = window.head match
             case (three(t), _) => window.tail.exists {
                     case (five(f), _) if f == t => true
@@ -55,9 +60,9 @@ object Day14:
 end Day14
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2016_14 =
-    import advent_of_scala.utils.IO.{readLines, printSolution}
+@main def run_2016_14(): Unit =
     import advent_of_scala.base.impossibleStateError
+    import advent_of_scala.utils.IO.{readLines, printSolution}
     readLines(2016, 14) match
         case Some(raw_input) =>
             printSolution(Day14(raw_input).solve)

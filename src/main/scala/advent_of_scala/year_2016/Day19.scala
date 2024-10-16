@@ -13,8 +13,8 @@ package advent_of_scala.year_2016
 import advent_of_scala.base.Solution
 
 class Day19(rawInput: List[String]):
-    def solvePart1(input: Int) = ((input - Integer.highestOneBit(input)) << 1) + 1
-    def solvePart2(input: Int) =
+    def solvePart1(input: Int): Int = ((input - Integer.highestOneBit(input)) << 1) + 1
+    def solvePart2(input: Int): Int =
         case class Node(value: Int, var next: Node)
 
         var node = Node(1, null)
@@ -43,9 +43,9 @@ class Day19(rawInput: List[String]):
 end Day19
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2016_19 =
-    import advent_of_scala.utils.IO.{readLines, printSolution}
+@main def run_2016_19(): Unit =
     import advent_of_scala.base.impossibleStateError
+    import advent_of_scala.utils.IO.{readLines, printSolution}
     readLines(2016, 19) match
         case Some(raw_input) =>
             printSolution(Day19(raw_input).solve)

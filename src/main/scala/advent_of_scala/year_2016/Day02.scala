@@ -14,7 +14,7 @@ import advent_of_scala.base.Solution
 import Day02.*
 
 class Day02(rawInput: List[String]):
-    val numPad1 = List(
+    private val numPad1 = List(
       List(" ", " ", " ", " ", " "),
       List(" ", "1", "2", "3", " "),
       List(" ", "4", "5", "6", " "),
@@ -22,7 +22,7 @@ class Day02(rawInput: List[String]):
       List(" ", " ", " ", " ", " ")
     )
 
-    val numPad2 = List(
+    private val numPad2 = List(
       List(" ", " ", " ", " ", " ", " ", " "),
       List(" ", " ", " ", "1", " ", " ", " "),
       List(" ", " ", "2", "3", "4", " ", " "),
@@ -42,11 +42,11 @@ class Day02(rawInput: List[String]):
             val (x, y) =
                 directions.foldLeft(pos) { case ((x, y), direction) =>
                     direction match
-                        case "U" if !pad(x - 1)(y).isBlank() => (x - 1, y)
-                        case "D" if !pad(x + 1)(y).isBlank() => (x + 1, y)
-                        case "L" if !pad(x)(y - 1).isBlank() => (x, y - 1)
-                        case "R" if !pad(x)(y + 1).isBlank() => (x, y + 1)
-                        case _                               => (x, y)
+                        case "U" if !pad(x - 1)(y).isBlank => (x - 1, y)
+                        case "D" if !pad(x + 1)(y).isBlank => (x + 1, y)
+                        case "L" if !pad(x)(y - 1).isBlank => (x, y - 1)
+                        case "R" if !pad(x)(y + 1).isBlank => (x, y + 1)
+                        case _                             => (x, y)
                     end match
                 }
 
@@ -60,9 +60,9 @@ object Day02:
     type InputType = List[List[String]]
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2016_02 =
-    import advent_of_scala.utils.IO.{readLines, printSolution}
+@main def run_2016_02(): Unit =
     import advent_of_scala.base.impossibleStateError
+    import advent_of_scala.utils.IO.{readLines, printSolution}
     readLines(2016, 2) match
         case Some(raw_input) =>
             printSolution(Day02(raw_input).solve)

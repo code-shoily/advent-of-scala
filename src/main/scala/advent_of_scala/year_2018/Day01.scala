@@ -39,18 +39,19 @@ class Day01(rawInput: List[String]):
         (part1, part2)
     end solve
 
-    def parsedInput = rawInput.map(_.toInt).toList
+    def parsedInput: List[Int] = rawInput.map(_.toInt)
 end Day01
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2018_01 =
+@main def run_2018_01(): Unit =
+    import advent_of_scala.base.impossibleStateError
     import advent_of_scala.utils.IO.{readLines, printSolution}
 
     readLines(2018, 1) match
         case Some(rawInput) =>
             val solver = Day01(rawInput)
             printSolution(solver.solve)
-        case _ => sys.error("Could not read file")
+        case _ => impossibleStateError
     end match
 end run_2018_01
 // */

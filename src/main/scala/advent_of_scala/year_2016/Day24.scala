@@ -14,11 +14,11 @@ import advent_of_scala.base.Solution
 import Day24.*
 
 class Day24(rawInput: List[String]):
-    def solvePart1(input: InputType) =
+    def solvePart1(input: InputType): Int =
         val paths = input.keys.toList.sorted.permutations.map(_.prepended(0))
         shortestPath(input, paths)
 
-    def solvePart2(input: InputType) =
+    def solvePart2(input: InputType): Int =
         val paths = input.keys.toList.sorted.permutations.map(_.prepended(0).appended(0))
         shortestPath(input, paths)
 
@@ -58,7 +58,7 @@ object Day24:
     type InputType = Map[Int, Map[Int, Int]]
 
     case class Node(x: Int, y: Int):
-        def neighbours = List((1, 0), (-1, 0), (0, 1), (0, -1)) map { (dx, dy) =>
+        def neighbours: Seq[Node] = List((1, 0), (-1, 0), (0, 1), (0, -1)) map { (dx, dy) =>
             Node(x + dx, y + dy)
         }
     end Node
@@ -82,16 +82,16 @@ object Day24:
         -1
     end bfs
 
-    def shortestPath(traversals: InputType, paths: Iterator[Seq[Int]]) =
+    private def shortestPath(traversals: InputType, paths: Iterator[Seq[Int]]) =
         paths.map(
           _.sliding(2).map(next => traversals(next.head)(next.last)).sum
         ).min
 end Day24
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2016_24 =
-    import advent_of_scala.utils.IO.{readLines, printSolution}
+@main def run_2016_24(): Unit =
     import advent_of_scala.base.impossibleStateError
+    import advent_of_scala.utils.IO.{readLines, printSolution}
     readLines(2016, 24) match
         case Some(raw_input) =>
             printSolution(Day24(raw_input).solve)

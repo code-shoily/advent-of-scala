@@ -16,7 +16,7 @@ import Day03.*
 class Day03(rawInput: List[String]):
     def solve: Solution =
         val input = parsedInput
-        (input count (isTriangle), getVerticalTriplets(input) count (isTriangle))
+        (input count isTriangle, getVerticalTriplets(input) count isTriangle)
     end solve
 
     private def parsedInput: InputType =
@@ -30,12 +30,12 @@ end Day03
 object Day03:
     type InputType = List[(Int, Int, Int)]
 
-    def isTriangle(triplets: (Int, Int, Int)) =
+    private def isTriangle(triplets: (Int, Int, Int)) =
         val (a, b, c) = triplets
         (a + b) > c && (b + c) > a && (c + a) > b
 
-    def getVerticalTriplets(triplets: List[(Int, Int, Int)]) =
-        triplets grouped (3) flatMap {
+    private def getVerticalTriplets(triplets: List[(Int, Int, Int)]) =
+        triplets grouped 3 flatMap {
             case (a1, b1, c1) :: (a2, b2, c2) :: (a3, b3, c3) :: Nil =>
                 List((a1, a2, a3), (b1, b2, b3), (c1, c2, c3))
             case _ => impossibleStateError
@@ -43,7 +43,7 @@ object Day03:
 end Day03
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2016_03 =
+@main def run_2016_03(): Unit =
     import advent_of_scala.utils.IO.{readLines, printSolution}
     import advent_of_scala.base.impossibleStateError
     readLines(2016, 3) match

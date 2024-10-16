@@ -10,7 +10,7 @@
   */
 package advent_of_scala.year_2015
 
-import advent_of_scala.base.{Solution, impossibleStateError}
+import advent_of_scala.base.Solution
 import Day01.*
 
 class Day01(rawInput: List[String]):
@@ -32,7 +32,8 @@ object Day01:
     type InputType = Seq[Int]
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2015_01 =
+@main def run_2015_01(): Unit =
+    import advent_of_scala.base.impossibleStateError
     import advent_of_scala.utils.IO.{readLines, printSolution}
     readLines(2015, 1) match
         case Some(raw_input) =>

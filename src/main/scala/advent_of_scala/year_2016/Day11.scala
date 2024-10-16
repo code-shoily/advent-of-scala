@@ -13,11 +13,13 @@ package advent_of_scala.year_2016
 import advent_of_scala.base.Solution
 import Day11.*
 
+import scala.annotation.targetName
+
 class Day11(rawInput: List[String]):
-    def solvePart1(input: InputType) = bfs(input)
-    def solvePart2(input: InputType) =
+    def solvePart1(input: InputType): Int = bfs(input)
+    def solvePart2(input: InputType): Int =
         val State(elevator, floors) = input
-        val expanded = State(elevator, floors.updated(0, floors(0) + Floor(2, 2)))
+        val expanded = State(elevator, floors.updated(0, floors.head + Floor(2, 2)))
         bfs(expanded)
 
     def solve: Solution =
@@ -39,15 +41,18 @@ end Day11
 
 object Day11:
     type InputType = State
-    val permutations = Seq(Floor(2, 0), Floor(1, 0), Floor(1, 1), Floor(0, 1), Floor(0, 2))
-    val adjacent = Map(0 -> Seq(1), 1 -> Seq(0, 2), 2 -> Seq(1, 3), 3 -> Seq(2))
+    val permutations: Seq[Floor] =
+        Seq(Floor(2, 0), Floor(1, 0), Floor(1, 1), Floor(0, 1), Floor(0, 2))
+    val adjacent: Map[Int, Seq[Int]] = Map(0 -> Seq(1), 1 -> Seq(0, 2), 2 -> Seq(1, 3), 3 -> Seq(2))
 
     case class Floor(microchips: Int, generators: Int):
         def empty: Boolean = microchips == 0 && generators == 0
         def valid: Boolean =
             (microchips >= 0 && generators >= 0) && (generators == 0 || microchips <= generators)
+        @targetName("plus")
         def +(other: Floor): Floor =
             Floor(microchips + other.microchips, generators + other.generators)
+        @targetName("minus")
         def -(other: Floor): Floor =
             Floor(microchips - other.microchips, generators - other.generators)
     end Floor
@@ -87,9 +92,9 @@ object Day11:
 end Day11
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2016_11 =
-    import advent_of_scala.utils.IO.{readLines, printSolution}
+@main def run_2016_11(): Unit =
     import advent_of_scala.base.impossibleStateError
+    import advent_of_scala.utils.IO.{readLines, printSolution}
     readLines(2016, 11) match
         case Some(raw_input) =>
             printSolution(Day11(raw_input).solve)
