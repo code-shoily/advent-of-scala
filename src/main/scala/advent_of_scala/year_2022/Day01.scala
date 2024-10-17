@@ -10,13 +10,13 @@
   */
 package advent_of_scala.year_2022
 
-import scala.collection.mutable.PriorityQueue
+import scala.collection.mutable
 
 import advent_of_scala.base.Solution
 
 class Day01(rawInput: List[String]):
-    def solvePart1(input: PriorityQueue[Int]): Int = input.head
-    def solvePart2(input: PriorityQueue[Int]): Int = input.take(3).sum
+    def solvePart1(input: mutable.PriorityQueue[Int]): Int = input.head
+    def solvePart2(input: mutable.PriorityQueue[Int]): Int = input.take(3).sum
 
     def solve: Solution =
         val input = parsedInput
@@ -25,8 +25,8 @@ class Day01(rawInput: List[String]):
         (part1, part2)
     end solve
 
-    private def parsedInput: PriorityQueue[Int] =
-        val pq = PriorityQueue[Int]()
+    private def parsedInput: mutable.PriorityQueue[Int] =
+        val pq = mutable.PriorityQueue[Int]()
         val calories =
             rawInput.foldLeft(List[Int](0))((acc, x) =>
                 if x == "" then 0 :: acc
@@ -39,11 +39,12 @@ class Day01(rawInput: List[String]):
 end Day01
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2022_01 =
+@main def run_2022_01(): Unit =
+    import advent_of_scala.base.impossibleStateError
     import advent_of_scala.utils.IO.{readLines, printSolution}
     readLines(2022, 1) match
         case Some(raw_input) =>
             printSolution(Day01(raw_input).solve)
-        case _ => sys.error("Could not read file")
+        case _ => impossibleStateError
 end run_2022_01
 // */

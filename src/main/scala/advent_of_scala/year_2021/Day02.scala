@@ -16,7 +16,7 @@ import Day02.*
 class Day02(rawInput: List[String]):
     def solvePart1(input: InputType): Int = solver(input, navigate)
     def solvePart2(input: InputType): Int = solver(input, navigateWithAim)
-    def solver(input: InputType, navigationAction: (Position, Command) => Position) =
+    def solver(input: InputType, navigationAction: (Position, Command) => Position): Int =
         input.foldLeft(Position(0, 0))(navigationAction).result
 
     def solve: Solution =
@@ -26,7 +26,7 @@ class Day02(rawInput: List[String]):
         (part1, part2)
     end solve
 
-    private def parsedInput: InputType = rawInput.map(createCommand(_))
+    private def parsedInput: InputType = rawInput.map(createCommand)
 end Day02
 
 object Day02:
@@ -37,9 +37,9 @@ object Day02:
 
     case class Command(direction: Direction, x: Int)
     case class Position(horizontal: Int, depth: Int, aim: Int = 0):
-        def result = horizontal * depth
+        def result: Int = horizontal * depth
 
-    def navigate(currentPosition: Position, command: Command): Position =
+    private def navigate(currentPosition: Position, command: Command): Position =
         val Position(horizontal, depth, aim) = currentPosition
 
         command match
@@ -49,7 +49,7 @@ object Day02:
         end match
     end navigate
 
-    def navigateWithAim(currentPosition: Position, command: Command): Position =
+    private def navigateWithAim(currentPosition: Position, command: Command): Position =
         val Position(horizontal, depth, aim) = currentPosition
 
         command match
@@ -59,7 +59,7 @@ object Day02:
         end match
     end navigateWithAim
 
-    def createCommand(commandStr: String) =
+    private def createCommand(commandStr: String) =
         commandStr.split(" ") match
             case Array("forward", x) => Command(Direction.Forward, x.toInt)
             case Array("up", x)      => Command(Direction.Up, x.toInt)
@@ -68,7 +68,7 @@ object Day02:
 end Day02
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2021_02 =
+@main def run_2021_02(): Unit =
     import advent_of_scala.utils.IO.{readLines, printSolution}
     readLines(2021, 2) match
         case Some(raw_input) =>

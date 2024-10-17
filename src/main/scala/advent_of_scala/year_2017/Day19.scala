@@ -21,10 +21,10 @@ object Day19:
         def delta(other: Point): Point = Point(x + other.x, y + other.y)
 
     val (left, right, up, down) = (Point(-1, 0), Point(1, 0), Point(0, -1), Point(0, 1))
-    val horizontal = Seq(left, right)
-    val vertical = Seq(up, down)
+    val horizontal: Seq[Point] = Seq(left, right)
+    private val vertical: Seq[Point] = Seq(up, down)
 
-    def traverse(input: Seq[String]): (String, Int) =
+    private def traverse(input: Seq[String]): (String, Int) =
         @tailrec
         def doTraverse(
             location: Point,
@@ -38,9 +38,9 @@ object Day19:
                 case ' ' => (path.mkString, steps)
                 case '+' =>
                     val Seq(first, second) =
-                        if horizontal contains (direction) then vertical else horizontal
+                        if horizontal contains direction then vertical else horizontal
                     val nextDirection =
-                        if grid(nextLocation delta (first)).isSpaceChar then second else first
+                        if grid(nextLocation.delta(first)).isSpaceChar then second else first
                     doTraverse(nextLocation, nextDirection, path, steps + 1)
                 case c if c.isLetter =>
                     doTraverse(nextLocation, direction, path.appended(c), steps + 1)
@@ -52,9 +52,9 @@ object Day19:
     end traverse
 end Day19
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2017_19 =
-    import advent_of_scala.utils.IO.{readLines, printSolution}
+@main def run_2017_19(): Unit =
     import advent_of_scala.base.impossibleStateError
+    import advent_of_scala.utils.IO.{readLines, printSolution}
     readLines(2017, 19) match
         case Some(raw_input) =>
             printSolution(Day19(raw_input).solve)

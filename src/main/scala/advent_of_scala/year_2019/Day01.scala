@@ -37,7 +37,7 @@ class Day01(rawInput: List[String]):
     def parsedInput: Seq[Int] = rawInput.map(_.toInt)
 end Day01
 
-///*--------- Block to test this file on IDEs, comment this line with `//` to enable.
+/*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2019_01(): Unit =
     import advent_of_scala.base.impossibleStateError
     import advent_of_scala.utils.IO.{readLines, printSolution}

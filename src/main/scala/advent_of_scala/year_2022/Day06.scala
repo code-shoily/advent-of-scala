@@ -20,13 +20,13 @@ class Day06(rawInput: List[String]):
         (findMarker(4), findMarker(14))
     end solve
 
-    private def parsedInput = rawInput.head.toCharArray()
+    private def parsedInput = rawInput.head.toCharArray
 end Day06
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2022_06 =
-    import advent_of_scala.utils.IO.{readLines, printSolution}
+@main def run_2022_06(): Unit =
     import advent_of_scala.base.impossibleStateError
+    import advent_of_scala.utils.IO.{readLines, printSolution}
     readLines(2022, 6) match
         case Some(raw_input) =>
             printSolution(Day06(raw_input).solve)

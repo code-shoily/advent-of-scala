@@ -32,12 +32,12 @@ object Day24:
     type InputType = Set[Component]
 
     case class Component(a: Int, b: Int, strength: Int):
-        def matches(n: Int) = n == a || n == b
-        def passthrough = a == b
-        def opposite(n: Int) = if n == a then b else a
+        def matches(n: Int): Boolean = n == a || n == b
+        def passthrough: Boolean = a == b
+        def opposite(n: Int): Int = if n == a then b else a
     end Component
 
-    def build(ordering: Ordering[(Int, Int)])(input: InputType) =
+    private def build(ordering: Ordering[(Int, Int)])(input: InputType) =
         def doBuild(components: Set[Component], current: Int, depth: Int, total: Int): (Int, Int) =
             val candidates = components.filter(_.matches(current))
             val shortlist = candidates.find(_.passthrough).map(Set(_)).getOrElse(candidates)
@@ -59,9 +59,9 @@ object Day24:
 end Day24
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2017_24 =
-    import advent_of_scala.utils.IO.{readLines, printSolution}
+@main def run_2017_24(): Unit =
     import advent_of_scala.base.impossibleStateError
+    import advent_of_scala.utils.IO.{readLines, printSolution}
     readLines(2017, 24) match
         case Some(raw_input) =>
             printSolution(Day24(raw_input).solve)

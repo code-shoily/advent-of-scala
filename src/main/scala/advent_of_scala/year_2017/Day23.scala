@@ -43,16 +43,17 @@ object Day23:
         state: State = Running,
         count: Int = 0
     ):
-        def next = copy(ip = ip + 1)
-        def read(key: String) = key.toLongOption.getOrElse(registers.getOrElse(key, 0L))
-        def write(key: String, value: Long) = next.copy(registers = registers.updated(key, value))
-        def step =
+        def next: Cpu = copy(ip = ip + 1)
+        def read(key: String): Long = key.toLongOption.getOrElse(registers.getOrElse(key, 0L))
+        def write(key: String, value: Long): Cpu =
+            next.copy(registers = registers.updated(key, value))
+        def step: Cpu =
             if instructions.indices.contains(ip) then
                 val Array(op, dest, src) = instructions(ip).split(" ")
                 op match
                     case "set" => write(dest, read(src))
                     case "sub" => write(dest, read(dest) - read(src))
-                    case "mul" => write(dest, read(dest) * read(src)) copy (count = count + 1)
+                    case "mul" => write(dest, read(dest) * read(src)).copy(count = count + 1)
                     case "jnz" => if read(dest) != 0 then copy(ip = ip + read(src).toInt) else next
                 end match
             else
@@ -62,9 +63,9 @@ object Day23:
 end Day23
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2017_23 =
-    import advent_of_scala.utils.IO.{readLines, printSolution}
+@main def run_2017_23(): Unit =
     import advent_of_scala.base.impossibleStateError
+    import advent_of_scala.utils.IO.{readLines, printSolution}
     readLines(2017, 23) match
         case Some(raw_input) =>
             printSolution(Day23(raw_input).solve)

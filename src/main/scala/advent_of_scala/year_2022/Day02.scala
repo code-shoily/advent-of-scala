@@ -10,7 +10,7 @@
   */
 package advent_of_scala.year_2022
 
-import advent_of_scala.base.{Solution, impossibleStateError}
+import advent_of_scala.base.Solution
 import Day02.*
 
 class Day02(rawInput: List[String]):
@@ -33,7 +33,7 @@ object Day02:
     enum Items:
         case Rock, Paper, Scissor
 
-    def computeScore(pair: (Items, Items)) = pair match
+    private def computeScore(pair: (Items, Items)) = pair match
         case (Items.Rock, Items.Rock)       => 4 // 1 + 3
         case (Items.Rock, Items.Paper)      => 8 // 2 + 6
         case (Items.Rock, Items.Scissor)    => 3 // 3 + 0
@@ -44,7 +44,7 @@ object Day02:
         case (Items.Scissor, Items.Paper)   => 2 // 2 + 0
         case (Items.Scissor, Items.Scissor) => 6 // 3 + 3
 
-    def strategicRemap(pair: (Items, Items)): (Items, Items) = pair match
+    private def strategicRemap(pair: (Items, Items)): (Items, Items) = pair match
         case (Items.Rock, Items.Rock)       => (Items.Rock, Items.Scissor) // Lose
         case (Items.Rock, Items.Paper)      => (Items.Rock, Items.Rock) // Lose
         case (Items.Rock, Items.Scissor)    => (Items.Rock, Items.Paper) // Lose
@@ -55,7 +55,7 @@ object Day02:
         case (Items.Scissor, Items.Paper)   => (Items.Scissor, Items.Scissor) // Win
         case (Items.Scissor, Items.Scissor) => (Items.Scissor, Items.Rock) // Win
 
-    def strategyToItems(ss: String): (Items, Items) =
+    private def strategyToItems(ss: String): (Items, Items) =
         val playToItem = (s: String) =>
             s match
                 case "A" | "X" => Items.Rock
@@ -68,7 +68,8 @@ object Day02:
 end Day02
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2022_02 =
+@main def run_2022_02(): Unit =
+    import advent_of_scala.base.impossibleStateError
     import advent_of_scala.utils.IO.{readLines, printSolution}
     readLines(2022, 2) match
         case Some(raw_input) =>

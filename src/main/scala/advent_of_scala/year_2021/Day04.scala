@@ -31,7 +31,7 @@ class Day04(rawInput: List[String]):
         val sections = rawInput.mkString("\n").split("\n\n").toSeq
         InputType(
           sections.head.split(",").map(_.toInt),
-          Bingo(sections.tail.map(Board.fromString(_)), None, None)
+          Bingo(sections.tail.map(Board.fromString), None, None)
         )
     end parsedInput
 end Day04
@@ -40,26 +40,27 @@ object Day04:
     case class InputType(numbers: Seq[Int], boards: Bingo)
 
     case class Board(
-        val mapping: Map[Int, (Int, Int)],
-        val rows: Vector[Int] = Vector.from[Int](Seq(0, 0, 0, 0, 0)),
-        val cols: Vector[Int] = Vector.from[Int](Seq(0, 0, 0, 0, 0)),
-        val hasWon: Boolean = false
+        mapping: Map[Int, (Int, Int)],
+        rows: Vector[Int] = Vector.from[Int](Seq(0, 0, 0, 0, 0)),
+        cols: Vector[Int] = Vector.from[Int](Seq(0, 0, 0, 0, 0)),
+        hasWon: Boolean = false
     ):
-        def score(winningNumber: Int) = winningNumber * mapping.keySet.sum
+        def score(winningNumber: Int): Int = winningNumber * mapping.keySet.sum
     end Board
 
-    object Board:
+    private object Board:
         def fromString(values: String): Board = Board(toMapping(values))
         def pick: (Board, Int) => Board = { case (board @ Board(mapping, rows, cols, won), n) =>
             mapping.get(n) match
                 case Some((row, col)) =>
                     val (newRow, newCol) = (occupy(rows, row), occupy(cols, col))
-                    val winStatus = newRow(row) == 5 || newCol(col) == 5 && true || won
+                    val winStatus = newRow(row) == 5 || newCol(col) == 5 || won
                     Board(mapping.removed(n), newRow, newCol, winStatus)
                 case _ => board
         }
 
-        def occupy(tally: Vector[Int], at: Int): Vector[Int] = tally.updated(at, tally(at) + 1)
+        private def occupy(tally: Vector[Int], at: Int): Vector[Int] =
+            tally.updated(at, tally(at) + 1)
 
         private def toMapping(block: String): Map[Int, (Int, Int)] =
             val table = block.split("\n").map(_.trim.split(" +"))
@@ -67,20 +68,21 @@ object Day04:
               for
                   i <- 0 until 5
                   j <- 0 until 5
-              yield (table(i)(j).toInt -> (i, j))
+              yield table(i)(j).toInt -> (i, j)
             ).toMap
         end toMapping
     end Board
 
     case class Bingo(boards: Seq[Board], firstScore: Option[Int], finalScore: Option[Int]):
-        def result = (firstScore, finalScore) match
+        def result: (Int, Int) = (firstScore, finalScore) match
             case (Some(score1), Some(score2)) => (score1, score2)
             case _                            => impossibleStateError
     end Bingo
 end Day04
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2021_04 =
+@main def run_2021_04(): Unit =
+    import advent_of_scala.base.impossibleStateError
     import advent_of_scala.utils.IO.{readLines, printSolution}
     readLines(2021, 4) match
         case Some(raw_input) =>

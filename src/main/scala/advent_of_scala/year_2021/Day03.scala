@@ -10,11 +10,13 @@
   */
 package advent_of_scala.year_2021
 
-import advent_of_scala.base.{Solution, impossibleStateError}
+import advent_of_scala.base.Solution
 import Day03.*
 
+import scala.annotation.tailrec
+
 class Day03(rawInput: List[String]):
-    val size = rawInput.head.length()
+    val size: Int = rawInput.head.length()
 
     def solvePart1(input: InputType): Int = bitToInt(getBitVector(input), size)
     def solvePart2(input: InputType): Int =
@@ -36,34 +38,35 @@ end Day03
 object Day03:
     type InputType = List[Array[Int]]
 
-    def asBin(binArray: IndexedSeq[Int], size: Int): Int =
+    private def asBin(binArray: IndexedSeq[Int], size: Int): Int =
         binArray.zipWithIndex.map { case (v, i) => v * Math.pow(2, size - i - 1) }.sum.toInt
 
-    def getBitVector(lines: List[Array[Int]]): Vector[Bits] =
+    private def getBitVector(lines: List[Array[Int]]): Vector[Bits] =
         val bitVector: Vector[Bits] =
-            Vector.from(for _ <- (1 to lines.head.length) yield Bits(0, 0))
+            Vector.from(for _ <- 1 to lines.head.length yield Bits(0, 0))
         lines.foreach(_.zipWithIndex.foreach { case (bit, idx) => bitVector(idx).update(bit) })
         bitVector
     end getBitVector
 
     case class Bits(var oneCount: Int, var zeroCount: Int):
-        def update(bit: Int) = bit match
+        def update(bit: Int): Unit = bit match
             case 1 => oneCount += 1
             case 0 => zeroCount += 1
-        def mostCommon = if oneCount >= zeroCount then 1 else 0
-        def leastCommon = if oneCount >= zeroCount then 0 else 1
+        def mostCommon: Int = if oneCount >= zeroCount then 1 else 0
+        def leastCommon: Int = if oneCount >= zeroCount then 0 else 1
     end Bits
 
-    def bitToInt(bits: Vector[Bits], n: Int): Int =
+    private def bitToInt(bits: Vector[Bits], n: Int): Int =
         val gamma = asBin((0 until n).map(bits(_).mostCommon), n)
         val epsilon = asBin((0 until n).map(bits(_).leastCommon), n)
         gamma * epsilon
     end bitToInt
 
-    def frequenciesAt(bitVector: Vector[Bits], idx: Int): (Int, Int) =
+    private def frequenciesAt(bitVector: Vector[Bits], idx: Int): (Int, Int) =
         (bitVector(idx).mostCommon, bitVector(idx).leastCommon)
 
-    def scrubberRating(isO2: Boolean)(rawBits: List[Array[Int]], idx: Int): Array[Int] =
+    @tailrec
+    private def scrubberRating(isO2: Boolean)(rawBits: List[Array[Int]], idx: Int): Array[Int] =
         rawBits match
             case done if rawBits.length == 1 => done.head
             case interim =>
@@ -76,7 +79,8 @@ object Day03:
 end Day03
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2021_03 =
+@main def run_2021_03(): Unit =
+    import advent_of_scala.base.impossibleStateError
     import advent_of_scala.utils.IO.{readLines, printSolution}
     readLines(2021, 3) match
         case Some(raw_input) =>

@@ -24,7 +24,7 @@ class Day13(rawInput: List[String]):
 
         for dot <- foldedDots do paper(dot.y)(dot.x) = '▉'
 
-        paper map (_.mkString(" ")) mkString ("\n")
+        paper map (_.mkString(" ")) mkString "\n"
     end solvePart2
 
     def solve: Solution =
@@ -38,7 +38,7 @@ class Day13(rawInput: List[String]):
     end solve
 
     private def parsedInput =
-        val sections = (rawInput mkString "\n") split ("\n\n")
+        val sections = (rawInput mkString "\n").split("\n\n")
         val dots = sections(0).linesIterator.map(Dot.parse).toSet
         val folds = sections(1).linesIterator.map(Fold.parse).toList
         (dots, folds)

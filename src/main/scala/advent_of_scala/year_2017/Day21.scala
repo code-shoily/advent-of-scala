@@ -34,7 +34,7 @@ class Day21(rawInput: List[String]):
         }.toMap
     end parsedInput
 
-    def fractal(n: Int)(rules: InputType): Int =
+    private def fractal(n: Int)(rules: InputType): Int =
         Iterator.iterate(Seq(".#.", "..#", "###")) { pattern =>
             val size = if pattern.size % 2 == 0 then 2 else 3
             pattern
@@ -50,9 +50,9 @@ object Day21:
     type InputType = Map[Seq[String], Seq[String]]
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2017_21 =
-    import advent_of_scala.utils.IO.{readLines, printSolution}
+@main def run_2017_21(): Unit =
     import advent_of_scala.base.impossibleStateError
+    import advent_of_scala.utils.IO.{readLines, printSolution}
     readLines(2017, 21) match
         case Some(raw_input) =>
             printSolution(Day21(raw_input).solve)

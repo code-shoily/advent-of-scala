@@ -56,7 +56,7 @@ object Day02:
     end Policy
 end Day02
 
-///*--------- Block to test this file on IDEs, comment this line with `//` to enable.
+/*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2020_02(): Unit =
     import advent_of_scala.base.impossibleStateError
     import advent_of_scala.utils.IO.{readLines, printSolution}

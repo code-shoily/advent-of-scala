@@ -20,19 +20,19 @@ class Day08(rawInput: List[String]):
     def solvePart1(input: List[String]): Int = {
         for
             display <- input map { _.split('|')(1).trim }
-            segments <- display split (" ")
-            uniqueDigit <- lookupUnique(Segment toSegments (segments))
+            segments <- display.split(" ")
+            uniqueDigit <- lookupUnique(Segment.toSegments(segments))
         yield uniqueDigit
     }.size
 
     def solvePart2(input: List[String]): Int =
         def splitParts(line: String): (Seq[Segments], Seq[Segments]) =
             line.split('|') map {
-                _.trim.split(" ").toSeq map (Segment.toSegments)
+                _.trim.split(" ").toSeq map Segment.toSegments
             } match
                 case Array(cipher, plaintext) => (cipher, plaintext)
 
-        input map (splitParts) map { (cipher, plaintext) =>
+        input map splitParts map { (cipher, plaintext) =>
             plaintext.map(subsTable(cipher))
         } map { _.foldLeft(0)((acc, d) => acc * 10 + d.ordinal) } reduce (_ + _)
     end solvePart2
@@ -45,44 +45,44 @@ class Day08(rawInput: List[String]):
 end Day08
 
 object Day08:
-    type Segments = Set[Segment]
+    private type Segments = Set[Segment]
 
     enum Segment:
         case A, B, C, D, E, F, G
 
     object Segment:
-        val charToSegment: Map[Char, Segment] = {
+        private val charToSegment: Map[Char, Segment] = {
             values map { s => s.toString.head.toLower -> s }
         }.toMap
 
-        def toSegments(s: String): Segments = { s map (charToSegment) }.toSet
+        def toSegments(s: String): Segments = { s map charToSegment }.toSet
     end Segment
 
     enum Digit(val segments: Segment*):
-        case Zero extends Digit(A, B, C, E, F, G)
+        private case Zero extends Digit(A, B, C, E, F, G)
         case One extends Digit(C, F)
-        case Two extends Digit(A, C, D, E, G)
-        case Three extends Digit(A, C, D, F, G)
+        private case Two extends Digit(A, C, D, E, G)
+        private case Three extends Digit(A, C, D, F, G)
         case Four extends Digit(B, C, D, F)
-        case Five extends Digit(A, B, D, F, G)
-        case Six extends Digit(A, B, D, E, F, G)
+        private case Five extends Digit(A, B, D, F, G)
+        private case Six extends Digit(A, B, D, E, F, G)
         case Seven extends Digit(A, C, F)
         case Eight extends Digit(A, B, C, D, E, F, G)
-        case Nine extends Digit(A, B, C, D, F, G)
+        private case Nine extends Digit(A, B, C, D, F, G)
     end Digit
 
     object Digit:
         val index: IndexedSeq[Digit] = values.toIndexedSeq
 
-        val lookupTable: Map[Int, Digit] =
+        private val lookupTable: Map[Int, Digit] =
             index groupBy { _.segments.size } collect { case k -> Seq(d) => k -> d }
 
         def lookupUnique(segments: Segments): Option[Digit] =
-            lookupTable get (segments.size)
+            lookupTable get segments.size
 
     end Digit
 
-    def subsTable(cipher: Seq[Segments]): Map[Segments, Digit] =
+    private def subsTable(cipher: Seq[Segments]): Map[Segments, Digit] =
         def lookup(section: Seq[Segments], withSegments: Segments) =
             section.partition(withSegments.subsetOf) match
                 case (Seq(uniqueMatch), remaining) => (uniqueMatch, remaining)
@@ -111,9 +111,9 @@ object Day08:
 end Day08
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2021_08 =
-    import advent_of_scala.utils.IO.{readLines, printSolution}
+@main def run_2021_08(): Unit =
     import advent_of_scala.base.impossibleStateError
+    import advent_of_scala.utils.IO.{readLines, printSolution}
     readLines(2021, 8) match
         case Some(raw_input) =>
             printSolution(Day08(raw_input).solve)

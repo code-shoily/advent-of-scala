@@ -35,23 +35,25 @@ end Day12
 object Day12:
     type InputType = Map[String, List[String]]
 
-    final val initialPath = Seq("start")
+    private final val initialPath = Seq("start")
 
-    def pathCount(pred: Seq[String] => Boolean, path: Seq[String])(using graph: InputType): Int =
+    private def pathCount(pred: Seq[String] => Boolean, path: Seq[String])(using
+        graph: InputType
+    ): Int =
         path.head match
             case "end" => 1
             case cave => {
                     graph(cave) filter {
                         case "start" => false
-                        case t       => (t.head.isUpper || !path.contains(t) || pred(path))
+                        case t       => t.head.isUpper || !path.contains(t) || pred(path)
                     } map { cave => pathCount(pred, cave +: path) }
                 }.sum
 end Day12
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2021_12 =
-    import advent_of_scala.utils.IO.{readLines, printSolution}
+@main def run_2021_12(): Unit =
     import advent_of_scala.base.impossibleStateError
+    import advent_of_scala.utils.IO.{readLines, printSolution}
     readLines(2021, 12) match
         case Some(raw_input) =>
             printSolution(Day12(raw_input).solve)

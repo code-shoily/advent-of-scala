@@ -26,17 +26,16 @@ class Day05(rawInput: List[String]):
         val movePattern = "move (\\d+) from (\\d+) to (\\d+)".r
 
         val moveSequence =
-            input.tail.head.split("\n").map(
-              _ match
-                  case movePattern(quantity, source, destination) =>
-                      Move(quantity.toInt, source.head, destination.head)
-            ).toSeq
+            input.tail.head.split("\n").map {
+                case movePattern(quantity, source, destination) =>
+                    Move(quantity.toInt, source.head, destination.head)
+            }.toSeq
 
         val containerMap =
             val initialContainerMap = Map.from((1 to 9) map { (i: Int) => (i + '0').toChar } map {
                 (_, List[Char]())
             })
-            val idxMap: (String) => Map[Int, Char] =
+            val idxMap: String => Map[Int, Char] =
                 _.zipWithIndex.filterNot(_._1 == '_').map(_.swap).toMap
 
             val containers =
@@ -46,12 +45,12 @@ class Day05(rawInput: List[String]):
             val numberMap = idxMap(containers.head)
 
             containers.tail.foldLeft(initialContainerMap) { (acc, line) =>
-                val newMap = (for
-                    (idx, char) <- idxMap(line)
-                yield
-                    val targetIdx = numberMap(idx)
-                    (targetIdx -> (char :: acc(targetIdx)))
-                ).toMap
+                val newMap =
+                    for
+                        (idx, char) <- idxMap(line)
+                    yield
+                        val targetIdx = numberMap(idx)
+                        targetIdx -> (char :: acc(targetIdx))
 
                 acc ++ newMap
             }
@@ -62,11 +61,11 @@ class Day05(rawInput: List[String]):
 end Day05
 
 object Day05:
-    type Containers = Map[Char, List[Char]]
-    type Moves = Seq[Move]
+    private type Containers = Map[Char, List[Char]]
+    private type Moves = Seq[Move]
 
     case class Move(quantity: Int, source: Char, destination: Char):
-        def moveContainers(shouldReverse: Boolean)(containers: Containers) =
+        def moveContainers(shouldReverse: Boolean)(containers: Containers): Map[Char, List[Char]] =
             val (containersToMove, remainingContainers) = containers(source).splitAt(quantity)
             val destinationContainers =
                 (if shouldReverse then containersToMove.reverse
@@ -78,16 +77,19 @@ object Day05:
         end moveContainers
     end Move
 
-    def getTopContainers(shouldReverse: Boolean)(using containers: Containers, moves: Moves) =
+    private def getTopContainers(shouldReverse: Boolean)(using
+        containers: Containers,
+        moves: Moves
+    ) =
         moves.foldLeft(containers) { (acc, move) =>
             move.moveContainers(shouldReverse)(acc)
         }.toList.sortBy(_._1).map(_._2.head).mkString
 end Day05
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2022_05 =
-    import advent_of_scala.utils.IO.{readLines, printSolution}
+@main def run_2022_05(): Unit =
     import advent_of_scala.base.impossibleStateError
+    import advent_of_scala.utils.IO.{readLines, printSolution}
     readLines(2022, 5) match
         case Some(raw_input) =>
             printSolution(Day05(raw_input).solve)

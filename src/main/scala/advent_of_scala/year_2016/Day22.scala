@@ -105,7 +105,7 @@ object Day22:
     end aStar
 end Day22
 
-///*--------- Block to test this file on IDEs, comment this line with `//` to enable.
+/*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2016_22(): Unit =
     import advent_of_scala.base.impossibleStateError
     import advent_of_scala.utils.IO.{readLines, printSolution}

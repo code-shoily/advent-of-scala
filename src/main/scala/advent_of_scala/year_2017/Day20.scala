@@ -11,10 +11,10 @@
 package advent_of_scala.year_2017
 
 import scala.util.chaining.*
-
 import advent_of_scala.base.Solution
-
 import Day20.*
+
+import scala.annotation.targetName
 
 class Day20(rawInput: List[String]):
     type InputType = Seq[Particle]
@@ -54,15 +54,16 @@ end Day20
 
 object Day20:
     case class Point(x: Int, y: Int, z: Int):
+        @targetName("add")
         def +(p1: Point): Point = Point(x + p1.x, y + p1.y, z + p1.z)
         def manhattan: Int = x.abs + y.abs + z.abs
 
     case class Particle(p: Point, v: Point, a: Point):
-        def step = Particle(p + v + a, v + a, a)
+        def step: Particle = Particle(p + v + a, v + a, a)
 end Day20
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2017_20 =
+@main def run_2017_20(): Unit =
     import advent_of_scala.utils.IO.{readLines, printSolution}
     import advent_of_scala.base.impossibleStateError
     readLines(2017, 20) match

@@ -60,7 +60,7 @@ object Day01:
             case "nine" | "9"  => 9
 end Day01
 
-///*--------- Block to test this file on IDEs, comment this line with `//` to enable.
+/*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2023_01(): Unit =
     import advent_of_scala.base.impossibleStateError
     import advent_of_scala.utils.IO.{readLines, printSolution}

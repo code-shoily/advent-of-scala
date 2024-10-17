@@ -23,7 +23,7 @@ class Day06(rawInput: List[String]):
 end Day06
 
 object Day06:
-    def simulate(input: Seq[Int], days: Int): Long =
+    private def simulate(input: Seq[Int], days: Int): Long =
         (0 until days).foldLeft(
           Vector.tabulate(9)(i => input.count(_ == i).toLong)
         )((fish, day) =>
@@ -34,9 +34,9 @@ object Day06:
 end Day06
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2021_06 =
-    import advent_of_scala.utils.IO.{readLines, printSolution}
+@main def run_2021_06(): Unit =
     import advent_of_scala.base.impossibleStateError
+    import advent_of_scala.utils.IO.{readLines, printSolution}
     readLines(2021, 6) match
         case Some(raw_input) =>
             printSolution(Day06(raw_input).solve)

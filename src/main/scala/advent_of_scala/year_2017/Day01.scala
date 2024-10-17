@@ -21,7 +21,7 @@ class Day01(rawInput: List[String]):
         @tailrec
         def recurse(lst: Seq[Int], total: Int = 0): Int =
             lst match
-                case x :: (y :: rest) if x == y =>
+                case x :: y :: rest if x == y =>
                     recurse(y :: rest, total + x)
                 case x :: Nil if x == head => total + x
                 case x :: rest             => recurse(rest, total)
@@ -55,14 +55,15 @@ class Day01(rawInput: List[String]):
 end Day01
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2017_01 =
+@main def run_2017_01(): Unit =
+    import advent_of_scala.base.impossibleStateError
     import advent_of_scala.utils.IO.{readLines, printSolution}
 
     readLines(2017, 1) match
         case Some(rawInput) =>
             val solver = Day01(rawInput)
             printSolution(solver.solve)
-        case _ => sys.error("Could not read file")
+        case _ => impossibleStateError
     end match
 end run_2017_01
 // */

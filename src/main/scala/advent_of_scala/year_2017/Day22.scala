@@ -14,6 +14,8 @@ import advent_of_scala.base.{Solution, impossibleStateError}
 import Day22.*
 import Node.*
 
+import scala.annotation.targetName
+
 class Day22(rawInput: List[String]):
     def solvePart1(input: State): Int =
         def step(state: State): State = state.grid(state.location) match
@@ -60,6 +62,7 @@ end Day22
 
 object Day22:
     case class Point(x: Int, y: Int):
+        @targetName("add")
         def +(other: Point): Point = Point(x + other.x, y + other.y)
         def cw: Point = Point(-y, x)
         def ccw: Point = Point(y, -x)
@@ -74,9 +77,9 @@ object Day22:
 end Day22
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2017_22 =
-    import advent_of_scala.utils.IO.{readLines, printSolution}
+@main def run_2017_22(): Unit =
     import advent_of_scala.base.impossibleStateError
+    import advent_of_scala.utils.IO.{readLines, printSolution}
     readLines(2017, 22) match
         case Some(raw_input) =>
             printSolution(Day22(raw_input).solve)

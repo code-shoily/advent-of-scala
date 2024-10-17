@@ -10,13 +10,14 @@
   */
 package advent_of_scala.year_2022
 
-import advent_of_scala.base.{Solution, impossibleStateError}
+import advent_of_scala.base.Solution
 import Day03.*
 
 class Day03(rawInput: List[String]):
     def solvePart1(input: InputType): Int = solver(input.map(byHalf))
     def solvePart2(input: InputType): Int = solver(input.grouped(3).toList)
-    def solver(input: List[List[Array[Char]]]) = input.map(getCommonItem(_*)).map(getPriority).sum
+    def solver(input: List[List[Array[Char]]]): Int =
+        input.map(getCommonItem(_*)).map(getPriority).sum
 
     def solve: Solution =
         val input = parsedInput
@@ -31,15 +32,16 @@ end Day03
 object Day03:
     type InputType = List[Array[Char]]
 
-    def byHalf(items: Array[Char]) = items.splitAt(items.length / 2).toList
-    def getCommonItem(items: Array[Char]*) = items.reduce(_ intersect _).head
-    def getPriority(itemType: Char) = itemType match
+    private def byHalf(items: Array[Char]) = items.splitAt(items.length / 2).toList
+    private def getCommonItem(items: Array[Char]*) = items.reduce(_ intersect _).head
+    private def getPriority(itemType: Char) = itemType match
         case lowerCase if ('a' to 'z').contains(lowerCase) => (itemType.toInt % 'a'.toInt) + 1
         case upperCase if ('A' to 'Z').contains(upperCase) => (itemType.toInt % 'A'.toInt) + 27
 end Day03
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
-@main def run_2022_03 =
+@main def run_2022_03(): Unit =
+    import advent_of_scala.base.impossibleStateError
     import advent_of_scala.utils.IO.{readLines, printSolution}
     readLines(2022, 3) match
         case Some(raw_input) =>
