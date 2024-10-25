@@ -16,7 +16,7 @@ As with all sbt projects, `sbt test` or `test` (in console) runs all the tests.
 
 To quickly create boilerplate(s) for solution source, test and input files, type `sbt "run gen <year> <day>"` or (in sbt console) `sbt run gen <year> <day>`. Same format for `year` and `day` applies. Instead of `gen`, we could also use `g` or `generator`. 
 
-This will not overwrite anything and will only generate if the the day was not already solved (i.e. none of source, input or test files exist).
+This will not overwrite anything and will only generate if the day was not already solved (i.e. none of source, input or test files exist).
 
 ### Updating solution status
 

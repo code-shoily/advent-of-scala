@@ -26,6 +26,6 @@ Please note, there are two parts of the `README.md` content - static and dynamic
 
 ### Progress:
 
-#### :trophy: %s/400
+#### :trophy: %s/450
 
 %s
