@@ -16,7 +16,7 @@ As with all sbt projects, `sbt test` or `test` (in console) runs all the tests.
 
 To quickly create boilerplate(s) for solution source, test and input files, type `sbt "run gen <year> <day>"` or (in sbt console) `sbt run gen <year> <day>`. Same format for `year` and `day` applies. Instead of `gen`, we could also use `g` or `generator`. 
 
-This will not overwrite anything and will only generate if the day was not already solved (i.e. none of source, input or test files exist).
+This will not overwrite anything and will only generate if the the day was not already solved (i.e. none of source, input or test files exist).
 
 ### Updating solution status
 
@@ -26,12 +26,12 @@ Please note, there are two parts of the `README.md` content - static and dynamic
 
 ### Progress:
 
-#### :trophy: 92/400
+#### :trophy: 94/450
 
 |:calendar:|[2015](/src/main/scala/advent_of_scala/year_2015)|[2016](/src/main/scala/advent_of_scala/year_2016)|[2017](/src/main/scala/advent_of_scala/year_2017)|[2018](/src/main/scala/advent_of_scala/year_2018)|[2019](/src/main/scala/advent_of_scala/year_2019)|[2020](/src/main/scala/advent_of_scala/year_2020)|[2021](/src/main/scala/advent_of_scala/year_2021)|[2022](/src/main/scala/advent_of_scala/year_2022)|[2023](/src/main/scala/advent_of_scala/year_2023)|
 |:-:| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 |1|:1st_place_medal:|:1st_place_medal:|:1st_place_medal:|:1st_place_medal:|:1st_place_medal:|:1st_place_medal:|:1st_place_medal:|:1st_place_medal:|:1st_place_medal:|
-|2|:1st_place_medal:|:1st_place_medal:|:1st_place_medal:|||:1st_place_medal:|:1st_place_medal:|:1st_place_medal:||
+|2|:1st_place_medal:|:1st_place_medal:|:1st_place_medal:|:1st_place_medal:||:1st_place_medal:|:1st_place_medal:|:1st_place_medal:||
 |3|:1st_place_medal:|:1st_place_medal:|||||:1st_place_medal:|:1st_place_medal:||
 |4|:1st_place_medal:|||||:1st_place_medal:|:1st_place_medal:|:1st_place_medal:||
 |5|:1st_place_medal:||||||:1st_place_medal:|:1st_place_medal:||

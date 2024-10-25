@@ -2,7 +2,7 @@
 .DS_Store
 
 # Personal
-scratchpad.worksheet.sc
+ideapad.sc
 .envrc
 
 # sbt specific
