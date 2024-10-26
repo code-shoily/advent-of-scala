@@ -13,19 +13,6 @@ package advent_of_scala.year_2020
 import advent_of_scala.base.{Solution, impossibleStateError}
 
 class Day01(rawInput: List[String]):
-    def solvePart1(input: Seq[Int]): Int = twoSumMultiplied(input, 2020) match
-        case Some(value) => value
-        case None        => impossibleStateError
-
-    def solvePart2(input: Seq[Int]): Int =
-        input.zipWithIndex
-            .flatMap(entry =>
-                twoSumMultiplied(input.drop(entry(1) + 1), 2020 - entry(0)) match
-                    case None       => None
-                    case Some(mult) => Some(entry(0) * mult)
-            )
-            .head
-
     def solve: Solution =
         val input = parsedInput
         val part1 = solvePart1(input)
@@ -33,7 +20,9 @@ class Day01(rawInput: List[String]):
         (part1, part2)
     end solve
 
-    private def parsedInput: Seq[Int] = rawInput.map(_.toInt).sorted
+    def solvePart1(input: Seq[Int]): Int = twoSumMultiplied(input, 2020) match
+        case Some(value) => value
+        case None        => impossibleStateError
 
     private def twoSumMultiplied(input: Seq[Int], target: Int): Option[Int] =
         var result = 0
@@ -48,6 +37,17 @@ class Day01(rawInput: List[String]):
 
         None
     end twoSumMultiplied
+
+    def solvePart2(input: Seq[Int]): Int =
+        input.zipWithIndex
+            .flatMap(entry =>
+                twoSumMultiplied(input.drop(entry(1) + 1), 2020 - entry(0)) match
+                    case None       => None
+                    case Some(mult) => Some(entry(0) * mult)
+            )
+            .head
+
+    private def parsedInput: Seq[Int] = rawInput.map(_.toInt).sorted
 end Day01
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.

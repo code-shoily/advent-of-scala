@@ -14,15 +14,16 @@ import advent_of_scala.base.{Solution, impossibleStateError}
 import advent_of_scala.year_2017.Day02.*
 
 class Day02(rawInput: List[String]):
-    def solvePart1(input: InputType): Int = input map { row => row.last - row.head } reduce (_ + _)
-    def solvePart2(input: InputType): Int = input map dividingPair reduce (_ + _)
-
     def solve: Solution =
         val input = parsedInput
         val part1 = solvePart1(input)
         val part2 = solvePart2(input)
         (part1, part2)
     end solve
+
+    def solvePart1(input: InputType): Int = input map { row => row.last - row.head } reduce (_ + _)
+
+    def solvePart2(input: InputType): Int = input map dividingPair reduce (_ + _)
 
     private def parsedInput: InputType = rawInput map {
         _.split("\n") flatMap { _.split("\t") map (_.toInt) } sortBy identity

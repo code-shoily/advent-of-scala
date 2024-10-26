@@ -14,17 +14,19 @@ import advent_of_scala.base.Solution
 import advent_of_scala.year_2022.Day03.*
 
 class Day03(rawInput: List[String]):
-    def solvePart1(input: InputType): Int = solver(input.map(byHalf))
-    def solvePart2(input: InputType): Int = solver(input.grouped(3).toList)
-    def solver(input: List[List[Array[Char]]]): Int =
-        input.map(getCommonItem(_*)).map(getPriority).sum
-
     def solve: Solution =
         val input = parsedInput
         val part1 = solvePart1(input)
         val part2 = solvePart2(input)
         (part1, part2)
     end solve
+
+    def solvePart1(input: InputType): Int = solver(input.map(byHalf))
+
+    def solver(input: List[List[Array[Char]]]): Int =
+        input.map(getCommonItem(_*)).map(getPriority).sum
+
+    def solvePart2(input: InputType): Int = solver(input.grouped(3).toList)
 
     private def parsedInput: InputType = rawInput.map(_.toCharArray())
 end Day03

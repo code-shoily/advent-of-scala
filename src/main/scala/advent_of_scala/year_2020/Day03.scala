@@ -19,14 +19,15 @@ import scala.annotation.targetName
 import scala.collection.immutable.HashSet
 
 class Day03(rawInput: List[String]):
-    def solvePart1(input: InputType): Int = visits(input).housesVisited
-    def solvePart2(input: InputType): Int = splitBetweenSantas(input) match
-        case (santa, robot) => (visits(santa) & visits(robot)).size
-
     def solve: Solution =
         val input = parsedInput
         (solvePart1(input), solvePart2(input))
     end solve
+
+    def solvePart1(input: InputType): Int = visits(input).housesVisited
+
+    def solvePart2(input: InputType): Int = splitBetweenSantas(input) match
+        case (santa, robot) => (visits(santa) & visits(robot)).size
 
     private def parsedInput: InputType = rawInput.head.toList.map(Direction.apply)
 end Day03

@@ -42,15 +42,6 @@ class SolutionBoilerplate(year: Int, day: Int, fetchFromRemote: Boolean = false)
     def createSourceStub: Option[(Path, String)] =
         if !Files.exists(sourcePath) then Some((sourcePath, sourceContent)) else None
 
-    def createTestStub: Option[(Path, String)] =
-        if !Files.exists(testPath) then Some((testPath, testContent)) else None
-
-    def createInputStub: Option[(Path, String)] =
-        val inputContent =
-            if fetchFromRemote then RemoteDataFetcher.fetchInputData(year, day) else ""
-        if !Files.exists(inputPath) then Some((inputPath, inputContent)) else None
-    end createInputStub
-
     private def sourceContent: String =
         f"""
         |/** $year/$day: <TITLE>
@@ -96,6 +87,12 @@ class SolutionBoilerplate(year: Int, day: Int, fetchFromRemote: Boolean = false)
         |// */
         |""".stripMargin
 
+    def sourcePath: Path =
+        Paths.get(f"src/main/scala/advent_of_scala/year_$year/Day$day%02d.scala")
+
+    def createTestStub: Option[(Path, String)] =
+        if !Files.exists(testPath) then Some((testPath, testContent)) else None
+
     private def testContent: String =
         f"""
         |package advent_of_scala.year_$year
@@ -119,7 +116,12 @@ class SolutionBoilerplate(year: Int, day: Int, fetchFromRemote: Boolean = false)
 
     def testPath: Path =
         Paths.get(f"src/test/scala/advent_of_scala/year_$year/Day$day%02dSuite.scala")
-    def sourcePath: Path =
-        Paths.get(f"src/main/scala/advent_of_scala/year_$year/Day$day%02d.scala")
+
+    def createInputStub: Option[(Path, String)] =
+        val inputContent =
+            if fetchFromRemote then RemoteDataFetcher.fetchInputData(year, day) else ""
+        if !Files.exists(inputPath) then Some((inputPath, inputContent)) else None
+    end createInputStub
+
     def inputPath: Path = Paths.get(f"src/main/resources/inputs/$year/$day%02d.txt")
 end SolutionBoilerplate

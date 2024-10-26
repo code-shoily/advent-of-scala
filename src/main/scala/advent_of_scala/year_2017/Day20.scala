@@ -19,6 +19,13 @@ import scala.util.chaining.*
 class Day20(rawInput: List[String]):
     type InputType = Seq[Particle]
 
+    def solve: Solution =
+        val input = parsedInput
+        val part1 = solvePart1(input)
+        val part2 = solvePart2(input)
+        (part1, part2)
+    end solve
+
     def solvePart1(input: InputType): Int =
         Iterator.iterate(input)(_.map(_.step))
             .drop(500)
@@ -36,13 +43,6 @@ class Day20(rawInput: List[String]):
               .flatten
               .toSeq
         ).drop(500).next().size
-
-    def solve: Solution =
-        val input = parsedInput
-        val part1 = solvePart1(input)
-        val part2 = solvePart2(input)
-        (part1, part2)
-    end solve
 
     private def parsedInput: InputType = rawInput map {
         _.split("[^-\\d]+").tail map (_.toInt) pipe {

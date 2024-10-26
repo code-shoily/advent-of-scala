@@ -14,15 +14,16 @@ import advent_of_scala.base.Solution
 import advent_of_scala.year_2022.Day04.*
 
 class Day04(rawInput: List[String]):
-    def solvePart1(input: InputType): Int = input.count(fullyContains)
-    def solvePart2(input: InputType): Int = input.count(overlaps)
-
     def solve: Solution =
         val input = parsedInput
         val part1 = solvePart1(input)
         val part2 = solvePart2(input)
         (part1, part2)
     end solve
+
+    def solvePart1(input: InputType): Int = input.count(fullyContains)
+
+    def solvePart2(input: InputType): Int = input.count(overlaps)
 
     private def parsedInput: InputType =
         def toRange(rr: String): (Int, Int) =

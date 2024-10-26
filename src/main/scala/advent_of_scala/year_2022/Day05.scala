@@ -64,6 +64,14 @@ object Day05:
     private type Containers = Map[Char, List[Char]]
     private type Moves = Seq[Move]
 
+    private def getTopContainers(shouldReverse: Boolean)(using
+        containers: Containers,
+        moves: Moves
+    ) =
+        moves.foldLeft(containers) { (acc, move) =>
+            move.moveContainers(shouldReverse)(acc)
+        }.toList.sortBy(_._1).map(_._2.head).mkString
+
     case class Move(quantity: Int, source: Char, destination: Char):
         def moveContainers(shouldReverse: Boolean)(containers: Containers): Map[Char, List[Char]] =
             val (containersToMove, remainingContainers) = containers(source).splitAt(quantity)
@@ -76,14 +84,6 @@ object Day05:
             containers + (destination -> destinationContainers) + (source -> remainingContainers)
         end moveContainers
     end Move
-
-    private def getTopContainers(shouldReverse: Boolean)(using
-        containers: Containers,
-        moves: Moves
-    ) =
-        moves.foldLeft(containers) { (acc, move) =>
-            move.moveContainers(shouldReverse)(acc)
-        }.toList.sortBy(_._1).map(_._2.head).mkString
 end Day05
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.

@@ -15,15 +15,16 @@ import advent_of_scala.base.Solution
 import scala.collection.mutable
 
 class Day01(rawInput: List[String]):
-    def solvePart1(input: mutable.PriorityQueue[Int]): Int = input.head
-    def solvePart2(input: mutable.PriorityQueue[Int]): Int = input.take(3).sum
-
     def solve: Solution =
         val input = parsedInput
         val part1 = solvePart1(input)
         val part2 = solvePart2(input)
         (part1, part2)
     end solve
+
+    def solvePart1(input: mutable.PriorityQueue[Int]): Int = input.head
+
+    def solvePart2(input: mutable.PriorityQueue[Int]): Int = input.take(3).sum
 
     private def parsedInput: mutable.PriorityQueue[Int] =
         val pq = mutable.PriorityQueue[Int]()

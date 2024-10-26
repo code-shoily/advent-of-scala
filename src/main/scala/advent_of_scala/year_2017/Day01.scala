@@ -15,6 +15,13 @@ import advent_of_scala.base.Solution
 import scala.annotation.tailrec
 
 class Day01(rawInput: List[String]):
+    def solve: Solution =
+        val input = parsedInput
+        val part1 = solvePart1(input)
+        val part2 = solvePart2(input)
+        (part1, part2)
+    end solve
+
     def solvePart1(input: Seq[Int]): Int =
         val head = input.head
 
@@ -42,13 +49,6 @@ class Day01(rawInput: List[String]):
 
         recurse(firstHalf, secondHalf)
     end solvePart2
-
-    def solve: Solution =
-        val input = parsedInput
-        val part1 = solvePart1(input)
-        val part2 = solvePart2(input)
-        (part1, part2)
-    end solve
 
     def parsedInput: Seq[Int] =
         rawInput.head.toVector.map(_.toInt - '0'.toInt).toList

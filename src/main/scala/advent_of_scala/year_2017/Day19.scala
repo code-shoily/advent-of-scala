@@ -18,9 +18,6 @@ class Day19(rawInput: List[String]):
     def solve: Solution = Day19.traverse(rawInput)
 
 object Day19:
-    case class Point(x: Int, y: Int):
-        def delta(other: Point): Point = Point(x + other.x, y + other.y)
-
     val (left, right, up, down) = (Point(-1, 0), Point(1, 0), Point(0, -1), Point(0, 1))
     val horizontal: Seq[Point] = Seq(left, right)
     private val vertical: Seq[Point] = Seq(up, down)
@@ -51,6 +48,9 @@ object Day19:
 
         doTraverse(Point(input.head.indexOf('|'), -1), down, Seq(), 0)
     end traverse
+
+    case class Point(x: Int, y: Int):
+        def delta(other: Point): Point = Point(x + other.x, y + other.y)
 end Day19
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2017_19(): Unit =

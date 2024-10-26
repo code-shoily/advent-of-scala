@@ -31,12 +31,6 @@ end Day24
 object Day24:
     type InputType = Set[Component]
 
-    case class Component(a: Int, b: Int, strength: Int):
-        def matches(n: Int): Boolean = n == a || n == b
-        def passthrough: Boolean = a == b
-        def opposite(n: Int): Int = if n == a then b else a
-    end Component
-
     private def build(ordering: Ordering[(Int, Int)])(input: InputType) =
         def doBuild(components: Set[Component], current: Int, depth: Int, total: Int): (Int, Int) =
             val candidates = components.filter(_.matches(current))
@@ -56,6 +50,12 @@ object Day24:
 
         doBuild(input, 0, 0, 0)._2
     end build
+
+    case class Component(a: Int, b: Int, strength: Int):
+        def matches(n: Int): Boolean = n == a || n == b
+        def passthrough: Boolean = a == b
+        def opposite(n: Int): Int = if n == a then b else a
+    end Component
 end Day24
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.

@@ -17,6 +17,13 @@ import advent_of_scala.year_2017.Day22.Node.*
 import scala.annotation.targetName
 
 class Day22(rawInput: List[String]):
+    def solve: Solution =
+        val input = parsedInput
+        val part1 = solvePart1(input)
+        val part2 = solvePart2(input)
+        (part1, part2)
+    end solve
+
     def solvePart1(input: State): Int =
         def step(state: State): State = state.grid(state.location) match
             case Clean    => state.next(Infected, state.direction.ccw, 1)
@@ -35,13 +42,6 @@ class Day22(rawInput: List[String]):
 
         Iterator.iterate(input)(step).drop(10_000_000).next().infected
     end solvePart2
-
-    def solve: Solution =
-        val input = parsedInput
-        val part1 = solvePart1(input)
-        val part2 = solvePart2(input)
-        (part1, part2)
-    end solve
 
     private def parsedInput: State =
         val points =
