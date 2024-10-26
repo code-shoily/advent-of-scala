@@ -11,7 +11,7 @@
 package advent_of_scala.year_2022
 
 import advent_of_scala.base.Solution
-import Day04.*
+import advent_of_scala.year_2022.Day04.*
 
 class Day04(rawInput: List[String]):
     def solvePart1(input: InputType): Int = input.count(fullyContains)

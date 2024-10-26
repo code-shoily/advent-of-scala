@@ -10,9 +10,9 @@
   */
 package advent_of_scala.year_2022
 
-import scala.collection.mutable
-
 import advent_of_scala.base.Solution
+
+import scala.collection.mutable
 
 class Day01(rawInput: List[String]):
     def solvePart1(input: mutable.PriorityQueue[Int]): Int = input.head

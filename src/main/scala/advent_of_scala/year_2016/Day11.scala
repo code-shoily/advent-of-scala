@@ -11,7 +11,7 @@
 package advent_of_scala.year_2016
 
 import advent_of_scala.base.Solution
-import Day11.*
+import advent_of_scala.year_2016.Day11.*
 
 import scala.annotation.targetName
 

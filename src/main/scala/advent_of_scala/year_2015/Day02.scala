@@ -11,7 +11,7 @@
 package advent_of_scala.year_2015
 
 import advent_of_scala.base.Solution
-import Day02.*
+import advent_of_scala.year_2015.Day02.*
 
 class Day02(rawInput: List[String]):
     def solvePart1(input: InputType): Int = input.map(_.wrappingPaperNeeded).sum

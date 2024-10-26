@@ -11,7 +11,7 @@
 package advent_of_scala.year_2016
 
 import advent_of_scala.base.Solution
-import Day24.*
+import advent_of_scala.year_2016.Day24.*
 
 class Day24(rawInput: List[String]):
     def solvePart1(input: InputType): Int =

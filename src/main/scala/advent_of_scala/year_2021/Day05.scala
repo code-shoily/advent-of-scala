@@ -11,7 +11,7 @@
 package advent_of_scala.year_2021
 
 import advent_of_scala.base.{Solution, impossibleStateError}
-import Day05.*
+import advent_of_scala.year_2021.Day05.*
 
 class Day05(rawInput: List[String]):
     private def solveForLines(input: InputType, f: Line => Boolean) =

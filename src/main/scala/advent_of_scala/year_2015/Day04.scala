@@ -10,11 +10,11 @@
   */
 package advent_of_scala.year_2015
 
+import advent_of_scala.base.Solution
+import advent_of_scala.year_2015.Day04.*
+
 import java.nio.charset.StandardCharsets
 import java.security.MessageDigest
-
-import advent_of_scala.base.Solution
-import Day04.*
 
 class Day04(rawInput: List[String]):
     def solvePart1(input: String): Int = mine(input, "00000").get

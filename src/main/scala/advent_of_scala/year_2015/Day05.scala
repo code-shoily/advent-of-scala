@@ -10,10 +10,10 @@
   */
 package advent_of_scala.year_2015
 
-import scala.annotation.tailrec
-
 import advent_of_scala.base.Solution
-import Day05.*
+import advent_of_scala.year_2015.Day05.*
+
+import scala.annotation.tailrec
 
 class Day05(rawInput: List[String]):
     def solvePart1(input: InputType): Int =

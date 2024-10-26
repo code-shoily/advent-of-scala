@@ -1,8 +1,8 @@
 package advent_of_scala.utils
 
-import java.nio.file.{Files, Path, Paths}
-
 import sttp.client4.quick.*
+
+import java.nio.file.{Files, Path, Paths}
 
 object RemoteDataFetcher:
     def fetchInputData(year: Int, day: Int): String =

@@ -10,11 +10,11 @@
   */
 package advent_of_scala.year_2016
 
-import scala.util.chaining.*
-
 import advent_of_scala.base.Solution
-import Day22.*
-import Point.*
+import advent_of_scala.year_2016.Day22.*
+import advent_of_scala.year_2016.Day22.Point.*
+
+import scala.util.chaining.*
 
 class Day22(rawInput: List[String]):
     def solvePart1(input: InputType): Int =

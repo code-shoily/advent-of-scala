@@ -10,10 +10,10 @@
   */
 package advent_of_scala.year_2023
 
-import scala.util.chaining.*
 import advent_of_scala.base.Solution
-import Day01.*
+import advent_of_scala.year_2023.Day01.*
 
+import scala.util.chaining.*
 import scala.util.matching.Regex
 
 class Day01(rawInput: List[String]):

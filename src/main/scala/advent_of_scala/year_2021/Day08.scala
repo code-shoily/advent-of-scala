@@ -11,10 +11,9 @@
 package advent_of_scala.year_2021
 
 import advent_of_scala.base.Solution
-
-import Day08.*
-import Digit.*
-import Segment.*
+import advent_of_scala.year_2021.Day08.*
+import advent_of_scala.year_2021.Day08.Digit.*
+import advent_of_scala.year_2021.Day08.Segment.*
 
 class Day08(rawInput: List[String]):
     def solvePart1(input: List[String]): Int = {

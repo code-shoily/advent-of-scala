@@ -10,10 +10,10 @@
   */
 package advent_of_scala.year_2021
 
-import scala.util.chaining.*
-
 import advent_of_scala.base.Solution
-import Day12.*
+import advent_of_scala.year_2021.Day12.*
+
+import scala.util.chaining.*
 
 class Day12(rawInput: List[String]):
     def solve: Solution =

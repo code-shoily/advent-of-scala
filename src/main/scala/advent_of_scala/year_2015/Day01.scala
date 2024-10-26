@@ -11,7 +11,7 @@
 package advent_of_scala.year_2015
 
 import advent_of_scala.base.Solution
-import Day01.*
+import advent_of_scala.year_2015.Day01.*
 
 class Day01(rawInput: List[String]):
     def solvePart1(input: InputType): Int = input.sum

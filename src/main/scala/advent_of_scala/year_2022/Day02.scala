@@ -11,7 +11,7 @@
 package advent_of_scala.year_2022
 
 import advent_of_scala.base.Solution
-import Day02.*
+import advent_of_scala.year_2022.Day02.*
 
 class Day02(rawInput: List[String]):
     def solvePart1(input: InputType): Int = input.foldLeft(0)((acc, x) => acc + computeScore(x))

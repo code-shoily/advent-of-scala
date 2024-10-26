@@ -11,8 +11,8 @@
 package advent_of_scala.year_2017
 
 import advent_of_scala.base.{Solution, impossibleStateError}
-import Day22.*
-import Node.*
+import advent_of_scala.year_2017.Day22.*
+import advent_of_scala.year_2017.Day22.Node.*
 
 import scala.annotation.targetName
 

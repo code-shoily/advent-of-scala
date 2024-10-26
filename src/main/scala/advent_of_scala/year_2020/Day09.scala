@@ -10,11 +10,11 @@
   */
 package advent_of_scala.year_2020
 
+import advent_of_scala.base.Solution
+import advent_of_scala.year_2020.Day09.*
+
 import scala.annotation.tailrec
 import scala.util.chaining.*
-
-import advent_of_scala.base.Solution
-import Day09.*
 
 class Day09(rawInput: List[String]):
     def solvePart1(input: InputType): Long =

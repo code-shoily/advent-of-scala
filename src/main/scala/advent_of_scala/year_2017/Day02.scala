@@ -11,7 +11,7 @@
 package advent_of_scala.year_2017
 
 import advent_of_scala.base.{Solution, impossibleStateError}
-import Day02.*
+import advent_of_scala.year_2017.Day02.*
 
 class Day02(rawInput: List[String]):
     def solvePart1(input: InputType): Int = input map { row => row.last - row.head } reduce (_ + _)

@@ -1,10 +1,10 @@
 package advent_of_scala.utils
 
-import scala.io.StdIn.readInt
-import scala.io.Source
-import java.io.FileNotFoundException
-
 import advent_of_scala.base.Solution
+
+import java.io.FileNotFoundException
+import scala.io.Source
+import scala.io.StdIn.readInt
 
 object IO:
     def consolePrompt: (Int, Int) =

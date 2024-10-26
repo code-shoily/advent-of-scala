@@ -10,11 +10,11 @@
   */
 package advent_of_scala.year_2017
 
-import scala.util.chaining.*
 import advent_of_scala.base.Solution
-import Day20.*
+import advent_of_scala.year_2017.Day20.*
 
 import scala.annotation.targetName
+import scala.util.chaining.*
 
 class Day20(rawInput: List[String]):
     type InputType = Seq[Particle]

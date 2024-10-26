@@ -11,7 +11,7 @@
 package advent_of_scala.year_2021
 
 import advent_of_scala.base.{Solution, impossibleStateError}
-import Day13.*
+import advent_of_scala.year_2021.Day13.*
 
 class Day13(rawInput: List[String]):
     def solvePart1(dots: Set[Dot], folds: List[Fold]): Int =

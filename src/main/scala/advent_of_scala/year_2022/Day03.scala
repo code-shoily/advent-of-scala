@@ -11,7 +11,7 @@
 package advent_of_scala.year_2022
 
 import advent_of_scala.base.Solution
-import Day03.*
+import advent_of_scala.year_2022.Day03.*
 
 class Day03(rawInput: List[String]):
     def solvePart1(input: InputType): Int = solver(input.map(byHalf))

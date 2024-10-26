@@ -11,7 +11,7 @@
 package advent_of_scala.year_2020
 
 import advent_of_scala.base.{Solution, impossibleStateError}
-import Day02.*
+import advent_of_scala.year_2020.Day02.*
 
 class Day02(rawInput: List[String]):
     def solve: Solution =

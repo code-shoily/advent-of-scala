@@ -11,8 +11,8 @@
 package advent_of_scala.year_2020
 
 import advent_of_scala.base.Solution
-import Day03.*
 import advent_of_scala.year_2020
+import advent_of_scala.year_2020.Day03.*
 import advent_of_scala.year_2020.Direction.*
 
 import scala.annotation.targetName

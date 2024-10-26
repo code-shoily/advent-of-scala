@@ -11,7 +11,7 @@
 package advent_of_scala.year_2021
 
 import advent_of_scala.base.Solution
-import Day03.*
+import advent_of_scala.year_2021.Day03.*
 
 import scala.annotation.tailrec
 

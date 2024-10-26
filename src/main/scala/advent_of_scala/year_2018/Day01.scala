@@ -11,6 +11,7 @@
 package advent_of_scala.year_2018
 
 import advent_of_scala.base.Solution
+
 import scala.annotation.tailrec
 
 class Day01(rawInput: List[String]):

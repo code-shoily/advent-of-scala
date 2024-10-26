@@ -10,10 +10,10 @@
   */
 package advent_of_scala.year_2016
 
-import scala.util.chaining.*
-
 import advent_of_scala.base.Solution
-import Day15.*
+import advent_of_scala.year_2016.Day15.*
+
+import scala.util.chaining.*
 
 class Day15(rawInput: List[String]):
     def solvePart1(input: InputType): Int = input pipe firstTime

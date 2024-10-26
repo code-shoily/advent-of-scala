@@ -10,12 +10,12 @@
   */
 package advent_of_scala.year_2016
 
-import java.security.MessageDigest
-import scala.util.chaining.*
 import advent_of_scala.base.Solution
-import Day17.*
+import advent_of_scala.year_2016.Day17.*
 
+import java.security.MessageDigest
 import scala.annotation.targetName
+import scala.util.chaining.*
 
 class Day17(rawInput: List[String]):
     def solve: Solution = rawInput.head pipe dfs

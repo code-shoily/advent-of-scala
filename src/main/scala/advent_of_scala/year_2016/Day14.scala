@@ -11,7 +11,7 @@
 package advent_of_scala.year_2016
 
 import advent_of_scala.base.Solution
-import Day14.*
+import advent_of_scala.year_2016.Day14.*
 
 import java.security.MessageDigest
 import scala.util.matching.UnanchoredRegex

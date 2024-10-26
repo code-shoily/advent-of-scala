@@ -11,8 +11,8 @@
 package advent_of_scala.year_2017
 
 import advent_of_scala.base.Solution
-import Day23.*
-import State.*
+import advent_of_scala.year_2017.Day23.*
+import advent_of_scala.year_2017.Day23.State.*
 
 class Day23(rawInput: List[String]):
     def solve: Solution =
