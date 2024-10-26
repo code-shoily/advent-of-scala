@@ -10,6 +10,7 @@
   */
 package advent_of_scala.year_2016
 
+import advent_of_scala.*
 import advent_of_scala.base.Solution
 import advent_of_scala.year_2016.Day14.*
 
@@ -61,7 +62,7 @@ object Day14:
     end generatePad
 end Day14
 
-//*--------- Block to test this file on IDEs, comment this line with `//` to enable.
+/*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2016_14(): Unit =
     import advent_of_scala.base.impossibleStateError
     import advent_of_scala.utils.IO.{printSolution, readLines}

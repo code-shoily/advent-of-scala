@@ -74,7 +74,6 @@ class SolutionBoilerplateSuite extends munit.FunSuite:
             |package advent_of_scala.year_2014
             |
             |import advent_of_scala.utils.IO.readLines
-            |import advent_of_scala.year_2014.Day01
             |
             |class Day01Suite extends munit.FunSuite:
             |    val year = 2014

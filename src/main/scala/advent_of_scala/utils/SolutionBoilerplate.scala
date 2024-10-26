@@ -98,7 +98,6 @@ class SolutionBoilerplate(year: Int, day: Int, fetchFromRemote: Boolean = false)
         |package advent_of_scala.year_$year
         |
         |import advent_of_scala.utils.IO.readLines
-        |import advent_of_scala.year_$year.Day$day%02d
         |
         |class Day$day%02dSuite extends munit.FunSuite:
         |    val year = $year
