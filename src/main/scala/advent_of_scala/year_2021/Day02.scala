@@ -23,10 +23,10 @@ class Day02(rawInput: List[String]):
 
     def solvePart1(input: InputType): Int = solver(input, navigate)
 
-    def solvePart2(input: InputType): Int = solver(input, navigateWithAim)
-
     def solver(input: InputType, navigationAction: (Position, Command) => Position): Int =
         input.foldLeft(Position(0, 0))(navigationAction).result
+
+    def solvePart2(input: InputType): Int = solver(input, navigateWithAim)
 
     private def parsedInput: InputType = rawInput.map(createCommand)
 end Day02

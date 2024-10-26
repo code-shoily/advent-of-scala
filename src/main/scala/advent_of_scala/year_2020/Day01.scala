@@ -24,15 +24,6 @@ class Day01(rawInput: List[String]):
         case Some(value) => value
         case None        => impossibleStateError
 
-    def solvePart2(input: Seq[Int]): Int =
-        input.zipWithIndex
-            .flatMap(entry =>
-                twoSumMultiplied(input.drop(entry(1) + 1), 2020 - entry(0)) match
-                    case None       => None
-                    case Some(mult) => Some(entry(0) * mult)
-            )
-            .head
-
     private def twoSumMultiplied(input: Seq[Int], target: Int): Option[Int] =
         var result = 0
         var left = 0
@@ -46,6 +37,15 @@ class Day01(rawInput: List[String]):
 
         None
     end twoSumMultiplied
+
+    def solvePart2(input: Seq[Int]): Int =
+        input.zipWithIndex
+            .flatMap(entry =>
+                twoSumMultiplied(input.drop(entry(1) + 1), 2020 - entry(0)) match
+                    case None       => None
+                    case Some(mult) => Some(entry(0) * mult)
+            )
+            .head
 
     private def parsedInput: Seq[Int] = rawInput.map(_.toInt).sorted
 end Day01
