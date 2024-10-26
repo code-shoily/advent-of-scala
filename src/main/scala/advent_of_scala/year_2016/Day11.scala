@@ -27,6 +27,7 @@ class Day11(rawInput: List[String]):
         val State(elevator, floors) = input
         val expanded = State(elevator, floors.updated(0, floors.head + Floor(2, 2)))
         bfs(expanded)
+    end solvePart2
 
     private def parsedInput: InputType =
         val microchip = "microchip".r

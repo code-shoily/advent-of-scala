@@ -64,7 +64,7 @@ end Day14
 //*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2016_14(): Unit =
     import advent_of_scala.base.impossibleStateError
-    import advent_of_scala.utils.IO.{readLines, printSolution}
+    import advent_of_scala.utils.IO.{printSolution, readLines}
     readLines(2016, 14) match
         case Some(raw_input) =>
             printSolution(Day14(raw_input).solve)

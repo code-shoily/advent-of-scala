@@ -17,15 +17,16 @@ import java.nio.charset.StandardCharsets
 import java.security.MessageDigest
 
 class Day04(rawInput: List[String]):
-    def solvePart1(input: String): Int = mine(input, "00000").get
-    def solvePart2(input: String): Int = mine(input, "000000").get
-
     def solve: Solution =
         val input = parsedInput
         val part1 = solvePart1(input)
         val part2 = solvePart2(input)
         (part1, part2)
     end solve
+
+    def solvePart1(input: String): Int = mine(input, "00000").get
+
+    def solvePart2(input: String): Int = mine(input, "000000").get
 
     private def parsedInput: String = rawInput.head
 end Day04

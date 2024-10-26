@@ -16,6 +16,13 @@ import advent_of_scala.year_2015.Day05.*
 import scala.annotation.tailrec
 
 class Day05(rawInput: List[String]):
+    def solve: Solution =
+        val input = parsedInput
+        val part1 = solvePart1(input)
+        val part2 = solvePart2(input)
+        (part1, part2)
+    end solve
+
     def solvePart1(input: InputType): Int =
         def isNice(chars: List[Char]) = noDQ(chars) && threeVowels(chars) && dupes(chars)
         input count isNice
@@ -25,13 +32,6 @@ class Day05(rawInput: List[String]):
             repeatingPairs(chars, Set[(Char, Char)](), None) && sandwitched(chars)
         input count isNice
     end solvePart2
-
-    def solve: Solution =
-        val input = parsedInput
-        val part1 = solvePart1(input)
-        val part2 = solvePart2(input)
-        (part1, part2)
-    end solve
 
     private def parsedInput: InputType = rawInput.map(_.toList)
 end Day05

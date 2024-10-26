@@ -13,8 +13,6 @@ package advent_of_scala.year_2015
 import advent_of_scala.base.Solution
 import advent_of_scala.year_2015.Day02.*
 
-import java.awt.Dimension
-
 class Day02(rawInput: List[String]):
     def solve: Solution =
         val input = parsedInput

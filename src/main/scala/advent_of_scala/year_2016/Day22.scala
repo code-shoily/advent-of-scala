@@ -12,7 +12,6 @@ package advent_of_scala.year_2016
 
 import advent_of_scala.base.Solution
 import advent_of_scala.year_2016.Day22.*
-import advent_of_scala.year_2016.Day22.Point.*
 
 import scala.util.chaining.*
 
