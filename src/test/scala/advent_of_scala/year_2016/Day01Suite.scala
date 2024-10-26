@@ -5,7 +5,7 @@ import advent_of_scala.utils.IO.readLines
 class Day01Suite extends munit.FunSuite:
     val year = 2016
     val day = 1
-    val result = (253, 126)
+    val result: (Int, Int) = (253, 126)
 
     test("Day 1 solve yields correct result") {
         val rawInput = readLines(year, day).get

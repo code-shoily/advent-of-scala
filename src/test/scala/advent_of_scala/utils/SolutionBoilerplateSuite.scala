@@ -1,8 +1,6 @@
-package advent_of_scala.tests.utils
+package advent_of_scala.utils
 
 import java.nio.file.Paths
-
-import advent_of_scala.utils.SolutionBoilerplate
 
 class SolutionBoilerplateSuite extends munit.FunSuite:
     val boilerplateForSolved = SolutionBoilerplate(2015, 1)
