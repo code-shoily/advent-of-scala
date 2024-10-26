@@ -15,6 +15,13 @@ import advent_of_scala.base.Solution
 import scala.annotation.tailrec
 
 class Day01(rawInput: List[String]):
+    def solve: Solution =
+        val input = parsedInput
+        val part1 = solvePart1(input)
+        val part2 = solvePart2(input)
+        (part1, part2)
+    end solve
+
     def solvePart1(input: Seq[Int]): Int =
         input.map(_ / 3 - 2).sum
 
@@ -27,13 +34,6 @@ class Day01(rawInput: List[String]):
 
         input.map(getFuel(_)).sum
     end solvePart2
-
-    def solve: Solution =
-        val input = parsedInput
-        val part1 = solvePart1(input)
-        val part2 = solvePart2(input)
-        (part1, part2)
-    end solve
 
     def parsedInput: Seq[Int] = rawInput.map(_.toInt)
 end Day01
