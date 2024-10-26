@@ -33,8 +33,6 @@ class Day01(rawInput: List[String]):
             )
             .head
 
-    private def parsedInput: Seq[Int] = rawInput.map(_.toInt).sorted
-
     private def twoSumMultiplied(input: Seq[Int], target: Int): Option[Int] =
         var result = 0
         var left = 0
@@ -48,6 +46,8 @@ class Day01(rawInput: List[String]):
 
         None
     end twoSumMultiplied
+
+    private def parsedInput: Seq[Int] = rawInput.map(_.toInt).sorted
 end Day01
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
