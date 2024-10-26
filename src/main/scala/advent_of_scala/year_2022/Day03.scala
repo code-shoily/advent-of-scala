@@ -21,12 +21,12 @@ class Day03(rawInput: List[String]):
         (part1, part2)
     end solve
 
-    def solvePart1(input: InputType): Int = solver(input.map(byHalf))
+    def solvePart1(input: InputType): Int = solve(input.map(byHalf))
 
-    def solver(input: List[List[Array[Char]]]): Int =
+    def solvePart2(input: InputType): Int = solve(input.grouped(3).toList)
+
+    private def solve(input: List[List[Array[Char]]]): Int =
         input.map(getCommonItem(_*)).map(getPriority).sum
-
-    def solvePart2(input: InputType): Int = solver(input.grouped(3).toList)
 
     private def parsedInput: InputType = rawInput.map(_.toCharArray())
 end Day03
