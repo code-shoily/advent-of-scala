@@ -33,13 +33,13 @@ end Day01
 object Day01:
     type InputType = List[String]
 
+    private val nums = List("one", "two", "three", "four", "five", "six", "seven", "eight", "nine")
+    private val regex: Regex = ("\\d" :: nums).mkString("(", "|", ")").r
+    private val regexRev = ("\\d" :: (nums map { _.reverse })).mkString("(", "|", ")").r
+
     private def numericDigits(line: String) = "\\d".r.findAllIn(line).toArray pipe { a =>
         tr(a.head) * 10 + tr(a.last)
     }
-
-    private val nums = List("one", "two", "three", "four", "five", "six", "seven", "eight", "nine")
-    private val regexRev = ("\\d" :: (nums map { _.reverse })).mkString("(", "|", ")").r
-    val regex: Regex = ("\\d" :: nums).mkString("(", "|", ")").r
 
     private def numericOrWordedDigits(line: String) =
         tr(regex.findFirstIn(line).get) * 10 + tr(

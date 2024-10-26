@@ -14,15 +14,16 @@ import advent_of_scala.base.Solution
 import advent_of_scala.year_2015.Day01.*
 
 class Day01(rawInput: List[String]):
-    def solvePart1(input: InputType): Int = input.sum
-    def solvePart2(input: InputType): Int = input.scan(0)(_ + _).indexOf(-1)
-
     def solve: Solution =
         val input = parsedInput
         val part1 = solvePart1(input)
         val part2 = solvePart2(input)
         (part1, part2)
     end solve
+
+    def solvePart1(input: InputType): Int = input.sum
+
+    def solvePart2(input: InputType): Int = input.scan(0)(_ + _).indexOf(-1)
 
     private def parsedInput: InputType =
         rawInput.head.map((step: Char) => if step == '(' then 1 else -1)

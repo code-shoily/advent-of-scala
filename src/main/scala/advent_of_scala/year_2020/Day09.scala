@@ -17,6 +17,12 @@ import scala.annotation.tailrec
 import scala.util.chaining.*
 
 class Day09(rawInput: List[String]):
+    def solve: Solution =
+        val input = parsedInput
+        val part1 = solvePart1(input)
+        (part1, solvePart2(input, part1))
+    end solve
+
     def solvePart1(input: InputType): Long =
         input.sliding(26).map(window =>
             if !isValid(
@@ -31,12 +37,6 @@ class Day09(rawInput: List[String]):
         subarraySum(input, target)
             .pipe({ case (from, to) => input.slice(from, to) })
             .pipe({ lst => lst.max + lst.min })
-
-    def solve: Solution =
-        val input = parsedInput
-        val part1 = solvePart1(input)
-        (part1, solvePart2(input, part1))
-    end solve
 
     private def parsedInput: InputType = rawInput map { _.toLong }
 end Day09

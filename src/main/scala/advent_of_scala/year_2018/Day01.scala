@@ -15,7 +15,15 @@ import advent_of_scala.base.Solution
 import scala.annotation.tailrec
 
 class Day01(rawInput: List[String]):
+    def solve: Solution =
+        val input = parsedInput
+        val part1 = solvePart1(input)
+        val part2 = solvePart2(input)
+        (part1, part2)
+    end solve
+
     def solvePart1(input: List[Int]): Int = input.sum
+
     def solvePart2(input: List[Int]): Int =
         val frequencyHistory = Set[Int]()
 
@@ -32,13 +40,6 @@ class Day01(rawInput: List[String]):
 
         recurse(input, frequencyHistory)
     end solvePart2
-
-    def solve: Solution =
-        val input = parsedInput
-        val part1 = solvePart1(input)
-        val part2 = solvePart2(input)
-        (part1, part2)
-    end solve
 
     def parsedInput: List[Int] = rawInput.map(_.toInt)
 end Day01

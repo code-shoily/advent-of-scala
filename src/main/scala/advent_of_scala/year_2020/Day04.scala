@@ -31,6 +31,26 @@ end Day04
 
 object Day04:
     type InputType = List[Option[Map[String, String]]]
+    private final val eyeColours = Set("amb", "blu", "brn", "gry", "grn", "hzl", "oth")
+    private final val requiredFields = Set("byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid")
+    private val numChars = ('0' to '9').toSet
+    private val hexChars = ('a' to 'f').toSet ++ numChars
+
+    private def isBetween(value: Int, a: Int, b: Int): Boolean = a <= value && value <= b
+
+    private def validPassportMap(line: String) =
+        val maybePassport =
+            (line.split("\n").mkString(" ").split(" ") map { pair =>
+                val Array(a, b) = pair.split(":")
+                a -> b
+            }).toMap
+
+        if requiredFields subsetOf maybePassport.keySet then
+            Some(maybePassport)
+        else
+            None
+        end if
+    end validPassportMap
 
     case class Passport(
         byr: Int,
@@ -52,7 +72,7 @@ object Day04:
             case _              => false
         private def isValidHcl =
             hcl.startsWith("#") && hcl.length == 7 && (hcl.substring(
-                1
+              1
             ).toCharArray.toSet subsetOf hexChars)
         private def isValidEcl = eyeColours contains ecl
         private def isValidPid = pid.length() == 9 && (pid.toCharArray.toSet subsetOf numChars)
@@ -79,25 +99,6 @@ object Day04:
             else
                 (0, "?")
     end Passport
-
-    private final val numChars = ('0' to '9').toSet
-    final val hexChars = ('a' to 'f').toSet ++ numChars
-    private final val eyeColours = Set("amb", "blu", "brn", "gry", "grn", "hzl", "oth")
-    private final val requiredFields = Set("byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid")
-    private def isBetween(value: Int, a: Int, b: Int): Boolean = a <= value && value <= b
-    private def validPassportMap(line: String) =
-        val maybePassport =
-            (line.split("\n").mkString(" ").split(" ") map { pair =>
-                val Array(a, b) = pair.split(":")
-                a -> b
-            }).toMap
-
-        if requiredFields subsetOf maybePassport.keySet then
-            Some(maybePassport)
-        else
-            None
-        end if
-    end validPassportMap
 end Day04
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.

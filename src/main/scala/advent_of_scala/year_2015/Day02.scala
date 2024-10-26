@@ -13,16 +13,19 @@ package advent_of_scala.year_2015
 import advent_of_scala.base.Solution
 import advent_of_scala.year_2015.Day02.*
 
-class Day02(rawInput: List[String]):
-    def solvePart1(input: InputType): Int = input.map(_.wrappingPaperNeeded).sum
-    def solvePart2(input: InputType): Int = input.map(_.ribbonNeeded).sum
+import java.awt.Dimension
 
+class Day02(rawInput: List[String]):
     def solve: Solution =
         val input = parsedInput
         val part1 = solvePart1(input)
         val part2 = solvePart2(input)
         (part1, part2)
     end solve
+
+    def solvePart1(input: InputType): Int = input.map(_.wrappingPaperNeeded).sum
+
+    def solvePart2(input: InputType): Int = input.map(_.ribbonNeeded).sum
 
     private def parsedInput: InputType =
         rawInput.map {
@@ -35,17 +38,21 @@ end Day02
 
 object Day02:
     type InputType = List[Dimension]
-
-    case class Dimension(width: Int, length: Int, height: Int):
-        def wrappingPaperNeeded: Int = smallestArea + surfaceArea
-        def ribbonNeeded: Int = smallestPerimeter + volume
-
-        private def smallestArea = List(width * length, length * height, height * width).min
-        private def surfaceArea = 2 * (width * length + length * height + height * width)
-        private def volume = width * length * height
-        private def smallestPerimeter = List(width, length, height).sorted.take(2).map(_ * 2).sum
-    end Dimension
 end Day02
+
+case class Dimension(width: Int, length: Int, height: Int):
+    def wrappingPaperNeeded: Int = smallestArea + surfaceArea
+
+    private def smallestArea = List(width * length, length * height, height * width).min
+
+    private def surfaceArea = 2 * (width * length + length * height + height * width)
+
+    def ribbonNeeded: Int = smallestPerimeter + volume
+
+    private def volume = width * length * height
+
+    private def smallestPerimeter = List(width, length, height).sorted.take(2).map(_ * 2).sum
+end Dimension
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2015_02(): Unit =

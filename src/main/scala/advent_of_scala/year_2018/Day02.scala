@@ -14,6 +14,11 @@ import advent_of_scala.base.Solution
 import advent_of_scala.year_2018.Day02.*
 
 class Day02(rawInput: List[String]):
+    def solve: Solution =
+        val input = parsedInput
+        (solvePart1(input), solvePart2(input))
+    end solve
+
     def solvePart1(input: InputType): Int =
         input.map(interestingFrequencies).foldLeft((0, 0)) { case ((twos, threes), set) =>
             (incrIfContains(set, twos, 2), incrIfContains(set, threes, 3))
@@ -35,11 +40,6 @@ class Day02(rawInput: List[String]):
             }
             .filterNot(_.isEmpty)
             .head
-
-    def solve: Solution =
-        val input = parsedInput
-        (solvePart1(input), solvePart2(input))
-    end solve
 
     private def parsedInput: InputType = rawInput
 end Day02
