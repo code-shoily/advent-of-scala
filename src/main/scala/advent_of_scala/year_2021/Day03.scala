@@ -18,13 +18,6 @@ import scala.annotation.tailrec
 class Day03(rawInput: List[String]):
     val size: Int = rawInput.head.length()
 
-    def solvePart1(input: InputType): Int = bitToInt(getBitVector(input), size)
-    def solvePart2(input: InputType): Int =
-        val o2 = scrubberRating(true)
-        val co2 = scrubberRating(false)
-        asBin(o2(input, 0), size) * asBin(co2(input, 0), size)
-    end solvePart2
-
     def solve: Solution =
         val input = parsedInput
         val part1 = solvePart1(input)
@@ -32,14 +25,19 @@ class Day03(rawInput: List[String]):
         (part1, part2)
     end solve
 
+    def solvePart1(input: InputType): Int = bitToInt(getBitVector(input), size)
+
+    def solvePart2(input: InputType): Int =
+        val o2 = scrubberRating(true)
+        val co2 = scrubberRating(false)
+        asBin(o2(input, 0), size) * asBin(co2(input, 0), size)
+    end solvePart2
+
     private def parsedInput: InputType = rawInput map { _.split("") map (_.toInt) }
 end Day03
 
 object Day03:
     type InputType = List[Array[Int]]
-
-    private def asBin(binArray: IndexedSeq[Int], size: Int): Int =
-        binArray.zipWithIndex.map { case (v, i) => v * Math.pow(2, size - i - 1) }.sum.toInt
 
     private def getBitVector(lines: List[Array[Int]]): Vector[Bits] =
         val bitVector: Vector[Bits] =
@@ -48,19 +46,14 @@ object Day03:
         bitVector
     end getBitVector
 
-    case class Bits(var oneCount: Int, var zeroCount: Int):
-        def update(bit: Int): Unit = bit match
-            case 1 => oneCount += 1
-            case 0 => zeroCount += 1
-        def mostCommon: Int = if oneCount >= zeroCount then 1 else 0
-        def leastCommon: Int = if oneCount >= zeroCount then 0 else 1
-    end Bits
-
     private def bitToInt(bits: Vector[Bits], n: Int): Int =
         val gamma = asBin((0 until n).map(bits(_).mostCommon), n)
         val epsilon = asBin((0 until n).map(bits(_).leastCommon), n)
         gamma * epsilon
     end bitToInt
+
+    private def asBin(binArray: IndexedSeq[Int], size: Int): Int =
+        binArray.zipWithIndex.map { case (v, i) => v * Math.pow(2, size - i - 1) }.sum.toInt
 
     private def frequenciesAt(bitVector: Vector[Bits], idx: Int): (Int, Int) =
         (bitVector(idx).mostCommon, bitVector(idx).leastCommon)
@@ -76,6 +69,14 @@ object Day03:
                   rawBits.filter(_(idx) == compareWith),
                   idx + 1 % rawBits.head.length
                 )
+
+    case class Bits(var oneCount: Int, var zeroCount: Int):
+        def update(bit: Int): Unit = bit match
+            case 1 => oneCount += 1
+            case 0 => zeroCount += 1
+        def mostCommon: Int = if oneCount >= zeroCount then 1 else 0
+        def leastCommon: Int = if oneCount >= zeroCount then 0 else 1
+    end Bits
 end Day03
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.

@@ -48,8 +48,25 @@ object Day04:
         def score(winningNumber: Int): Int = winningNumber * mapping.keySet.sum
     end Board
 
+    case class Bingo(boards: Seq[Board], firstScore: Option[Int], finalScore: Option[Int]):
+        def result: (Int, Int) = (firstScore, finalScore) match
+            case (Some(score1), Some(score2)) => (score1, score2)
+            case _                            => impossibleStateError
+    end Bingo
+
     private object Board:
         def fromString(values: String): Board = Board(toMapping(values))
+
+        private def toMapping(block: String): Map[Int, (Int, Int)] =
+            val table = block.split("\n").map(_.trim.split(" +"))
+            (
+              for
+                  i <- 0 until 5
+                  j <- 0 until 5
+              yield table(i)(j).toInt -> (i, j)
+            ).toMap
+        end toMapping
+
         def pick: (Board, Int) => Board = { case (board @ Board(mapping, rows, cols, won), n) =>
             mapping.get(n) match
                 case Some((row, col)) =>
@@ -61,23 +78,7 @@ object Day04:
 
         private def occupy(tally: Vector[Int], at: Int): Vector[Int] =
             tally.updated(at, tally(at) + 1)
-
-        private def toMapping(block: String): Map[Int, (Int, Int)] =
-            val table = block.split("\n").map(_.trim.split(" +"))
-            (
-              for
-                  i <- 0 until 5
-                  j <- 0 until 5
-              yield table(i)(j).toInt -> (i, j)
-            ).toMap
-        end toMapping
     end Board
-
-    case class Bingo(boards: Seq[Board], firstScore: Option[Int], finalScore: Option[Int]):
-        def result: (Int, Int) = (firstScore, finalScore) match
-            case (Some(score1), Some(score2)) => (score1, score2)
-            case _                            => impossibleStateError
-    end Bingo
 end Day04
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.

@@ -13,7 +13,13 @@ package advent_of_scala.year_2016
 import advent_of_scala.base.Solution
 
 class Day19(rawInput: List[String]):
+    def solve: Solution =
+        val input = rawInput.head.toInt
+        (solvePart1(input), solvePart2(input))
+    end solve
+
     def solvePart1(input: Int): Int = ((input - Integer.highestOneBit(input)) << 1) + 1
+
     def solvePart2(input: Int): Int =
         case class Node(value: Int, var next: Node)
 
@@ -35,11 +41,6 @@ class Day19(rawInput: List[String]):
 
         node.value
     end solvePart2
-
-    def solve: Solution =
-        val input = rawInput.head.toInt
-        (solvePart1(input), solvePart2(input))
-    end solve
 end Day19
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.

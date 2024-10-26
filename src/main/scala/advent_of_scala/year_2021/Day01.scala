@@ -13,9 +13,6 @@ package advent_of_scala.year_2021
 import advent_of_scala.base.Solution
 
 class Day01(rawInput: List[String]):
-    def solvePart1(input: Seq[Int]): Int = countIncrements(input, 1)
-    def solvePart2(input: Seq[Int]): Int = countIncrements(input, 3)
-
     def solve: Solution =
         val input = parsedInput
         val part1 = solvePart1(input)
@@ -23,12 +20,16 @@ class Day01(rawInput: List[String]):
         (part1, part2)
     end solve
 
-    def parsedInput: Seq[Int] = rawInput.map(_.toInt)
+    def solvePart1(input: Seq[Int]): Int = countIncrements(input, 1)
 
     private def countIncrements(sigs: Seq[Int], by: Int): Int =
         (0 until (sigs.length - by)).foldLeft(0)((incr, idx) =>
             incr + (if sigs(idx) < sigs(idx + by) then 1 else 0)
         )
+
+    def solvePart2(input: Seq[Int]): Int = countIncrements(input, 3)
+
+    def parsedInput: Seq[Int] = rawInput.map(_.toInt)
 end Day01
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.

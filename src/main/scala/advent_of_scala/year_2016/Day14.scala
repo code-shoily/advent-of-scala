@@ -17,13 +17,14 @@ import java.security.MessageDigest
 import scala.util.matching.UnanchoredRegex
 
 class Day14(rawInput: List[String]):
-    def solvePart1(input: String): Int = generatePad(index => single(s"$input$index"))
-    def solvePart2(input: String): Int = generatePad(index => stretched(s"$input$index"))
-
     def solve: Solution =
         val input = parsedInput
         (solvePart1(input), solvePart2(input))
     end solve
+
+    def solvePart1(input: String): Int = generatePad(index => single(s"$input$index"))
+
+    def solvePart2(input: String): Int = generatePad(index => stretched(s"$input$index"))
 
     private def parsedInput: String = rawInput.head.strip
 end Day14
@@ -33,10 +34,11 @@ object Day14:
     val three: UnanchoredRegex = "(.)\\1{2}".r.unanchored
     val five: UnanchoredRegex = "(.)\\1{4}".r.unanchored
 
-    private def single(string: String): String =
-        md5.digest(string.getBytes).map("%02x".format(_)).mkString
     private def stretched(string: String): String =
         Iterator.iterate(string)(single).drop(2017).next()
+
+    private def single(string: String): String =
+        md5.digest(string.getBytes).map("%02x".format(_)).mkString
 
     private def generatePad(hash: Int => String): Int =
         def check(window: Seq[(String, Int)]): Boolean = window.head match
@@ -59,7 +61,7 @@ object Day14:
     end generatePad
 end Day14
 
-/*--------- Block to test this file on IDEs, comment this line with `//` to enable.
+//*--------- Block to test this file on IDEs, comment this line with `//` to enable.
 @main def run_2016_14(): Unit =
     import advent_of_scala.base.impossibleStateError
     import advent_of_scala.utils.IO.{readLines, printSolution}

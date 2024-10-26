@@ -30,24 +30,6 @@ object Day17:
           'R' -> Point(1, 0)
         )
 
-    case class Point(x: Int, y: Int):
-        @targetName("add")
-        def +(other: Point): Point = Point(x + other.x, y + other.y)
-        def isValid: Boolean = 0 <= x && x < 4 && 0 <= y && y < 4
-    end Point
-
-    case class Room(location: Point, path: String):
-        def hash(string: String): String =
-            md5.digest(string.getBytes) take 2 map ("%02x".format(_)) mkString ""
-
-        def neighbours(passcode: String): Set[Room] = directions
-            .map((next, move) => Room(location + move, path + next))
-            .zip(hash(passcode + path))
-            .filter((state, char) => state.location.isValid && char > 'a')
-            .map(_._1)
-            .toSet
-    end Room
-
     private def dfs(passcode: String): (String, Int) =
         def dfsUtil(state: Room): Set[String] =
             if state.location == Point(3, 3) then Set(state.path)
@@ -57,6 +39,24 @@ object Day17:
 
         (paths.minBy(_.length), paths.map(_.length).max)
     end dfs
+
+    case class Point(x: Int, y: Int):
+        @targetName("add")
+        def +(other: Point): Point = Point(x + other.x, y + other.y)
+        def isValid: Boolean = 0 <= x && x < 4 && 0 <= y && y < 4
+    end Point
+
+    case class Room(location: Point, path: String):
+        def neighbours(passcode: String): Set[Room] = directions
+            .map((next, move) => Room(location + move, path + next))
+            .zip(hash(passcode + path))
+            .filter((state, char) => state.location.isValid && char > 'a')
+            .map(_._1)
+            .toSet
+
+        def hash(string: String): String =
+            md5.digest(string.getBytes) take 2 map ("%02x".format(_)) mkString ""
+    end Room
 end Day17
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.

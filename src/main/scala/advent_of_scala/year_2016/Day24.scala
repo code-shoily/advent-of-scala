@@ -14,6 +14,11 @@ import advent_of_scala.base.Solution
 import advent_of_scala.year_2016.Day24.*
 
 class Day24(rawInput: List[String]):
+    def solve: Solution =
+        val input = parsedInput
+        (solvePart1(input), solvePart2(input))
+    end solve
+
     def solvePart1(input: InputType): Int =
         val paths = input.keys.toList.sorted.permutations.map(_.prepended(0))
         shortestPath(input, paths)
@@ -21,11 +26,6 @@ class Day24(rawInput: List[String]):
     def solvePart2(input: InputType): Int =
         val paths = input.keys.toList.sorted.permutations.map(_.prepended(0).appended(0))
         shortestPath(input, paths)
-
-    def solve: Solution =
-        val input = parsedInput
-        (solvePart1(input), solvePart2(input))
-    end solve
 
     def parsedInput: InputType =
         val (grid, pois) =
@@ -57,12 +57,6 @@ end Day24
 object Day24:
     type InputType = Map[Int, Map[Int, Int]]
 
-    case class Node(x: Int, y: Int):
-        def neighbours: Seq[Node] = List((1, 0), (-1, 0), (0, 1), (0, -1)) map { (dx, dy) =>
-            Node(x + dx, y + dy)
-        }
-    end Node
-
     def bfs(grid: Set[Node], start: Node, end: Node): Int =
         val cost = collection.mutable.Map(start -> 0)
         val todo = collection.mutable.Queue(start)
@@ -86,6 +80,12 @@ object Day24:
         paths.map(
           _.sliding(2).map(next => traversals(next.head)(next.last)).sum
         ).min
+
+    case class Node(x: Int, y: Int):
+        def neighbours: Seq[Node] = List((1, 0), (-1, 0), (0, 1), (0, -1)) map { (dx, dy) =>
+            Node(x + dx, y + dy)
+        }
+    end Node
 end Day24
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.

@@ -16,6 +16,12 @@ import advent_of_scala.year_2021.Day08.Digit.*
 import advent_of_scala.year_2021.Day08.Segment.*
 
 class Day08(rawInput: List[String]):
+    def solve: Solution =
+        val part1 = solvePart1(rawInput)
+        val part2 = solvePart2(rawInput)
+        (part1, part2)
+    end solve
+
     def solvePart1(input: List[String]): Int = {
         for
             display <- input map { _.split('|')(1).trim }
@@ -35,51 +41,10 @@ class Day08(rawInput: List[String]):
             plaintext.map(subsTable(cipher))
         } map { _.foldLeft(0)((acc, d) => acc * 10 + d.ordinal) } reduce (_ + _)
     end solvePart2
-
-    def solve: Solution =
-        val part1 = solvePart1(rawInput)
-        val part2 = solvePart2(rawInput)
-        (part1, part2)
-    end solve
 end Day08
 
 object Day08:
     private type Segments = Set[Segment]
-
-    enum Segment:
-        case A, B, C, D, E, F, G
-
-    object Segment:
-        private val charToSegment: Map[Char, Segment] = {
-            values map { s => s.toString.head.toLower -> s }
-        }.toMap
-
-        def toSegments(s: String): Segments = { s map charToSegment }.toSet
-    end Segment
-
-    enum Digit(val segments: Segment*):
-        private case Zero extends Digit(A, B, C, E, F, G)
-        case One extends Digit(C, F)
-        private case Two extends Digit(A, C, D, E, G)
-        private case Three extends Digit(A, C, D, F, G)
-        case Four extends Digit(B, C, D, F)
-        private case Five extends Digit(A, B, D, F, G)
-        private case Six extends Digit(A, B, D, E, F, G)
-        case Seven extends Digit(A, C, F)
-        case Eight extends Digit(A, B, C, D, E, F, G)
-        private case Nine extends Digit(A, B, C, D, F, G)
-    end Digit
-
-    object Digit:
-        val index: IndexedSeq[Digit] = values.toIndexedSeq
-
-        private val lookupTable: Map[Int, Digit] =
-            index groupBy { _.segments.size } collect { case k -> Seq(d) => k -> d }
-
-        def lookupUnique(segments: Segments): Option[Digit] =
-            lookupTable get segments.size
-
-    end Digit
 
     private def subsTable(cipher: Seq[Segments]): Map[Segments, Digit] =
         def lookup(section: Seq[Segments], withSegments: Segments) =
@@ -107,6 +72,41 @@ object Day08:
 
         Seq(zero, one, two, three, four, five, six, seven, eight, nine).zip(Digit.index).toMap
     end subsTable
+
+    enum Segment:
+        case A, B, C, D, E, F, G
+
+    enum Digit(val segments: Segment*):
+        private case Zero extends Digit(A, B, C, E, F, G)
+        case One extends Digit(C, F)
+        private case Two extends Digit(A, C, D, E, G)
+        private case Three extends Digit(A, C, D, F, G)
+        case Four extends Digit(B, C, D, F)
+        private case Five extends Digit(A, B, D, F, G)
+        private case Six extends Digit(A, B, D, E, F, G)
+        case Seven extends Digit(A, C, F)
+        case Eight extends Digit(A, B, C, D, E, F, G)
+        private case Nine extends Digit(A, B, C, D, F, G)
+    end Digit
+
+    object Segment:
+        private val charToSegment: Map[Char, Segment] = {
+            values map { s => s.toString.head.toLower -> s }
+        }.toMap
+
+        def toSegments(s: String): Segments = { s map charToSegment }.toSet
+    end Segment
+
+    object Digit:
+        val index: IndexedSeq[Digit] = values.toIndexedSeq
+
+        private val lookupTable: Map[Int, Digit] =
+            index groupBy { _.segments.size } collect { case k -> Seq(d) => k -> d }
+
+        def lookupUnique(segments: Segments): Option[Digit] =
+            lookupTable get segments.size
+
+    end Digit
 end Day08
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.

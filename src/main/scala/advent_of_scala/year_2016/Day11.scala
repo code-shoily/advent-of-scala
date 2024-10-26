@@ -16,16 +16,17 @@ import advent_of_scala.year_2016.Day11.*
 import scala.annotation.targetName
 
 class Day11(rawInput: List[String]):
-    def solvePart1(input: InputType): Int = bfs(input)
-    def solvePart2(input: InputType): Int =
-        val State(elevator, floors) = input
-        val expanded = State(elevator, floors.updated(0, floors.head + Floor(2, 2)))
-        bfs(expanded)
-
     def solve: Solution =
         val input = parsedInput
         (solvePart1(input), solvePart2(input))
     end solve
+
+    def solvePart1(input: InputType): Int = bfs(input)
+
+    def solvePart2(input: InputType): Int =
+        val State(elevator, floors) = input
+        val expanded = State(elevator, floors.updated(0, floors.head + Floor(2, 2)))
+        bfs(expanded)
 
     private def parsedInput: InputType =
         val microchip = "microchip".r
@@ -44,6 +45,23 @@ object Day11:
     val permutations: Seq[Floor] =
         Seq(Floor(2, 0), Floor(1, 0), Floor(1, 1), Floor(0, 1), Floor(0, 2))
     val adjacent: Map[Int, Seq[Int]] = Map(0 -> Seq(1), 1 -> Seq(0, 2), 2 -> Seq(1, 3), 3 -> Seq(2))
+
+    def bfs(start: State): Int =
+        val todo = collection.mutable.Queue(start)
+        val cache = collection.mutable.Map(start -> 0)
+
+        while todo.nonEmpty do
+            val current = todo.dequeue()
+            val cost = cache(current) + 1
+            current.candidates.filter(_.valid).foreach { next =>
+                if !cache.contains(next) || cost < cache(next) then
+                    cache(next) = cost
+                    todo.enqueue(next)
+            }
+        end while
+
+        cache(cache.keys.filter(_.finished).head)
+    end bfs
 
     case class Floor(microchips: Int, generators: Int):
         def empty: Boolean = microchips == 0 && generators == 0
@@ -72,23 +90,6 @@ object Day11:
               )
             )
     end State
-
-    def bfs(start: State): Int =
-        val todo = collection.mutable.Queue(start)
-        val cache = collection.mutable.Map(start -> 0)
-
-        while todo.nonEmpty do
-            val current = todo.dequeue()
-            val cost = cache(current) + 1
-            current.candidates.filter(_.valid).foreach { next =>
-                if !cache.contains(next) || cost < cache(next) then
-                    cache(next) = cost
-                    todo.enqueue(next)
-            }
-        end while
-
-        cache(cache.keys.filter(_.finished).head)
-    end bfs
 end Day11
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.

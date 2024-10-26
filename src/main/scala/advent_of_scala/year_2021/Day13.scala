@@ -14,6 +14,16 @@ import advent_of_scala.base.{Solution, impossibleStateError}
 import advent_of_scala.year_2021.Day13.*
 
 class Day13(rawInput: List[String]):
+    def solve: Solution =
+        val (dots, folds) = parsedInput
+        val part1 = solvePart1(dots, folds)
+        val part2 = solvePart2(dots, folds)
+
+        println(part2) // Read the input
+
+        (part1, "LKREBPRK")
+    end solve
+
     def solvePart1(dots: Set[Dot], folds: List[Fold]): Int =
         dots.map(folds.head.apply).size
 
@@ -27,16 +37,6 @@ class Day13(rawInput: List[String]):
         paper map (_.mkString(" ")) mkString "\n"
     end solvePart2
 
-    def solve: Solution =
-        val (dots, folds) = parsedInput
-        val part1 = solvePart1(dots, folds)
-        val part2 = solvePart2(dots, folds)
-
-        println(part2) // Read the input
-
-        (part1, "LKREBPRK")
-    end solve
-
     private def parsedInput =
         val sections = (rawInput mkString "\n").split("\n\n")
         val dots = sections(0).linesIterator.map(Dot.parse).toSet
@@ -47,13 +47,6 @@ end Day13
 
 object Day13:
     case class Dot(x: Int, y: Int)
-
-    object Dot:
-        def parse(line: String): Dot =
-            line match
-                case s"$x,$y" => Dot(x.toInt, y.toInt)
-                case _        => impossibleStateError
-    end Dot
 
     enum Fold:
         case Vertical(x: Int)
@@ -68,6 +61,13 @@ object Day13:
             if value < along then value
             else along - (value - along)
     end Fold
+
+    object Dot:
+        def parse(line: String): Dot =
+            line match
+                case s"$x,$y" => Dot(x.toInt, y.toInt)
+                case _        => impossibleStateError
+    end Dot
 
     object Fold:
         def parse(line: String): Fold =
