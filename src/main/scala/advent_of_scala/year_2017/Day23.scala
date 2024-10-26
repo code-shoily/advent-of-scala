@@ -43,10 +43,6 @@ object Day23:
         state: State = Running,
         count: Int = 0
     ):
-        def next: Cpu = copy(ip = ip + 1)
-        def read(key: String): Long = key.toLongOption.getOrElse(registers.getOrElse(key, 0L))
-        def write(key: String, value: Long): Cpu =
-            next.copy(registers = registers.updated(key, value))
         def step: Cpu =
             if instructions.indices.contains(ip) then
                 val Array(op, dest, src) = instructions(ip).split(" ")
@@ -59,6 +55,12 @@ object Day23:
             else
                 copy(state = Halted)
         end step
+
+        def read(key: String): Long = key.toLongOption.getOrElse(registers.getOrElse(key, 0L))
+        def write(key: String, value: Long): Cpu =
+            next.copy(registers = registers.updated(key, value))
+
+        def next: Cpu = copy(ip = ip + 1)
     end Cpu
 end Day23
 

@@ -22,12 +22,12 @@ class Day01(rawInput: List[String]):
 
     def solvePart1(input: Seq[Int]): Int = countIncrements(input, 1)
 
+    def solvePart2(input: Seq[Int]): Int = countIncrements(input, 3)
+
     private def countIncrements(sigs: Seq[Int], by: Int): Int =
         (0 until (sigs.length - by)).foldLeft(0)((incr, idx) =>
             incr + (if sigs(idx) < sigs(idx + by) then 1 else 0)
         )
-
-    def solvePart2(input: Seq[Int]): Int = countIncrements(input, 3)
 
     def parsedInput: Seq[Int] = rawInput.map(_.toInt)
 end Day01

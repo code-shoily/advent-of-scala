@@ -41,12 +41,6 @@ object Day01:
         tr(a.head) * 10 + tr(a.last)
     }
 
-    private def numericOrWordedDigits(line: String) =
-        tr(regex.findFirstIn(line).get) * 10 + tr(
-          regexRev.findFirstIn(line.reverse).get,
-          invert = true
-        )
-
     private def tr(value: String, invert: Boolean = false): Int =
         (if invert then value.reverse else value) match
             case "one" | "1"   => 1
@@ -58,6 +52,12 @@ object Day01:
             case "seven" | "7" => 7
             case "eight" | "8" => 8
             case "nine" | "9"  => 9
+
+    private def numericOrWordedDigits(line: String) =
+        tr(regex.findFirstIn(line).get) * 10 + tr(
+          regexRev.findFirstIn(line.reverse).get,
+          invert = true
+        )
 end Day01
 
 /*--------- Block to test this file on IDEs, comment this line with `//` to enable.

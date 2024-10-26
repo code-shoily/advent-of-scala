@@ -75,58 +75,6 @@ object SolutionMeta:
         metadata
     end solutionMetaForYear
 
-    private def solutionMetaIfExists(year: Int, day: Int): Option[SolutionMeta] =
-        val links = getLinks(year, day)
-
-        if isPuzzleSolved(links) then
-            given sourceCodeLines: List[String] =
-                val src = Source.fromFile(links("sourceLink"))
-                val lines = src.getLines().toList
-                src.close()
-                lines
-            end sourceCodeLines
-
-            val meta =
-                SolutionMeta(
-                  year = year,
-                  day = day,
-                  title = title,
-                  difficulty = attrBy("Difficulty"),
-                  tags = attrBy("Tags").split(" ").toList,
-                  answers = attrBy("Answers"),
-                  mainLink = links("mainLink"),
-                  sourceLink = links("sourceLink"),
-                  inputLink = links("inputLink"),
-                  testLink = links("testLink")
-                )
-            Some(meta)
-        else
-            None
-        end if
-    end solutionMetaIfExists
-
-    private def title(using sourceCodeLines: List[String]): String =
-        sourceCodeLines.head.stripPrefix("/**").strip
-
-    private def attrBy(attribute: String)(using sourceCodeLines: List[String]): String =
-        sourceCodeLines.map(_.strip).find(_.startsWith(s"* $attribute:")).get.split(":")(1).strip()
-
-    private def getLinks(year: Int, day: Int): Map[String, String] =
-        Map(
-          "mainLink" -> s"https://adventofcode.com/$year/day/$day",
-          "sourceLink" -> f"src/main/scala/advent_of_scala/year_$year/Day$day%02d.scala",
-          "testLink" -> f"src/test/scala/advent_of_scala/year_$year/Day$day%02dSuite.scala",
-          "inputLink" -> f"src/main/resources/inputs/$year/$day%02d.txt"
-        )
-
-    private def isPuzzleSolved(links: Map[String, String]): Boolean =
-        val sourceLinkExists = Files.exists(Paths.get(links("sourceLink")))
-        val testLinkExists = Files.exists(Paths.get(links("testLink")))
-        val inputLinkExists = Files.exists(Paths.get(links("inputLink")))
-
-        sourceLinkExists && testLinkExists && inputLinkExists
-    end isPuzzleSolved
-
     private def markDownPageHeaderForYear(metadata: List[SolutionMeta], year: Int): String =
         def yearFormat =
             (2015 to lastYear) map {
@@ -191,4 +139,56 @@ object SolutionMeta:
         solutionMetaIfExists(year, day) match
             case Some(metadata) => metadata.statusIcon
             case None           => ""
+
+    private def solutionMetaIfExists(year: Int, day: Int): Option[SolutionMeta] =
+        val links = getLinks(year, day)
+
+        if isPuzzleSolved(links) then
+            given sourceCodeLines: List[String] =
+                val src = Source.fromFile(links("sourceLink"))
+                val lines = src.getLines().toList
+                src.close()
+                lines
+            end sourceCodeLines
+
+            val meta =
+                SolutionMeta(
+                  year = year,
+                  day = day,
+                  title = title,
+                  difficulty = attrBy("Difficulty"),
+                  tags = attrBy("Tags").split(" ").toList,
+                  answers = attrBy("Answers"),
+                  mainLink = links("mainLink"),
+                  sourceLink = links("sourceLink"),
+                  inputLink = links("inputLink"),
+                  testLink = links("testLink")
+                )
+            Some(meta)
+        else
+            None
+        end if
+    end solutionMetaIfExists
+
+    private def title(using sourceCodeLines: List[String]): String =
+        sourceCodeLines.head.stripPrefix("/**").strip
+
+    private def attrBy(attribute: String)(using sourceCodeLines: List[String]): String =
+        sourceCodeLines.map(_.strip).find(_.startsWith(s"* $attribute:")).get.split(":")(1).strip()
+
+    private def getLinks(year: Int, day: Int): Map[String, String] =
+        Map(
+          "mainLink" -> s"https://adventofcode.com/$year/day/$day",
+          "sourceLink" -> f"src/main/scala/advent_of_scala/year_$year/Day$day%02d.scala",
+          "testLink" -> f"src/test/scala/advent_of_scala/year_$year/Day$day%02dSuite.scala",
+          "inputLink" -> f"src/main/resources/inputs/$year/$day%02d.txt"
+        )
+
+    private def isPuzzleSolved(links: Map[String, String]): Boolean =
+        val sourceLinkExists = Files.exists(Paths.get(links("sourceLink")))
+        val testLinkExists = Files.exists(Paths.get(links("testLink")))
+        val inputLinkExists = Files.exists(Paths.get(links("inputLink")))
+
+        sourceLinkExists && testLinkExists && inputLinkExists
+    end isPuzzleSolved
 end SolutionMeta
