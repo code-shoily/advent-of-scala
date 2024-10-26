@@ -21,12 +21,20 @@ class Day02(rawInput: List[String]):
             case (a, b) => a * b
 
     def solvePart2(input: InputType): String =
-        input.head.indices.map(idx =>
-            val withoutCharAtIdx = input map { StringBuilder(_).deleteCharAt(idx) }
-            withoutCharAtIdx.groupBy(identity).collect {
-                case (id, vals) if vals.length == 2 => id.toString
-            }.flatten.mkString
-        ).filterNot(_.isEmpty).head
+        input
+            .head
+            .indices
+            .map { idx =>
+                input
+                    .map(StringBuilder(_).deleteCharAt(idx))
+                    .groupBy(identity).collect {
+                        case (id, vals) if vals.length == 2 => id.toString
+                    }
+                    .flatten
+                    .mkString
+            }
+            .filterNot(_.isEmpty)
+            .head
 
     def solve: Solution =
         val input = parsedInput
